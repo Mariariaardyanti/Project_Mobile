@@ -56,6 +56,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+      - assets/images/bubbles1.jpg
+      - assets/images/bubbles.jpg
+      - assets/images/bubbles3.jpg
+      - assets/images/bubbless.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
