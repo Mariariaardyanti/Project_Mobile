@@ -10,7 +10,7 @@ class SplashScreenPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 50),
+            SizedBox(height: 30),
             Container(
               width: 200,
               height: 200,
@@ -19,7 +19,6 @@ class SplashScreenPage extends StatelessWidget {
                 color: Colors.amber[50],
                 image: DecorationImage(
                   image: AssetImage("assets/images/image1.png"),
-                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -29,6 +28,13 @@ class SplashScreenPage extends StatelessWidget {
               "Keep your notes and\nideas in one simple space.",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
+
+            SizedBox(height: 5),
+            Text(
+              "Write freely, save what matters, and\nstay organized without effort.",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w),
             ),
           ],
         ),
