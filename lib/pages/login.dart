@@ -20,7 +20,7 @@ class Login extends StatelessWidget {
                 "Sign In",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -114,7 +114,7 @@ class Login extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown[600],
+                  backgroundColor: const Color(0xFF745624),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
@@ -127,7 +127,97 @@ class Login extends StatelessWidget {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 10),
+
+              SizedBox(height: 30),
+
+              //bikin line
+              Row(
+                children: [
+                  Expanded(child: Divider(color: Colors.grey[300])),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Or sign in with',
+                      style: TextStyle(color: Colors.grey[600]),
+                    ),
+                  ),
+                  Expanded(child: Divider(color: Colors.grey[300])),
+                ],
+              ),
+
+              SizedBox(height: 30),
+
+              //social login button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //facebook
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Color(0xFF745624), width: 1.5),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      iconSize: 18,
+                      onPressed: () {
+                        //facebook login
+                      },
+                      icon: const Icon(
+                        Icons.facebook,
+                        color: Color(0xFF745624),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 10),
+
+                  //google
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Color(0xFF745624), width: 1.5),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      iconSize: 30,
+                      onPressed: () {
+                        //facebook login
+                      },
+                      icon: const Icon(
+                        Icons.g_mobiledata,
+                        color: Color(0xFF745624),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 10),
+
+                  //apple
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Color(0xFF745624), width: 1.5),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      iconSize: 25,
+                      onPressed: () {
+                        //facebook login
+                      },
+                      icon: const Icon(Icons.apple, color: Color(0xFF745624)),
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 20),
             ],
           ),
         ),
