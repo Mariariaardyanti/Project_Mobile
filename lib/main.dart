@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: "Board",
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown.shade800),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         fontFamily: 'Poppins',
       ),
       home: const SplashScreenPage(),

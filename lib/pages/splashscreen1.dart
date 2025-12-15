@@ -23,6 +23,39 @@ class SplashScreenPage extends StatelessWidget {
               ),
             ),
 
+            SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF745624),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
+              ],
+            ),
+
             SizedBox(height: 10),
             Text(
               "Keep your notes and\nideas in one simple space.",
@@ -30,11 +63,11 @@ class SplashScreenPage extends StatelessWidget {
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
 
-            SizedBox(height: 5),
+            SizedBox(height: 10),
             Text(
               "Write freely, save what matters, and\nstay organized without effort.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w),
+              style: TextStyle(fontSize: 12.0),
             ),
           ],
         ),
