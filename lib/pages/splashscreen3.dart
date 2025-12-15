@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/splashscreen2.dart';
 
-class SplashScreenPage extends StatelessWidget {
-  const SplashScreenPage({super.key});
+class SplashScreen3 extends StatelessWidget {
+  const SplashScreen3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +32,25 @@ class SplashScreenPage extends StatelessWidget {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
                     color: Color(0xFF745624),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFedede9),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFedede9),
                   ),
                 ),
               ],
@@ -59,7 +58,7 @@ class SplashScreenPage extends StatelessWidget {
 
             SizedBox(height: 20),
             Text(
-              "Keep your notes and\nideas in one simple space.",
+              "Shape your workspace\nto fit your style.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.0,
@@ -70,7 +69,7 @@ class SplashScreenPage extends StatelessWidget {
 
             SizedBox(height: 10),
             Text(
-              "Write freely, save what matters, and\nstay organized without effort.",
+              "Use blocks, templates, and layouts\nthat work the way you do.",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.0, color: Colors.brown),
             ),
@@ -82,12 +81,7 @@ class SplashScreenPage extends StatelessWidget {
                 height: 44,
                 width: 44,
                 child: ElevatedButton(
-                  onPressed: () {
-                     Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SplashScreen2()),
-                    );
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF745624),
                     shape: const CircleBorder(),
