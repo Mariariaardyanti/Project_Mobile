@@ -18,7 +18,7 @@ class SplashScreen3 extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.amber[50],
                 image: DecorationImage(
-                  image: AssetImage("assets/images/image1.png"),
+                  image: AssetImage("assets/images/imageee.png"),
                 ),
               ),
             ),
@@ -79,18 +79,19 @@ class SplashScreen3 extends StatelessWidget {
               margin: const EdgeInsets.only(left: 40, right: 40),
               child: SizedBox(
                 height: 44,
-                width: 44,
+                width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF745624),
-                    shape: const CircleBorder(),
-                    padding: EdgeInsets.zero,
                   ),
-                  child: const Icon(
-                    Icons.arrow_forward_rounded,
-                    color: Colors.white,
-                    size: 24,
+                  child: const Text(
+                    'Let’s get started',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
