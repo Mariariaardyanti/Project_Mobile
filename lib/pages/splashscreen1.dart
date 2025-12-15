@@ -56,18 +56,44 @@ class SplashScreenPage extends StatelessWidget {
               ],
             ),
 
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             Text(
               "Keep your notes and\nideas in one simple space.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.brown[800],
+              ),
             ),
 
             SizedBox(height: 10),
             Text(
               "Write freely, save what matters, and\nstay organized without effort.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0),
+              style: TextStyle(fontSize: 12.0, color: Colors.brown),
+            ),
+
+            SizedBox(height: 40),
+            Container(
+              margin: const EdgeInsets.only(left: 40, right: 40),
+              child: SizedBox(
+                height: 44,
+                width: 44,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF745624),
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.zero,
+                  ),
+                  child: const Icon(
+                    Icons.arrow_forward_rounded,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
