@@ -151,6 +151,7 @@ class SignUp extends StatelessWidget {
               ),
 
               SizedBox(height: 30),
+
               //bikin line
               Row(
                 children: [
@@ -165,7 +166,78 @@ class SignUp extends StatelessWidget {
                   Expanded(child: Divider(color: Colors.grey[300])),
                 ],
               ),
-              
+
+              SizedBox(height: 30),
+
+              //social login button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //facebook
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Color(0xFF745624), width: 1.5),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      iconSize: 25,
+                      onPressed: () {
+                        //facebook login
+                      },
+                      icon: const Icon(
+                        Icons.facebook,
+                        color: Color(0xFF745624),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 10),
+
+                  //google
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Color(0xFF745624), width: 1.5),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      iconSize: 30,
+                      onPressed: () {
+                        //google login
+                      },
+                      icon: const Icon(
+                        Icons.g_mobiledata,
+                        color: Color(0xFF745624),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 10),
+
+                  //apple
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Color(0xFF745624), width: 1.5),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      iconSize: 25,
+                      onPressed: () {
+                        //apple login
+                      },
+                      icon: const Icon(Icons.apple, color: Color(0xFF745624)),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

@@ -236,7 +236,7 @@ class _LoginState extends State<Login> {
                     ),
                     child: IconButton(
                       padding: EdgeInsets.zero,
-                      iconSize: 18,
+                      iconSize: 25,
                       onPressed: () {
                         //facebook login
                       },
@@ -261,7 +261,7 @@ class _LoginState extends State<Login> {
                       padding: EdgeInsets.zero,
                       iconSize: 30,
                       onPressed: () {
-                        //facebook login
+                        //google login
                       },
                       icon: const Icon(
                         Icons.g_mobiledata,
@@ -284,7 +284,7 @@ class _LoginState extends State<Login> {
                       padding: EdgeInsets.zero,
                       iconSize: 25,
                       onPressed: () {
-                        //facebook login
+                        //apple login
                       },
                       icon: const Icon(Icons.apple, color: Color(0xFF745624)),
                     ),
