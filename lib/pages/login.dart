@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 50),
               Text(
                 "Email",
                 textAlign: TextAlign.left,
@@ -101,13 +101,13 @@ class _LoginState extends State<Login> {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 5),
               TextField(
                 controller: emailCtrl,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'example@gmail.com',
-                  prefixIcon: const Icon(Icons.email_outlined),
+                  hintStyle: TextStyle(color: Color(0xFFC2C2C2)),
                   filled: true,
                   fillColor: Colors.grey.shade100,
                   border: OutlineInputBorder(
@@ -139,7 +139,7 @@ class _LoginState extends State<Login> {
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Input your Password',
-                  prefixIcon: const Icon(Icons.lock_outline),
+                  hintStyle: TextStyle(color: Color(0xFFC2C2C2)),
                   suffixIcon: const Icon(Icons.visibility_outlined),
                   filled: true,
                   fillColor: Colors.grey.shade100,

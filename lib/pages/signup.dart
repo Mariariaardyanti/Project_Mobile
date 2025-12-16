@@ -35,6 +35,7 @@ class SignUp extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
+
               SizedBox(height: 40),
               Text(
                 "Name",
@@ -45,12 +46,44 @@ class SignUp extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 10),
+              SizedBox(height: 5),
               TextField(
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   hintText: 'ex. Helen',
-                  prefixIcon: const Icon(Icons.person),
+                  hintStyle: TextStyle(color: Color(0xFFC2C2C2)),
+                  filled: true,
+                  fillColor: Colors.grey.shade100,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey[300]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.blue[700]!, width: 2),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 40),
+              Text(
+                "Email",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                ),
+              ),
+
+              SizedBox(height: 5),
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: 'example@gmail.com',
+                  hintStyle: TextStyle(color: Color(0xFFC2C2C2)),
                   filled: true,
                   fillColor: Colors.grey.shade100,
                   border: OutlineInputBorder(
