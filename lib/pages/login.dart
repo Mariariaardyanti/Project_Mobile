@@ -59,7 +59,6 @@ class _LoginState extends State<Login> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,9 +167,9 @@ class _LoginState extends State<Login> {
               SizedBox(height: 20),
 
               if (_error != null) ...[
-              Text(_error!, style: const TextStyle(color: Colors.brown)),
-              const SizedBox(height: 8),
-            ],
+                Text(_error!, style: const TextStyle(color: Colors.brown)),
+                const SizedBox(height: 8),
+              ],
 
               //button
               ElevatedButton(
@@ -184,10 +183,22 @@ class _LoginState extends State<Login> {
                   ),
                   elevation: 2,
                 ),
-                child: const Text(
-                  'Sign In',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                child: _isLoading
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
 
               SizedBox(height: 30),
