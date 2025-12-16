@@ -15,7 +15,6 @@ class SignUp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 10),
               Text(
                 "Create Account",
                 textAlign: TextAlign.center,
@@ -36,7 +35,7 @@ class SignUp extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               Text(
                 "Name",
                 textAlign: TextAlign.left,
@@ -68,7 +67,7 @@ class SignUp extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Text(
                 "Email",
                 textAlign: TextAlign.left,
@@ -100,7 +99,7 @@ class SignUp extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Text(
                 "Password",
                 textAlign: TextAlign.left,
@@ -129,6 +128,25 @@ class SignUp extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: Colors.blue[700]!, width: 2),
                   ),
+                ),
+              ),
+
+              SizedBox(height: 25),
+              //button
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF745624),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  elevation: 2,
+                ),
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
