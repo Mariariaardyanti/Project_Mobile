@@ -101,9 +101,9 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: emailCtrl,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Email',
                   hintText: 'example@gmail.com',
                   prefixIcon: const Icon(Icons.email_outlined),
                   filled: true,
@@ -133,9 +133,9 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: passCtrl,
                 obscureText: true,
                 decoration: InputDecoration(
-                  labelText: 'Password',
                   hintText: 'Input your Password',
                   prefixIcon: const Icon(Icons.lock_outline),
                   suffixIcon: const Icon(Icons.visibility_outlined),
@@ -173,7 +173,7 @@ class _LoginState extends State<Login> {
 
               //button
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _isLoading ? null : _login,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF745624),
                   foregroundColor: Colors.white,
