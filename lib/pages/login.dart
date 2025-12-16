@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project_mobile/pages/signup.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -76,17 +77,18 @@ class _LoginState extends State<Login> {
                 "Sign In",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 8),
               Text(
                 "Hi! Welcome back, you’ve been missed",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.normal,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
@@ -293,7 +295,10 @@ class _LoginState extends State<Login> {
               SizedBox(height: 30),
               TextButton(
                 onPressed: () {
-                  // sign up page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUp()),
+                  );
                 },
                 child: RichText(
                   text: const TextSpan(
