@@ -1,7 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final emailCtrl = TextEditingController();
+  final passCtrl = TextEditingController();
+
+  bool _isLoading = false;
+  String? _error;
+
+  Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+      _error = null;
+    });
+
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailCtrl.text.trim(),
+        password: passCtrl.text,
+      );
+
+      final user = credential.user;
+      if (!mounted) return;
+
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text('Login Success'),
+          content: Text('UID: ${user?.uid}\nEmail: ${user?.email}'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _error = e.message;
+      });
+    } catch (e) {
+      setState(() {
+        _error = e.toString();
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +101,9 @@ class Login extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: emailCtrl,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Email',
                   hintText: 'example@gmail.com',
                   prefixIcon: const Icon(Icons.email_outlined),
                   filled: true,
@@ -77,9 +133,9 @@ class Login extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: passCtrl,
                 obscureText: true,
                 decoration: InputDecoration(
-                  labelText: 'Password',
                   hintText: 'Input your Password',
                   prefixIcon: const Icon(Icons.lock_outline),
                   suffixIcon: const Icon(Icons.visibility_outlined),
@@ -110,9 +166,14 @@ class Login extends StatelessWidget {
               ),
               SizedBox(height: 20),
 
+              if (_error != null) ...[
+                Text(_error!, style: const TextStyle(color: Colors.brown)),
+                const SizedBox(height: 8),
+              ],
+
               //button
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _isLoading ? null : _login,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF745624),
                   foregroundColor: Colors.white,
@@ -122,10 +183,22 @@ class Login extends StatelessWidget {
                   ),
                   elevation: 2,
                 ),
-                child: const Text(
-                  'Sign In',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                child: _isLoading
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
 
               SizedBox(height: 30),
