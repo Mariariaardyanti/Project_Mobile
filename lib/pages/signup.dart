@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_mobile/pages/login.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -35,7 +36,7 @@ class SignUp extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 50),
               Text(
                 "Name",
                 textAlign: TextAlign.left,
@@ -237,6 +238,37 @@ class SignUp extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+
+              SizedBox(height: 30),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
+                },
+                child: RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Already have an account? ",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      TextSpan(
+                        text: "Sign in",
+                        style: TextStyle(
+                          color: Color(0xFF745624),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
