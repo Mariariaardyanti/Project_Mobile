@@ -167,6 +167,11 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 20),
 
+              if (_error != null) ...[
+              Text(_error!, style: const TextStyle(color: Colors.brown)),
+              const SizedBox(height: 8),
+            ],
+
               //button
               ElevatedButton(
                 onPressed: () {},
