@@ -76,6 +76,7 @@ class SplashScreenPage extends StatelessWidget {
             ),
 
             SizedBox(height: 40),
+
             Container(
               margin: const EdgeInsets.only(left: 40, right: 40),
               child: SizedBox(
@@ -83,7 +84,7 @@ class SplashScreenPage extends StatelessWidget {
                 width: 44,
                 child: ElevatedButton(
                   onPressed: () {
-                     Navigator.push(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SplashScreen2()),
                     );

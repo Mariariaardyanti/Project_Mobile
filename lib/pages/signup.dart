@@ -1,8 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_mobile/pages/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  final nameCtrl = TextEditingController();
+  final emailCtrl = TextEditingController();
+  final passCtrl = TextEditingController();
+
+  bool _isLoading = false;
+  String? _error;
+
+  Future<void> _signup() async {
+    setState(() {
+      _isLoading = true;
+      _error = null;
+    });
+
+    try {
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: emailCtrl.text.trim(),
+            password: passCtrl.text,
+          );
+
+      final user = credential.user;
+      if (!mounted) return;
+
+      await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
+        'name': nameCtrl.text.trim(),
+        'email': user.email,
+        'photoUrl': '',
+        'role': 'users',
+        'createdAt': FieldValue.serverTimestamp(),
+        'team': {
+          'roleInTeam': 'UI Design & Mobile Developer',
+          'contributions': [
+            'UI Design',
+            'Implementasi Firebase Authentication (Sign Up & Login)',
+            'Pembuatan UI Login & Register',
+            'Integrasi Firestore Database',
+          ],
+        },
+      });
+
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text('Sign Success'),
+          content: Text('UID: ${user?.uid}\nEmail: ${user?.email}'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _error = e.message;
+      });
+    } catch (e) {
+      setState(() {
+        _error = e.toString();
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +124,7 @@ class SignUp extends StatelessWidget {
 
               SizedBox(height: 5),
               TextField(
+                controller: nameCtrl,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   hintText: 'ex. Helen',
@@ -80,6 +157,7 @@ class SignUp extends StatelessWidget {
 
               SizedBox(height: 5),
               TextField(
+                controller: emailCtrl,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'example@gmail.com',
@@ -111,6 +189,7 @@ class SignUp extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: passCtrl,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Input your Password',
@@ -135,7 +214,7 @@ class SignUp extends StatelessWidget {
               SizedBox(height: 25),
               //button
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _isLoading ? null : _signup,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF745624),
                   foregroundColor: Colors.white,
@@ -145,10 +224,22 @@ class SignUp extends StatelessWidget {
                   ),
                   elevation: 2,
                 ),
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                child: _isLoading
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
 
               SizedBox(height: 30),
