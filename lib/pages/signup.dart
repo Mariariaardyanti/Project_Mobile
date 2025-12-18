@@ -212,6 +212,11 @@ class _SignUpState extends State<SignUp> {
               ),
 
               SizedBox(height: 25),
+
+              if (_error != null) ...[
+                Text(_error!, style: const TextStyle(color: Colors.brown)),
+                const SizedBox(height: 8),
+              ],
               //button
               ElevatedButton(
                 onPressed: _isLoading ? null : _signup,
@@ -234,7 +239,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       )
                     : const Text(
-                        'Sign In',
+                        'Sign Up',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
