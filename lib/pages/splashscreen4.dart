@@ -12,11 +12,14 @@ class SplashScreen4 extends StatelessWidget {
           children: [
           SizedBox(height: 30),
           Container(
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.amber[50],
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.amber[50],
+                image: DecorationImage(
+                image: AssetImage("assets/images/imageee.png"),
+              ),
             ),
           ),
           ],
