@@ -86,7 +86,7 @@ class SplashScreen3 extends StatelessWidget {
                     backgroundColor: const Color(0xFF745624),
                   ),
                   child: const Text(
-                    'Let’s get started',
+                    'Continue',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.white,
