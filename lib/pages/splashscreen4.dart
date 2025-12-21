@@ -22,9 +22,16 @@ class SplashScreen4 extends StatelessWidget {
               ),
             ),
           ),
-          
-          SizedBox(height: 15),
 
+          SizedBox(height: 15),
+          Container(
+              width: 10,
+              height: 10,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFedede9),
+              ),
+            ),
           ],
         ),
       ),
