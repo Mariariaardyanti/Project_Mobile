@@ -22,6 +22,9 @@ class SplashScreen4 extends StatelessWidget {
               ),
             ),
           ),
+          
+          SizedBox(height: 15),
+
           ],
         ),
       ),
