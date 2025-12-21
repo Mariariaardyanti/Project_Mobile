@@ -18,7 +18,7 @@ class SplashScreen4 extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.amber[50],
                 image: DecorationImage(
-                image: AssetImage("assets/images/imageee.png"),
+                image: AssetImage("assets/images/logo kampus.png"),
               ),
             ),
           ),
@@ -55,7 +55,7 @@ class SplashScreen4 extends StatelessWidget {
 
               SizedBox(height: 20),
               Text(
-                "Shape your workspace\nto fit your style.",
+                "Institut Teknologi dan\nBisnis Bina Sarana Global",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,
@@ -65,7 +65,7 @@ class SplashScreen4 extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                "Use blocks, templates, and layouts\nthat work the way you do.",
+                "Kampus modern yang menggabungkan\nkeunggulan di bidang teknologi",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 12.0, color: Colors.brown),
               ),
