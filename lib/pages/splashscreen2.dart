@@ -65,6 +65,24 @@ class SplashScreen2 extends StatelessWidget {
                 ),
               ],
             ),
+
+            SizedBox(height: 20),
+            Text(
+              "Work together and\nstay connected.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.brown[800],
+              ),
+            ),
+
+            SizedBox(height: 10),
+            Text(
+              "Share pages, leave comments, and\ncollaborate in real time.",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12.0, color: Colors.brown),
+            ),
           ],
         ),
       ),
