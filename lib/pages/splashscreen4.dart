@@ -69,6 +69,9 @@ class SplashScreen4 extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 12.0, color: Colors.brown),
               ),
+
+              SizedBox(height: 40),
+
           ],
         ),
       ),
