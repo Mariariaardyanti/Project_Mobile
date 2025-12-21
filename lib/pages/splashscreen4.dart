@@ -71,7 +71,27 @@ class SplashScreen4 extends StatelessWidget {
               ),
 
               SizedBox(height: 40),
-
+              Container(
+              margin: const EdgeInsets.only(left: 40, right: 40),
+              child: SizedBox(
+                height: 44,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF745624),
+                  ),
+                  child: const Text(
+                    'Let’s get started',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
