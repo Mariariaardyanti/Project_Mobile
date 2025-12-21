@@ -63,6 +63,12 @@ class SplashScreen4 extends StatelessWidget {
                   color: Colors.brown[800],
                 ),
               ),
+              SizedBox(height: 10),
+              Text(
+                "Use blocks, templates, and layouts\nthat work the way you do.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12.0, color: Colors.brown),
+              ),
           ],
         ),
       ),
