@@ -9,7 +9,9 @@ class SplashScreen4 extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+          children: [
+          SizedBox(height: 30),
+          ],
         ),
       ),
     );
