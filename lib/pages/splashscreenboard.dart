@@ -1,8 +1,27 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/splashscreen1.dart';
 
-class SplashScreenBoard extends StatelessWidget {
+class SplashScreenBoard extends StatefulWidget {
   const SplashScreenBoard({super.key});
+
+  @override
+  State<SplashScreenBoard> createState() => _SplashScreenPageBoard();
+}
+
+class _SplashScreenPageBoard extends State<SplashScreenBoard> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Delay 3 detik lalu pindah halaman
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const SplashScreenPage()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,52 +30,19 @@ class SplashScreenBoard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "B O A R D",
-              textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 40.0,
+                fontSize: 40,
                 fontWeight: FontWeight.bold,
                 color: Colors.brown[800],
               ),
             ),
-
-            SizedBox(height: 10),
-            Text(
-              "One board for everyone.",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0, color: Colors.brown),
-            ),
-
-            SizedBox(height: 40),
-            Container(
-              margin: const EdgeInsets.only(left: 40, right: 40),
-              child: SizedBox(
-                height: 44,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SplashScreenPage(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF745624),
-                  ),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+            const SizedBox(height: 10),
+            const Text(
+              "One board for every one.",
+              style: TextStyle(fontSize: 12, color: Colors.brown),
             ),
           ],
         ),
