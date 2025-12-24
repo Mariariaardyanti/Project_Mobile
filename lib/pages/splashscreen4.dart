@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/login.dart';
 
 class SplashScreen4 extends StatelessWidget {
   const SplashScreen4({super.key});
@@ -25,6 +24,7 @@ class SplashScreen4 extends StatelessWidget {
             ),
 
             SizedBox(height: 15),
+            // Row untuk bola-bola
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -68,7 +68,7 @@ class SplashScreen4 extends StatelessWidget {
 
             SizedBox(height: 20),
             Text(
-              "Shape your workspace\nto fit your style.",
+              "Institut Teknologi dan\nBisnis Bina Sarana Global",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.0,
@@ -76,27 +76,21 @@ class SplashScreen4 extends StatelessWidget {
                 color: Colors.brown[800],
               ),
             ),
-
             SizedBox(height: 10),
             Text(
-              "Use blocks, templates, and layouts\nthat work the way you do.",
+              "Kampus modern yang menggabungkan\nkeunggulan di bidang teknologi",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.0, color: Colors.brown),
             ),
 
             SizedBox(height: 40),
             Container(
-              margin: const EdgeInsets.only(left: 40, right: 40),
+              margin: const EdgeInsets.symmetric(horizontal: 40),
               child: SizedBox(
                 height: 44,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Login()),
-                    );
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF745624),
                   ),
