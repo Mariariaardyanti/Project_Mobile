@@ -37,10 +37,16 @@ class _LoginState extends State<Login> {
         context: context,
         builder: (_) => AlertDialog(
           title: const Text('Login Success'),
-          content: Text('UID: ${user?.uid}\nEmail: ${user?.email}'),
+          content: Text('Hi! Welcome Back, ${user?.email?.split('@').first}'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => const Homepage()),
+                );
+              },
               child: const Text('OK'),
             ),
           ],
@@ -160,12 +166,7 @@ class _LoginState extends State<Login> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Homepage()),
-                    );
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Forgot Password?',
                     style: TextStyle(color: Colors.brown, fontSize: 14),

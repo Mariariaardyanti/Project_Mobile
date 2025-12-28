@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         fontFamily: 'Poppins',
       ),
-      home: const Homepage(),
+      home: const SplashScreenBoard(),
     );
   }
 }
