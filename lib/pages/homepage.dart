@@ -64,7 +64,7 @@ class Homepage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined, size: 28),
+            icon: Icon(Icons.home_outlined, size: 30),
             label: '',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.add, size: 30), label: ''),
