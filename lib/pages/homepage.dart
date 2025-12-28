@@ -17,7 +17,7 @@ class Homepage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(width: 1),
+                    SizedBox(width: 5),
                     Row(
                       children: [
                         Container(
@@ -26,14 +26,14 @@ class Homepage extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.brown.shade400,
+                            color: Colors.brown,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Row(
                             children: [
                               Icon(
                                 Icons.workspace_premium,
-                                size: 16,
+                                size: 18,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 6),
@@ -50,11 +50,8 @@ class Homepage extends StatelessWidget {
                         const SizedBox(width: 12),
                         const Icon(Icons.notifications_none),
                         const SizedBox(width: 12),
-                        const CircleAvatar(
-                          radius: 14,
-                          backgroundColor: Colors.grey,
-                          child: Icon(Icons.person_2_outlined, size: 16),
-                        ),
+                        const Icon(Icons.person_2_outlined, size: 24),
+                        SizedBox(height: 10),
                       ],
                     ),
                   ],
@@ -73,6 +70,10 @@ class Homepage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.grey.shade300, // warna garis
+                      width: 1,
+                    ),
                   ),
                   child: const TextField(
                     decoration: InputDecoration(
@@ -82,7 +83,7 @@ class Homepage extends StatelessWidget {
                     ),
                   ),
                 ),
-              const SizedBox(height: 24),
+                const SizedBox(height: 24),
 
                 // ===== CARD 1 =====
                 Container(
@@ -139,18 +140,39 @@ class Homepage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
             label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.amber[50], // background icon
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.home_outlined, size: 30),
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
             label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100], // background icon
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Icon(Icons.add, size: 30),
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.query_stats),
             label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100], // background icon
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Icon(Icons.sticky_note_2_outlined, size: 28),
+            ),
           ),
         ],
       ),
