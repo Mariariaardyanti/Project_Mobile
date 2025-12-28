@@ -148,7 +148,17 @@ class Homepage extends StatelessWidget {
               child: const Icon(Icons.home_outlined, size: 30),
             ),
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.add, size: 30), label: ''),
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100], // background icon
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Icon(Icons.add, size: 30),
+            ),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.sticky_note_2_outlined, size: 28),
             label: '',
