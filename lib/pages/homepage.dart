@@ -8,6 +8,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  bool task1 = false;
+  bool task2 = false;
+  bool task3 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,23 +132,32 @@ class _HomepageState extends State<Homepage> {
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.grey.shade300, width: 1),
                   ),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "To-Do List",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(height: 8),
-                      Text(
-                        "• Finish essay draft\n• Group project sync\n• Review lecture notes",
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 13,
-                        ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: task1,
+                            onChanged: (value) {
+                              setState(() {
+                                task1 = value!;
+                              });
+                            },
+                          ),
+                          const Text(
+                            "Finish essay draft",
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
                       ),
                     ],
                   ),
