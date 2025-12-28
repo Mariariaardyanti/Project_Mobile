@@ -63,13 +63,25 @@ class Homepage extends StatelessWidget {
 
                 const Text(
                   "My notes",
-                  style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                              ),
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
 
-                
+                const SizedBox(height: 16),
+                // ===== SEARCH BAR =====
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.search),
+                      hintText: "Search...",
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
