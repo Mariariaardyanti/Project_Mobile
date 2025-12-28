@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Members extends StatelessWidget {
-  const Members({super.key});
+class Homepage extends StatelessWidget {
+  const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,22 +57,35 @@ class Members extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 24),
+
                 const Text(
                   "My notes",
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 36),
-                Text(
-                  "Project Team Members",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.brown,
+
+                const SizedBox(height: 16),
+                // ===== SEARCH BAR =====
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.grey.shade300, // warna garis
+                      width: 1,
+                    ),
+                  ),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.search),
+                      hintText: "Search...",
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
 
-                // ===== PROJECT TEAM =====
+                // ===== CARD 1 =====
                 Container(
                   margin: const EdgeInsets.only(bottom: 16),
                   padding: const EdgeInsets.all(16),
@@ -84,7 +97,35 @@ class Members extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project and learn a little about what they built",
+                        "Project Team Members",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
+                      ),
+                    ],
+                  ),
+                ),
+
+                // ===== PROJECT TEAM MEMBER =====
+                Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF3F4FF),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "To-Do List",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        "• Finish essay draft\n• Group project sync\n• Review lecture notes",
                       ),
                     ],
                   ),
