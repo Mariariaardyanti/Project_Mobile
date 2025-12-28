@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/splashscreen3.dart';
+import 'package:project_mobile/pages/splashscreen4.dart';
 
-class SplashScreen2 extends StatelessWidget {
-  const SplashScreen2({super.key});
+class SplashScreen3 extends StatelessWidget {
+  const SplashScreen3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SplashScreen2 extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.amber[50],
                 image: DecorationImage(
-                  image: AssetImage("assets/images/imagee.png"),
+                  image: AssetImage("assets/images/imageee.png"),
                 ),
               ),
             ),
@@ -28,6 +28,15 @@ class SplashScreen2 extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
+                SizedBox(width: 10),
                 Container(
                   width: 10,
                   height: 10,
@@ -54,21 +63,12 @@ class SplashScreen2 extends StatelessWidget {
                     color: Color(0xFFedede9),
                   ),
                 ),
-                SizedBox(width: 10),
-                Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFedede9),
-                  ),
-                ),
               ],
             ),
 
             SizedBox(height: 20),
             Text(
-              "Work together and\nstay connected.",
+              "Shape your workspace\nto fit your style.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.0,
@@ -79,7 +79,7 @@ class SplashScreen2 extends StatelessWidget {
 
             SizedBox(height: 10),
             Text(
-              "Share pages, leave comments, and\ncollaborate in real time.",
+              "Use blocks, templates, and layouts\nthat work the way you do.",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.0, color: Colors.brown),
             ),
@@ -94,7 +94,7 @@ class SplashScreen2 extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SplashScreen3()),
+                      MaterialPageRoute(builder: (context) => SplashScreen4()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

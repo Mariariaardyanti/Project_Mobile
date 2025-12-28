@@ -61,6 +61,8 @@ flutter:
     - assets/images/image1.png
     - assets/images/imagee.png
     - assets/images/imageee.png
+    - assets/images/logo kampus.png
+
 
   fonts:
     - family: Poppins
