@@ -145,16 +145,65 @@ class _HomepageState extends State<Homepage> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Checkbox(
-                            value: task1,
-                            onChanged: (value) {
-                              setState(() {
-                                task1 = value!;
-                              });
-                            },
+                          SizedBox(
+                            width: 30,
+                            height: 24,
+                            child: Checkbox(
+                              value: task1,
+                              onChanged: (value) {
+                                setState(() {
+                                  task1 = value!;
+                                });
+                              },
+                            ),
                           ),
+                          const SizedBox(width: 8),
                           const Text(
                             "Finish essay draft",
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 30,
+                            height: 24,
+                            child: Checkbox(
+                              value: task2,
+                              onChanged: (value) {
+                                setState(() {
+                                  task2 = value!;
+                                });
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            "Group project sync",
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 30,
+                            height: 24,
+                            child: Checkbox(
+                              value: task3,
+                              onChanged: (value) {
+                                setState(() {
+                                  task3 = value!;
+                                });
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            "Submit assignment on LMS",
                             style: TextStyle(fontSize: 14),
                           ),
                         ],
