@@ -17,7 +17,7 @@ class Homepage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(width: 1),
+                    SizedBox(width: 5),
                     Row(
                       children: [
                         Container(
@@ -51,6 +51,7 @@ class Homepage extends StatelessWidget {
                         const Icon(Icons.notifications_none),
                         const SizedBox(width: 12),
                         const Icon(Icons.person_2_outlined, size: 24),
+                        SizedBox(height: 10),
                       ],
                     ),
                   ],
