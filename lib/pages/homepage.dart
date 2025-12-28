@@ -26,14 +26,14 @@ class Homepage extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.brown.shade400,
+                            color: Colors.brown,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Row(
                             children: [
                               Icon(
                                 Icons.workspace_premium,
-                                size: 16,
+                                size: 18,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 6),
@@ -50,11 +50,7 @@ class Homepage extends StatelessWidget {
                         const SizedBox(width: 12),
                         const Icon(Icons.notifications_none),
                         const SizedBox(width: 12),
-                        const CircleAvatar(
-                          radius: 14,
-                          backgroundColor: Colors.grey,
-                          child: Icon(Icons.person_2_outlined, size: 16),
-                        ),
+                        const Icon(Icons.person_2_outlined, size: 24),
                       ],
                     ),
                   ],
@@ -66,10 +62,13 @@ class Homepage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: ''),
           BottomNavigationBarItem(
-            icon: Icon(Icons.workspace_premium_outlined),
+            icon: Icon(Icons.home_outlined, size: 28),
+            label: '',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.add, size: 30), label: ''),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sticky_note_2_outlined, size: 28),
             label: '',
           ),
         ],
