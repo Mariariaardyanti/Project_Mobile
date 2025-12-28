@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/login.dart';
+import 'package:project_mobile/pages/splashscreen2.dart';
 
 class SplashScreenPage extends StatelessWidget {
   const SplashScreenPage({super.key});
@@ -54,6 +54,15 @@ class SplashScreenPage extends StatelessWidget {
                     color: Color(0xFFedede9),
                   ),
                 ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
               ],
             ),
 
@@ -85,7 +94,7 @@ class SplashScreenPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => SplashScreen2()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
