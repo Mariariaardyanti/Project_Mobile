@@ -59,6 +59,17 @@ class Homepage extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 24),
+
+                const Text(
+                  "My notes",
+                  style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                ),
+
+                
               ],
             ),
           ),
