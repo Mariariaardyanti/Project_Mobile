@@ -70,6 +70,10 @@ class Homepage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.grey.shade300, // warna garis
+                      width: 1,
+                    ),
                   ),
                   child: const TextField(
                     decoration: InputDecoration(
@@ -160,8 +164,15 @@ class Homepage extends StatelessWidget {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.sticky_note_2_outlined, size: 28),
             label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100], // background icon
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Icon(Icons.sticky_note_2_outlined, size: 28),
+            ),
           ),
         ],
       ),
