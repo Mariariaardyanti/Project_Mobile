@@ -97,7 +97,7 @@ class _HomepageState extends State<Homepage> {
                   margin: const EdgeInsets.only(bottom: 16),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFFF6E9),
+                    color: const Color(0xFFFFFCF7),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.grey.shade300, width: 1),
                   ),
@@ -143,6 +143,29 @@ class _HomepageState extends State<Homepage> {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 2,
+                              ),
+                              visualDensity: VisualDensity.compact,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: const Text(
+                              "Details",
+                              style: TextStyle(fontSize: 10),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -153,7 +176,7 @@ class _HomepageState extends State<Homepage> {
                   margin: const EdgeInsets.only(bottom: 16),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF3F4FF),
+                    color: const Color(0xFFF8F8FF),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.grey.shade300, width: 1),
                   ),
@@ -235,7 +258,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(width: 8),
                       Row(
                         children: [
                           SizedBox(
@@ -255,61 +278,29 @@ class _HomepageState extends State<Homepage> {
                             "Submit assignment on LMS",
                             style: TextStyle(fontSize: 12),
                           ),
+                          const Spacer(), // ⬅️ ini yang penting
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 2,
+                              ),
+                              visualDensity: VisualDensity.compact,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: const Text(
+                              "Details",
+                              style: TextStyle(fontSize: 10),
+                            ),
+                          ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
 
-                // ===== CARD 3 =====
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.only(bottom: 16),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFF6FD),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.grey.shade300, width: 1),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 3,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white70,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ), // warna shadow
-                              blurRadius: 6,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
-                        ),
-                        child: const Text(
-                          "Project Weekly Update",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        "This week’s focus was completing key features and improving overall app stability. Several components have been successfully integrated, and the development timeline remains on track for the next milestone.",
-                        style: TextStyle(fontSize: 12),
-                      ),
+                      // JARAK KE BUTTON
+                      // button di bawah, rata kanan
                     ],
                   ),
                 ),
