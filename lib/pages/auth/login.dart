@@ -1,65 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project_mobile/pages/login.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:project_mobile/pages/home/homepage.dart';
+import 'package:project_mobile/pages/auth/signup.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignUpState extends State<SignUp> {
-  final nameCtrl = TextEditingController();
+class _LoginState extends State<Login> {
   final emailCtrl = TextEditingController();
   final passCtrl = TextEditingController();
 
   bool _isLoading = false;
   String? _error;
 
-  Future<void> _signup() async {
+  Future<void> _login() async {
     setState(() {
       _isLoading = true;
       _error = null;
     });
 
     try {
-      final credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-            email: emailCtrl.text.trim(),
-            password: passCtrl.text,
-          );
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailCtrl.text.trim(),
+        password: passCtrl.text,
+      );
 
       final user = credential.user;
       if (!mounted) return;
 
-      await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
-        'name': nameCtrl.text.trim(),
-        'email': user.email,
-        'photoUrl': '',
-        'role': 'users',
-        'createdAt': FieldValue.serverTimestamp(),
-        'team': {
-          'roleInTeam': 'UI Design & Mobile Developer',
-          'contributions': [
-            'UI Design',
-            'Implementasi Firebase Authentication (Sign Up & Login)',
-            'Pembuatan UI Login & Register',
-            'Integrasi Firestore Database',
-          ],
-        },
-      });
-
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          title: const Text('Sign Success'),
-          content: Text('UID: ${user?.uid}\nEmail: ${user?.email}'),
+          title: const Text('Login Success'),
+          content: Text('Hi! Welcome Back, ${user?.email?.split('@').first}'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const Homepage()),
+                );
+              },
               child: const Text('OK'),
             ),
           ],
@@ -92,8 +79,9 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              SizedBox(height: 10),
               Text(
-                "Create Account",
+                "Sign In",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
@@ -103,7 +91,7 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(height: 8),
               Text(
-                "Fill your information bellow or register\nwith your social account.",
+                "Hi! Welcome back, you’ve been missed",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13,
@@ -111,41 +99,7 @@ class _SignUpState extends State<SignUp> {
                   color: Colors.black,
                 ),
               ),
-
               SizedBox(height: 50),
-              Text(
-                "Name",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black,
-                ),
-              ),
-
-              SizedBox(height: 5),
-              TextField(
-                controller: nameCtrl,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  hintText: 'ex. Helen',
-                  hintStyle: TextStyle(color: Color(0xFFC2C2C2)),
-                  filled: true,
-                  fillColor: Colors.grey.shade100,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.grey[300]!),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.blue[700]!, width: 2),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 10),
               Text(
                 "Email",
                 textAlign: TextAlign.left,
@@ -154,7 +108,6 @@ class _SignUpState extends State<SignUp> {
                   color: Colors.black,
                 ),
               ),
-
               SizedBox(height: 5),
               TextField(
                 controller: emailCtrl,
@@ -178,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
 
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Text(
                 "Password",
                 textAlign: TextAlign.left,
@@ -210,16 +163,26 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-
-              SizedBox(height: 25),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(color: Colors.brown, fontSize: 14),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
 
               if (_error != null) ...[
                 Text(_error!, style: const TextStyle(color: Colors.brown)),
                 const SizedBox(height: 8),
               ],
+
               //button
               ElevatedButton(
-                onPressed: _isLoading ? null : _signup,
+                onPressed: _isLoading ? null : _login,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF745624),
                   foregroundColor: Colors.white,
@@ -239,7 +202,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       )
                     : const Text(
-                        'Sign Up',
+                        'Sign In',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -256,7 +219,7 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      'Or sign up with',
+                      'Or sign in with',
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                   ),
@@ -341,21 +304,21 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Login()),
+                    MaterialPageRoute(builder: (context) => SignUp()),
                   );
                 },
                 child: RichText(
                   text: const TextSpan(
                     children: [
                       TextSpan(
-                        text: "Already have an account? ",
+                        text: "Don't have an account? ",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
                       TextSpan(
-                        text: "Sign in",
+                        text: "Sign up",
                         style: TextStyle(
                           color: Color(0xFF745624),
                           fontWeight: FontWeight.bold,
