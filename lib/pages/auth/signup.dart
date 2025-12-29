@@ -42,13 +42,8 @@ class _SignUpState extends State<SignUp> {
         'role': 'users',
         'createdAt': FieldValue.serverTimestamp(),
         'team': {
-          'roleInTeam': 'UI Design & Mobile Developer',
-          'contributions': [
-            'UI Design',
-            'Implementasi Firebase Authentication (Sign Up & Login)',
-            'Pembuatan UI Login & Register',
-            'Integrasi Firestore Database',
-          ],
+          'roleInTeam': 'roleCtrl.text.trim(),',
+          'contributions': ['contributionsList'],
         },
       });
 
@@ -56,7 +51,7 @@ class _SignUpState extends State<SignUp> {
         context: context,
         builder: (_) => AlertDialog(
           title: const Text('Sign Success'),
-          content: Text('UID: ${user?.uid}\nEmail: ${user?.email}'),
+          content: Text('Hi! Welcome, ${user?.email?.split('@').first}'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
