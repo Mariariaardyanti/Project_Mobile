@@ -136,11 +136,35 @@ class _HomepageState extends State<Homepage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "To-Do List",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white70,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 1,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(
+                                0.1,
+                              ), // warna shadow
+                              blurRadius: 6,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
+                        ),
+                        child: const Text(
+                          "To-Do List",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -233,11 +257,21 @@ class _HomepageState extends State<Homepage> {
                           vertical: 3,
                         ),
                         decoration: BoxDecoration(
+                          color: Colors.white70,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
                             width: 1,
-                          ), // outline warna merah
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(
+                                0.1,
+                              ), // warna shadow
+                              blurRadius: 6,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
                         ),
                         child: const Text(
                           "Project Weekly Update",
