@@ -115,7 +115,7 @@ class _HomepageState extends State<Homepage> {
                       Text(
                         "Created as a learning project, this app combines notes, tasks, and collaboration features.",
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 12,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -143,7 +143,7 @@ class _HomepageState extends State<Homepage> {
                           fontSize: 16,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           SizedBox(
@@ -161,7 +161,7 @@ class _HomepageState extends State<Homepage> {
                           const SizedBox(width: 8),
                           const Text(
                             "Finish essay draft",
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
@@ -183,7 +183,7 @@ class _HomepageState extends State<Homepage> {
                           const SizedBox(width: 8),
                           const Text(
                             "Group project sync",
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
@@ -205,7 +205,7 @@ class _HomepageState extends State<Homepage> {
                           const SizedBox(width: 8),
                           const Text(
                             "Submit assignment on LMS",
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
@@ -226,14 +226,28 @@ class _HomepageState extends State<Homepage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Project Weekly Update",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 1,
+                          ), // outline warna merah
+                        ),
+                        child: const Text(
+                          "Project Weekly Update",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(height: 10),
                       const Text(
                         "This week’s focus was completing key features and improving overall app stability. Several components have been successfully integrated, and the development timeline remains on track for the next milestone.",
                         style: TextStyle(fontSize: 12),
