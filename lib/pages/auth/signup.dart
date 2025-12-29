@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_mobile/pages/auth/login.dart';
+import 'package:project_mobile/pages/home/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
@@ -54,7 +55,14 @@ class _SignUpState extends State<SignUp> {
           content: Text('Hi! Welcome, ${user?.email?.split('@').first}'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const Homepage()),
+                );
+              },
+
               child: const Text('OK'),
             ),
           ],

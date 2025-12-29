@@ -11,6 +11,7 @@ class _HomepageState extends State<Homepage> {
   bool task1 = false;
   bool task2 = false;
   bool task3 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -211,6 +212,10 @@ class _HomepageState extends State<Homepage> {
                     ],
                   ),
                 ),
+
+                // ===== CARD 3 =====
+                
+
               ],
             ),
           ),
