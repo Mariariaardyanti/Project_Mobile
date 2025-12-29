@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/login.dart';
+import 'package:project_mobile/pages/splash/splashscreen3.dart';
 
-class SplashScreen4 extends StatelessWidget {
-  const SplashScreen4({super.key});
+class SplashScreen2 extends StatelessWidget {
+  const SplashScreen2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,12 @@ class SplashScreen4 extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.amber[50],
                 image: DecorationImage(
-                  image: AssetImage("assets/images/logo kampus.png"),
+                  image: AssetImage("assets/images/imagee.png"),
                 ),
               ),
             ),
 
             SizedBox(height: 15),
-            // Row untuk bola-bola
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,25 +42,25 @@ class SplashScreen4 extends StatelessWidget {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0xFFedede9),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFedede9),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
                     color: Color(0xFF745624),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
                   ),
                 ),
               ],
@@ -69,7 +68,7 @@ class SplashScreen4 extends StatelessWidget {
 
             SizedBox(height: 20),
             Text(
-              "Institut Teknologi dan\nBisnis Bina Sarana Global",
+              "Work together and\nstay connected.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.0,
@@ -77,16 +76,17 @@ class SplashScreen4 extends StatelessWidget {
                 color: Colors.brown[800],
               ),
             ),
+
             SizedBox(height: 10),
             Text(
-              "Kampus modern yang menggabungkan\nkeunggulan di bidang teknologi",
+              "Share pages, leave comments, and\ncollaborate in real time.",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.0, color: Colors.brown),
             ),
 
             SizedBox(height: 40),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 40),
+              margin: const EdgeInsets.only(left: 40, right: 40),
               child: SizedBox(
                 height: 44,
                 width: double.infinity,
@@ -94,14 +94,14 @@ class SplashScreen4 extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => SplashScreen3()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF745624),
                   ),
                   child: const Text(
-                    'Let’s get started',
+                    'Continue',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.white,
