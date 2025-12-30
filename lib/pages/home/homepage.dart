@@ -156,7 +156,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                               visualDensity: VisualDensity.compact,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(18),
                               ),
                             ),
                             child: const Text(
