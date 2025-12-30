@@ -15,7 +15,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -105,10 +105,9 @@ class _HomepageState extends State<Homepage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: double.infinity,
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 3,
+                          horizontal: 10,
+                          vertical: 4,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white70,
@@ -143,28 +142,26 @@ class _HomepageState extends State<Homepage> {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 2,
-                              ),
-                              visualDensity: VisualDensity.compact,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 2,
                             ),
-                            child: const Text(
-                              "Details",
-                              style: TextStyle(fontSize: 10),
+                            visualDensity: VisualDensity.compact,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
                             ),
                           ),
-                        ],
+                          child: const Text(
+                            "Details",
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -184,10 +181,9 @@ class _HomepageState extends State<Homepage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: double.infinity,
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 3,
+                          horizontal: 10,
+                          vertical: 4,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white70,
@@ -258,7 +254,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ],
                       ),
-                      SizedBox(width: 8),
+                      SizedBox(height: 5),
                       Row(
                         children: [
                           SizedBox(
@@ -278,29 +274,28 @@ class _HomepageState extends State<Homepage> {
                             "Submit assignment on LMS",
                             style: TextStyle(fontSize: 12),
                           ),
-                          const Spacer(), // ⬅️ ini yang penting
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 2,
-                              ),
-                              visualDensity: VisualDensity.compact,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            child: const Text(
-                              "Details",
-                              style: TextStyle(fontSize: 10),
-                            ),
-                          ),
                         ],
                       ),
-
-                      // JARAK KE BUTTON
-                      // button di bawah, rata kanan
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 2,
+                            ),
+                            visualDensity: VisualDensity.compact,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                          ),
+                          child: const Text(
+                            "Details",
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -313,7 +308,9 @@ class _HomepageState extends State<Homepage> {
       // ===== BOTTOM NAV =====
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.transparent,
         currentIndex: 0,
+        elevation: 0,
         items: [
           BottomNavigationBarItem(
             label: '',
