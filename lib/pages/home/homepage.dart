@@ -142,25 +142,25 @@ class _HomepageState extends State<Homepage> {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      const Spacer(),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 2,
-                              ),
-                              visualDensity: VisualDensity.compact,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                            ),
-                            child: const Text(
-                              "Details",
-                              style: TextStyle(fontSize: 10),
-                            ),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 2,
                           ),
-                        ],
+                          visualDensity: VisualDensity.compact,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                        ),
+                        child: const Text(
+                          "Details",
+                          style: TextStyle(fontSize: 10),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
@@ -272,7 +272,7 @@ class _HomepageState extends State<Homepage> {
                             "Submit assignment on LMS",
                             style: TextStyle(fontSize: 12),
                           ),
-                          const Spacer(),
+                          const SizedBox(height: 12),
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
