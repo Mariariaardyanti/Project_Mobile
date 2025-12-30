@@ -78,6 +78,15 @@ class AddNotesPage extends StatelessWidget {
             ),
 
             const Spacer(),
+              Row(
+              children: const [
+                Icon(Icons.add_box_outlined),
+                SizedBox(width: 12),
+                Icon(Icons.text_fields),
+                SizedBox(width: 12),
+                Icon(Icons.more_vert),
+              ],
+            ),
           ],
         ),
       ),
