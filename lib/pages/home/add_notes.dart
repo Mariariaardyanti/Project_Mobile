@@ -58,6 +58,24 @@ class AddNotesPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 12),
+
+            Container(
+              width: double.infinity,
+              height: 320,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF8EE),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const TextField(
+                maxLines: null,
+                decoration: InputDecoration(
+                  hintText: "Write your note here...",
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
           ],
         ),
       ),
