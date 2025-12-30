@@ -142,7 +142,7 @@ class _HomepageState extends State<Homepage> {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      const SizedBox(height: 12),
+
                       Align(
                         alignment: Alignment.centerRight,
                         child: ElevatedButton(
@@ -255,7 +255,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ],
                       ),
-                      SizedBox(width: 8),
+                      SizedBox(height: 5),
                       Row(
                         children: [
                           SizedBox(
@@ -275,7 +275,6 @@ class _HomepageState extends State<Homepage> {
                             "Submit assignment on LMS",
                             style: TextStyle(fontSize: 12),
                           ),
-                          const SizedBox(height: 12),
                         ],
                       ),
                       Align(
