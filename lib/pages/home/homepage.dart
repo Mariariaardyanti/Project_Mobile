@@ -94,13 +94,7 @@ class _HomepageState extends State<Homepage> {
                 // ===== CARD 1 =====
                 Container(
                   width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8, bottom: 6),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
+                  
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFFCF7),
                         borderRadius: BorderRadius.circular(16),
@@ -174,8 +168,8 @@ class _HomepageState extends State<Homepage> {
                         ],
                       ),
                     ),
-                  ),
-                ),
+                  
+                
 
                 // ===== CARD 2 =====
                 Container(
