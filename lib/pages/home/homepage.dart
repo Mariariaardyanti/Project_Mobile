@@ -143,9 +143,6 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                       const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
@@ -164,8 +161,6 @@ class _HomepageState extends State<Homepage> {
                             ),
                           ),
                         ],
-                      ),
-                    ],
                   ),
                 ),
 
