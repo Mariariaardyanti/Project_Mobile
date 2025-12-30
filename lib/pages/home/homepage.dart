@@ -93,11 +93,12 @@ class _HomepageState extends State<Homepage> {
 
                 // ===== CARD 1 =====
                 Padding(
-                  padding: const EdgeInsets.only(left: 4),
+                 padding: const EdgeInsets.only(left: 8, bottom: 6),
                   child: Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(bottom: 16),
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFFFFCF7),
                       borderRadius: BorderRadius.circular(16),
