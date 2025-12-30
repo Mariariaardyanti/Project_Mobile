@@ -94,6 +94,7 @@ class _HomepageState extends State<Homepage> {
                 // ===== CARD 1 =====
                 Container(
                   width: double.infinity,
+                  margin: const EdgeInsets.only(bottom: 16),
                   
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFFCF7),
