@@ -87,6 +87,17 @@ class AddNotesPage extends StatelessWidget {
                 Icon(Icons.more_vert),
               ],
             ),
+            
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF8B6B2E),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              child: const Text("Save"),
+            ),
           ],
         ),
       ),
