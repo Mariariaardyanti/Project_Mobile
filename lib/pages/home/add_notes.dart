@@ -9,78 +9,84 @@ class AddNotesPage extends StatelessWidget {
       backgroundColor: Colors.white,
 
       appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-            titleSpacing: 0,
-            title: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  backgroundColor: Colors.white,
+  elevation: 0,
+  automaticallyImplyLeading: false,
+  titleSpacing: 0,
+  title: Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+
+        // ===== KIRI (PANAH + ADD NOTES) =====
+        Padding(
+          padding: const EdgeInsets.only(top: 6), // ⬅️ bikin turun dikit
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 20,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(width: 4),
+              const Text(
+                "Add notes",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // ===== KANAN (GET PRO + ICON) =====
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 6,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.brown,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Row(
                 children: [
-
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(
-                          Icons.arrow_back_ios_new, 
-                          size: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      const Text(
-                        "Add notes",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+                  Icon(
+                    Icons.workspace_premium,
+                    size: 18,
+                    color: Colors.white,
                   ),
-
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.brown,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.workspace_premium,
-                              size: 18,
-                              color: Colors.white,
-                            ),
-                            SizedBox(width: 6),
-                            Text(
-                              "Get Pro",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      const Icon(Icons.notifications_none, color: Colors.black),
-                      const SizedBox(width: 12),
-                      const Icon(Icons.person_2_outlined, size: 24, color: Colors.black),
-                    ],
+                  SizedBox(width: 6),
+                  Text(
+                    "Get Pro",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
+            const SizedBox(width: 12),
+            const Icon(Icons.notifications_none, color: Colors.black),
+            const SizedBox(width: 12),
+            const Icon(Icons.person_2_outlined, size: 24, color: Colors.black),
+          ],
+        ),
+      ],
+    ),
+  ),
+),
+
 
       body: Padding(
         padding: const EdgeInsets.all(16),
