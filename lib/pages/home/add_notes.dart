@@ -6,7 +6,8 @@ class AddNotesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+  backgroundColor: const Color(0xFFF9F5EF),
+  body: Container(),
     );
   }
 }
