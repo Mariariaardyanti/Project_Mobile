@@ -1,21 +1,40 @@
 import 'package:flutter/material.dart';
 
-class NoteAppBar extends StatelessWidget {
-  const NoteAppBar({super.key});
+class AddNotesPage extends StatelessWidget {
+  const AddNotesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: const Icon(Icons.arrow_back_ios, color: Colors.black),
-      title: const Text("Add notes", style: TextStyle(color: Colors.black)),
-      actions: const [
-        Icon(Icons.star, color: Colors.brown),
-        SizedBox(width: 10),
-        Icon(Icons.notifications_none),
-        SizedBox(width: 12),
-      ],
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: Colors.black),
+        onPressed: () => Navigator.pop(context),
+      ),
+      title: const Text(
+        "Add notes",
+        style: TextStyle(color: Colors.black),
+      ),
+      actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFF8B6B2E),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: const Text(
+              "Get Pro",
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
+          const Icon(Icons.notifications_none, color: Colors.black),
+          const SizedBox(width: 10),
+          const Icon(Icons.person_outline, color: Colors.black),
+          const SizedBox(width: 12),
+        ],
+      centerTitle: true,
     );
   }
 }

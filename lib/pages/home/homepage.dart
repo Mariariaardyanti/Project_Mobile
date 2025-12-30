@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_mobile/pages/home/add_notes.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -306,18 +308,29 @@ class _HomepageState extends State<Homepage> {
       ),
 
       // ===== BOTTOM NAV =====
-      bottomNavigationBar: BottomNavigationBar(
+          bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
         currentIndex: 0,
         elevation: 0,
+        onTap: (index) {
+          if (index == 1) {
+            // ICON TAMBAH
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AddNotesPage(),
+              ),
+            );
+          }
+        },
         items: [
           BottomNavigationBarItem(
             label: '',
             icon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.amber[50], // background icon
+                color: Colors.amber[50],
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Icon(Icons.home_outlined, size: 30),
@@ -328,10 +341,10 @@ class _HomepageState extends State<Homepage> {
             icon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.grey[100], // background icon
+                color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Icon(Icons.add, size: 30),
+              child: const Icon(Icons.add, size: 30),
             ),
           ),
           BottomNavigationBarItem(
@@ -339,14 +352,15 @@ class _HomepageState extends State<Homepage> {
             icon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.grey[100], // background icon
+                color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Icon(Icons.sticky_note_2_outlined, size: 28),
+              child: const Icon(Icons.sticky_note_2_outlined, size: 28),
             ),
           ),
         ],
       ),
+
     );
   }
 }
