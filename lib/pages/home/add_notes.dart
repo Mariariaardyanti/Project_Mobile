@@ -7,7 +7,8 @@ class AddNotesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      
+
+      // ================= APP BAR =================
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -39,40 +40,47 @@ class AddNotesPage extends StatelessWidget {
         ],
       ),
 
+      // ================= BODY =================
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Last Edit: 03.00 pm",
-              style: TextStyle(fontSize: 12, color: Colors.grey),
-            ),
-
-            const SizedBox(height: 8),
+            // ===== Last Edit + Color Picker (SEJAJAR) =====
             Row(
-              children: List.generate(
-                5,
-                (index) => Container(
-                  margin: const EdgeInsets.only(right: 8),
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: [
-                      Colors.white,
-                      Color(0xFFFFE6A7),
-                      Color(0xFFE6F0FF),
-                      Color(0xFFE8FFE8),
-                      Color(0xFFFFE8E8),
-                    ][index],
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.grey.shade300),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Last Edit: 03.00 pm",
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+                Row(
+                  children: List.generate(
+                    5,
+                    (index) => Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: [
+                          Colors.white,
+                          Color(0xFFFFE6A7),
+                          Color(0xFFE6F0FF),
+                          Color(0xFFE8FFE8),
+                          Color(0xFFFFE8E8),
+                        ][index],
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
 
             const SizedBox(height: 16),
+
+            // ===== Note Card =====
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -83,6 +91,7 @@ class AddNotesPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Title + Icons
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -106,6 +115,8 @@ class AddNotesPage extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 12),
+
+                    // Text Field
                     const Expanded(
                       child: TextField(
                         decoration: InputDecoration(
@@ -116,6 +127,7 @@ class AddNotesPage extends StatelessWidget {
                       ),
                     ),
 
+                    // Bottom Tools + Save
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -128,7 +140,6 @@ class AddNotesPage extends StatelessWidget {
                             Icon(Icons.more_vert),
                           ],
                         ),
-
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
@@ -155,6 +166,58 @@ class AddNotesPage extends StatelessWidget {
           ],
         ),
       ),
+
+      // ================= BOTTOM NAVBAR =================
+
+    bottomNavigationBar: Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade200,
+            blurRadius: 10,
+            offset: const Offset(0, -2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          // Home
+          IconButton(
+            icon: const Icon(Icons.home_outlined, size: 28),
+            onPressed: () {
+              // Navigator.push(...) ke HomePage nanti
+            },
+          ),
+
+          // Add (TENGAH)
+          Container(
+            width: 56,
+            height: 56,
+            decoration: const BoxDecoration(
+              color: Color(0xFFFFF1D6),
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.add, size: 30),
+              onPressed: () {
+                // sudah di AddNotesPage → tidak perlu push lagi
+              },
+            ),
+          ),
+
+          // Notes
+          IconButton(
+            icon: const Icon(Icons.sticky_note_2_outlined, size: 26),
+            onPressed: () {
+              // Navigator.push(...) ke NotesListPage
+            },
+          ),
+        ],
+      ),
+    )
     );
   }
 }
