@@ -8,45 +8,86 @@ class AddNotesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      // ================= APP BAR =================
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          "Add notes",
-          style: TextStyle(color: Colors.black),
-        ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 8),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: const Color(0xFF8B6B2E),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Text(
-              "Get Pro",
-              style: TextStyle(color: Colors.white, fontSize: 12),
+            backgroundColor: Colors.white,
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            titleSpacing: 0,
+            title: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(
+                          Icons.arrow_back_ios_new, 
+                          size: 20,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      const Text(
+                        "Add notes",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.brown,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.workspace_premium,
+                              size: 18,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: 6),
+                            Text(
+                              "Get Pro",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      const Icon(Icons.notifications_none, color: Colors.black),
+                      const SizedBox(width: 12),
+                      const Icon(Icons.person_2_outlined, size: 24, color: Colors.black),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-          const Icon(Icons.notifications_none, color: Colors.black),
-          const SizedBox(width: 10),
-          const Icon(Icons.person_outline, color: Colors.black),
-          const SizedBox(width: 12),
-        ],
-      ),
 
-      // ================= BODY =================
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ===== Last Edit + Color Picker (SEJAJAR) =====
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -80,7 +121,6 @@ class AddNotesPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // ===== Note Card =====
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -91,7 +131,7 @@ class AddNotesPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title + Icons
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -116,7 +156,6 @@ class AddNotesPage extends StatelessWidget {
 
                     const SizedBox(height: 12),
 
-                    // Text Field
                     const Expanded(
                       child: TextField(
                         decoration: InputDecoration(
@@ -127,7 +166,6 @@ class AddNotesPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Bottom Tools + Save
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -166,8 +204,6 @@ class AddNotesPage extends StatelessWidget {
           ],
         ),
       ),
-
-      // ================= BOTTOM NAVBAR =================
 
     bottomNavigationBar: Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
