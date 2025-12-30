@@ -69,11 +69,11 @@ class AddNotesPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const TextField(
-                maxLines: null,
                 decoration: InputDecoration(
-                  hintText: "Write your note here...",
+                  hintText: "Type your note",
                   border: InputBorder.none,
                 ),
+                maxLines: 8,
               ),
             ),
           ],
