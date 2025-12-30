@@ -278,7 +278,7 @@ class _HomepageState extends State<Homepage> {
                             "Submit assignment on LMS",
                             style: TextStyle(fontSize: 12),
                           ),
-                          const Spacer(), // ⬅️ ini yang penting
+                          const Spacer(),
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
@@ -288,7 +288,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                               visualDensity: VisualDensity.compact,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(18),
                               ),
                             ),
                             child: const Text(
