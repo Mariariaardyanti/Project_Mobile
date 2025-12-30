@@ -76,6 +76,8 @@ class AddNotesPage extends StatelessWidget {
                 maxLines: 8,
               ),
             ),
+
+            const Spacer(),
           ],
         ),
       ),
