@@ -107,6 +107,25 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ],
                     ),
+                    
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFF6E9),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Personal",
+                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF8B5E3C)),
+                          ),
+                          SizedBox(height: 6),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
