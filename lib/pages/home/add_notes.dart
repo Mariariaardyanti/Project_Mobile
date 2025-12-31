@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_mobile/pages/home/add_notes.dart';
 
 class AddNotesPage extends StatelessWidget {
   const AddNotesPage({super.key});
@@ -19,9 +20,8 @@ class AddNotesPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
 
-        // ===== KIRI (PANAH + ADD NOTES) =====
         Padding(
-          padding: const EdgeInsets.only(top: 6), // ⬅️ bikin turun dikit
+          padding: const EdgeInsets.only(top: 6), 
           child: Row(
             children: [
               IconButton(
@@ -45,7 +45,6 @@ class AddNotesPage extends StatelessWidget {
           ),
         ),
 
-        // ===== KANAN (GET PRO + ICON) =====
         Row(
           children: [
             Container(
@@ -226,15 +225,12 @@ class AddNotesPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          // Home
           IconButton(
             icon: const Icon(Icons.home_outlined, size: 28),
             onPressed: () {
-              // Navigator.push(...) ke HomePage nanti
             },
           ),
 
-          // Add (TENGAH)
           Container(
             width: 56,
             height: 56,
@@ -245,16 +241,14 @@ class AddNotesPage extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.add, size: 30),
               onPressed: () {
-                // sudah di AddNotesPage → tidak perlu push lagi
               },
             ),
           ),
 
-          // Notes
+
           IconButton(
             icon: const Icon(Icons.sticky_note_2_outlined, size: 26),
             onPressed: () {
-              // Navigator.push(...) ke NotesListPage
             },
           ),
         ],

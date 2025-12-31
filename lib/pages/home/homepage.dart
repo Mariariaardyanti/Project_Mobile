@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/home/add_notes.dart';
-
+import 'package:project_mobile/pages/home/profile.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -61,7 +61,21 @@ class _HomepageState extends State<Homepage> {
                         const SizedBox(width: 12),
                         const Icon(Icons.notifications_none),
                         const SizedBox(width: 12),
-                        const Icon(Icons.person_2_outlined, size: 24),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfilePage(),
+                              ),
+                            );
+                          },
+                          child: const Icon(
+                            Icons.person_2_outlined,
+                            size: 24,
+                          ),
+                        ),
+
                         SizedBox(height: 10),
                       ],
                     ),
@@ -75,7 +89,7 @@ class _HomepageState extends State<Homepage> {
                 ),
 
                 const SizedBox(height: 16),
-                // ===== SEARCH BAR =====
+
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
@@ -93,7 +107,7 @@ class _HomepageState extends State<Homepage> {
                 ),
                 const SizedBox(height: 24),
 
-                // ===== CARD 1 =====
+
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.only(bottom: 16),
@@ -315,7 +329,7 @@ class _HomepageState extends State<Homepage> {
         elevation: 0,
         onTap: (index) {
           if (index == 1) {
-            // ICON TAMBAH
+
             Navigator.push(
               context,
               MaterialPageRoute(

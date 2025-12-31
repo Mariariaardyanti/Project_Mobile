@@ -25,7 +25,7 @@ class SplashScreen4 extends StatelessWidget {
             ),
 
             SizedBox(height: 15),
-            // Row untuk bola-bola
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
