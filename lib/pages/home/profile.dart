@@ -535,7 +535,14 @@ class ProfilePage extends StatelessWidget {
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [],
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.home_outlined, size: 28),
+                                  onPressed: () {
+                                    
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         ],
