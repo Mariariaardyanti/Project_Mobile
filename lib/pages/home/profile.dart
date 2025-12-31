@@ -15,7 +15,6 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               const SizedBox(height: 6),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,14 +50,12 @@ class ProfilePage extends StatelessWidget {
                   )
                 ],
               ),
-
               const SizedBox(height: 10),
-
               const Text(
                 "Profile",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-
+              
               const SizedBox(height: 10),
               Container(
                 width: double.infinity,
@@ -76,7 +73,6 @@ class ProfilePage extends StatelessWidget {
                       "Maria Eupharsia",
                       style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
-
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -277,28 +273,37 @@ class ProfilePage extends StatelessWidget {
               icon: const Icon(Icons.home_outlined, size: 28),
               onPressed: () {
                 Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Homepage(),
-                      ),
-                    );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Homepage(),
+                  ),
+                );
               },
             ),
             Container(
               width: 56,
               height: 56,
-              decoration: BoxDecoration(color: Color(0xFFFFF1D6), shape: BoxShape.circle),
+              decoration: const BoxDecoration(
+                color: Color(0xFFFFF1D6),
+                shape: BoxShape.circle,
+              ),
               child: IconButton(
-                icon: Icon(Icons.add, size: 30),
+                icon: const Icon(Icons.add, size: 30),
                 onPressed: () {
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AddNotesPage(),
-                      ),
-                    );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddNotesPage(),
+                    ),
+                  );
                 },
               ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.sticky_note_2_outlined, size: 26),
+              onPressed: () {
+                // Navigator ke NotesPage
+              },
             ),
           ],
         ),
