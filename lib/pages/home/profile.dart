@@ -55,13 +55,13 @@ class ProfilePage extends StatelessWidget {
                 "Profile",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-              
+
               const SizedBox(height: 10),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFF6E9),
+                  color: Color(0xFFFFF6E9),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
