@@ -153,7 +153,7 @@ class ProfilePage extends StatelessWidget {
                               Icon(Icons.chevron_right, size: 18),
                             ],
                           ),
-                          
+
                           Container(
                             width: double.infinity,
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -168,7 +168,27 @@ class ProfilePage extends StatelessWidget {
                                   "Setting",
                                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF8B5E3C)),
                                 ),
+
                                 SizedBox(height: 6),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.language, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Language", style: TextStyle(fontSize: 13)),
+                                    Spacer(),
+                                    Icon(Icons.chevron_right, size: 18),
+                                  ],
+                                ),
+                                SizedBox(height: 6),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.help_outline, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Help Center", style: TextStyle(fontSize: 13)),
+                                    Spacer(),
+                                    Icon(Icons.chevron_right, size: 18),
+                                  ],
+                                ),
                               ],
                             ),
                           ),
