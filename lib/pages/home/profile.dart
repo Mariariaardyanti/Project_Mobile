@@ -238,7 +238,27 @@ class ProfilePage extends StatelessWidget {
                       "Support us",
                       style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF8B5E3C)),
                     ),
+
                     SizedBox(height: 6),
+                    Row(
+                      children: const [
+                        Icon(Icons.camera_alt_outlined, size: 18),
+                        SizedBox(width: 10),
+                        Text("Follow us on instagram", style: TextStyle(fontSize: 13)),
+                        Spacer(),
+                        Icon(Icons.chevron_right, size: 18),
+                      ],
+                    ),
+                    SizedBox(height: 6),
+                    Row(
+                      children: const [
+                        Icon(Icons.star_border, size: 18),
+                        SizedBox(width: 10),
+                        Text("Rate us", style: TextStyle(fontSize: 13)),
+                        Spacer(),
+                        Icon(Icons.chevron_right, size: 18),
+                      ],
+                    ),
                   ],
                 ),
               ),
