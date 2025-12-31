@@ -107,7 +107,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    
+
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -122,7 +122,37 @@ class ProfilePage extends StatelessWidget {
                             "Personal",
                             style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF8B5E3C)),
                           ),
+
                           SizedBox(height: 6),
+                          Row(
+                            children: const [
+                              Icon(Icons.note_outlined, size: 18),
+                              SizedBox(width: 10),
+                              Text("Mood tracker", style: TextStyle(fontSize: 13)),
+                              Spacer(),
+                              Icon(Icons.chevron_right, size: 18),
+                            ],
+                          ),
+                          SizedBox(height: 6),
+                          Row(
+                            children: const [
+                              Icon(Icons.edit_outlined, size: 18),
+                              SizedBox(width: 10),
+                              Text("Edit profile", style: TextStyle(fontSize: 13)),
+                              Spacer(),
+                              Icon(Icons.chevron_right, size: 18),
+                            ],
+                          ),
+                          SizedBox(height: 6),
+                          Row(
+                            children: const [
+                              Icon(Icons.group_outlined, size: 18),
+                              SizedBox(width: 10),
+                              Text("Invite your friend", style: TextStyle(fontSize: 13)),
+                              Spacer(),
+                              Icon(Icons.chevron_right, size: 18),
+                            ],
+                          ),
                         ],
                       ),
                     ),
