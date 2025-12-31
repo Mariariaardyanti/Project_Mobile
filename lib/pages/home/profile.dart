@@ -61,8 +61,27 @@ class ProfilePage extends StatelessWidget {
                   "Profile",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
-                
+
                 SizedBox(height: 10),
+                Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFF6E9),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  children: [
+                    CircleAvatar(radius: 28, backgroundImage: AssetImage("assets/profile.jpg")),
+                    SizedBox(height: 6),
+                    Text(
+                      "Maria Eupharsia",
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 8),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
