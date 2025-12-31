@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/home/add_notes.dart';
+import 'package:project_mobile/pages/home/profile.dart';
 
 class AddNotesPage extends StatelessWidget {
   const AddNotesPage({super.key});
@@ -78,7 +78,18 @@ class AddNotesPage extends StatelessWidget {
             const SizedBox(width: 12),
             const Icon(Icons.notifications_none, color: Colors.black),
             const SizedBox(width: 12),
-            const Icon(Icons.person_2_outlined, size: 24, color: Colors.black),
+            InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfilePage(),
+                    ),
+                  );
+                },
+                child: const Icon(Icons.person_2_outlined, size: 24),
+              ),
           ],
         ),
       ],
