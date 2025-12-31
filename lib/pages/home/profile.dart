@@ -79,6 +79,34 @@ class ProfilePage extends StatelessWidget {
                       style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: const [
+                            Text("61", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 2),
+                            Text("Friend", style: TextStyle(fontSize: 11)),
+                          ],
+                        ),
+                        Container(height: 24, width: 1, color: Colors.black12, margin: EdgeInsets.symmetric(horizontal: 14)),
+                        Column(
+                          children: const [
+                            Text("20", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 2),
+                            Text("Group", style: TextStyle(fontSize: 11)),
+                          ],
+                        ),
+                        Container(height: 24, width: 1, color: Colors.black12, margin: EdgeInsets.symmetric(horizontal: 14)),
+                        Column(
+                          children: const [
+                            Text("0", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 2),
+                            Text("Post", style: TextStyle(fontSize: 11)),
+                          ],
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
