@@ -90,6 +90,7 @@ class AddNotesPage extends StatelessWidget {
                 },
                 child: const Icon(Icons.person_2_outlined, size: 24),
               ),
+
           ],
         ),
       ],
