@@ -91,7 +91,24 @@ class _HomepageState extends State<Homepage> {
                               ),
                             );
                           },
-                          child: const Icon(Icons.notifications_none),
+                          child: Stack(
+                            children: [
+                              const Icon(Icons.notifications_none),
+                              if (_notifications.isNotEmpty)
+                                Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: Container(
+                                    width: 8,
+                                    height: 8,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
 
 
