@@ -15,6 +15,7 @@ class _HomepageState extends State<Homepage> {
   bool task1 = false;
   bool task2 = false;
   bool task3 = false;
+  bool _isNotifHovered = false;
 
   // ===== FCM =====
   final FCMNotificationService _fcmService = FCMNotificationService();
@@ -81,36 +82,50 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         const SizedBox(width: 12),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NotificationPage(
-                                  notifications: _notifications,
-                                ),
-                              ),
-                            );
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          onEnter: (_) {
+                            setState(() => _isNotifHovered = true);
                           },
-                          child: Stack(
-                            children: [
-                              const Icon(Icons.notifications_none),
-                              if (_notifications.isNotEmpty)
-                                Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: Container(
-                                    width: 8,
-                                    height: 8,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      shape: BoxShape.circle,
-                                    ),
+                          onExit: (_) {
+                            setState(() => _isNotifHovered = false);
+                          },
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NotificationPage(
+                                    notifications: _notifications,
                                   ),
                                 ),
-                            ],
+                              );
+                            },
+                            child: AnimatedScale(
+                              scale: _isNotifHovered ? 1.1 : 1.0,
+                              duration: const Duration(milliseconds: 150),
+                              child: Stack(
+                                children: [
+                                  const Icon(Icons.notifications_none),
+                                  if (_notifications.isNotEmpty)
+                                    Positioned(
+                                      right: 0,
+                                      top: 0,
+                                      child: Container(
+                                        width: 8,
+                                        height: 8,
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+
 
 
                         const SizedBox(width: 12),
