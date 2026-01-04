@@ -23,6 +23,19 @@ class FCMNotificationService {
     if (kDebugMode) {
       print('📱 FCM Token: $token');
     }
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (kDebugMode) {
+        print('📩 Notifikasi masuk (foreground)');
+        print('Title: ${message.notification?.title}');
+        print('Body: ${message.notification?.body}');
+      }
+
+      final notificationBody =
+          message.notification?.body ?? 'Notifikasi tanpa pesan';
+
+      onMessageReceived(notificationBody);
+    });
     
   }
 }
