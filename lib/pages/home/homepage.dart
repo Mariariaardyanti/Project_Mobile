@@ -25,7 +25,9 @@ class _HomepageState extends State<Homepage> {
 
     _fcmService.init(
       onMessageReceived: (String message) {
-        setState(() {});
+        setState(() {
+          _notifications.insert(0, message);
+        });
       },
     );
   }
