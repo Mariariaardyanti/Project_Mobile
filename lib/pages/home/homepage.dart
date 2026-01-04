@@ -80,7 +80,20 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         const SizedBox(width: 12),
-                        
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NotificationPage(
+                                  notifications: _notifications,
+                                ),
+                              ),
+                            );
+                          },
+                          child: const Icon(Icons.notifications_none),
+                        ),
+
 
                         const SizedBox(width: 12),
                         GestureDetector(
