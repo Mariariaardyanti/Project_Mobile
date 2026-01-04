@@ -14,6 +14,11 @@ class NotificationPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Notifications"),
       ),
+      body: notifications.isEmpty
+        ? const Center(
+            child: Text("Belum ada notifikasi"),
+          )
+
     );
   }
 }
