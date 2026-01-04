@@ -15,6 +15,12 @@ class _HomepageState extends State<Homepage> {
   bool task2 = false;
   bool task3 = false;
 
+  // ===== FCM =====
+  final FCMNotificationService _fcmService = FCMNotificationService();
+  List<String> _notifications = [];
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +66,8 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         const SizedBox(width: 12),
-                        const Icon(Icons.notifications_none),
+                        
+
                         const SizedBox(width: 12),
                         GestureDetector(
                           onTap: () {
