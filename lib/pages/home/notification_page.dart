@@ -10,6 +10,10 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Notifications"),
+      ),
+    );
   }
 }
