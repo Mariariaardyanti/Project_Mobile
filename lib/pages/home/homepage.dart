@@ -19,7 +19,11 @@ class _HomepageState extends State<Homepage> {
   final FCMNotificationService _fcmService = FCMNotificationService();
   List<String> _notifications = [];
 
-  
+  @override 
+  void initState() {
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
