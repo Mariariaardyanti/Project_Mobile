@@ -18,5 +18,11 @@ class FCMNotificationService {
     if (kDebugMode) {
       print('🔔 Notification permission: ${settings.authorizationStatus}');
     }
+
+    String? token = await _firebaseMessaging.getToken();
+    if (kDebugMode) {
+      print('📱 FCM Token: $token');
+    }
+    
   }
 }
