@@ -18,7 +18,15 @@ class NotificationPage extends StatelessWidget {
         ? const Center(
             child: Text("Belum ada notifikasi"),
           )
-
+          : ListView.builder(
+              itemCount: notifications.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.notifications),
+                  title: Text(notifications[index]),
+                );
+              },
+            ),
     );
   }
 }
