@@ -204,6 +204,17 @@ class _MembersState extends State<Members> {
                         ),
                         child: Row(
                           children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.amber[50],
+                                image: DecorationImage(
+                                  image: AssetImage("assets/images/image1.png"),
+                                ),
+                              ),
+                            ),
                             Align(
                               alignment: Alignment.centerRight,
                               child: ElevatedButton(
