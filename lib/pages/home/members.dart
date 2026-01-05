@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
 
-class Members extends StatefulWidget {
+class Members extends StatelessWidget {
   const Members({super.key});
-
-  @override
-  State<Members> createState() => _MembersState();
-}
-
-class _MembersState extends State<Members> {
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +98,15 @@ class _MembersState extends State<Members> {
 
       // ===== BOTTOM NAV =====
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 0,
+  currentIndex: 0,
+  onTap: (index) {
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => Homepage()),
+      );
+    }
+  },
         items: [
           BottomNavigationBarItem(
             label: '',
