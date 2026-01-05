@@ -31,6 +31,12 @@ class _SplashScreenPageBoard extends State<SplashScreenBoard> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Lottie.asset(
+              'assets/animations/Notes.json',
+              width: 200,
+              height: 200,
+              fit: BoxFit.fill,
+            ),
             const SizedBox(height: 20),
             Text(
               "B O A R D",
