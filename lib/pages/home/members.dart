@@ -182,6 +182,7 @@ class _MembersState extends State<Members> {
                       ),
                       const SizedBox(height: 12),
 
+                      // ===== MEMBER ITEM =====
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
@@ -213,6 +214,15 @@ class _MembersState extends State<Members> {
                                 image: DecorationImage(
                                   image: AssetImage("assets/images/image1.png"),
                                 ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(
+                                      0.1,
+                                    ), // warna shadow
+                                    blurRadius: 6,
+                                    offset: const Offset(0, 1),
+                                  ),
+                                ],
                               ),
                             ),
                             const SizedBox(width: 12),
@@ -239,7 +249,7 @@ class _MembersState extends State<Members> {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 12),
                             Align(
                               alignment: Alignment.centerRight,
                               child: ElevatedButton(
