@@ -172,13 +172,21 @@ class _MembersState extends State<Members> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
+                      const SizedBox(height: 8),
+                      const Text(
+                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
                         ),
+                      ),
+                      const SizedBox(height: 12),
+
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Colors.white70,
+                          color: const Color.fromARGB(126, 255, 235, 59),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -199,35 +207,6 @@ class _MembersState extends State<Members> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 2,
-                            ),
-                            visualDensity: VisualDensity.compact,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                          ),
-                          child: const Text(
-                            "Details",
-                            style: TextStyle(fontSize: 10),
                           ),
                         ),
                       ),
