@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Members extends StatelessWidget {
+class Members extends StatefulWidget {
   const Members({super.key});
+
+  @override
+  State<Members> createState() => _MembersState();
+}
+
+class _MembersState extends State<Members> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
