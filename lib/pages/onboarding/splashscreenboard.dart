@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/splash/splashscreen1.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreenBoard extends StatefulWidget {
   const SplashScreenBoard({super.key});
