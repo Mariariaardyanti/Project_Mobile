@@ -21,7 +21,7 @@ class _MembersState extends State<Members> {
   final FCMNotificationService _fcmService = FCMNotificationService();
   List<String> _notifications = [];
 
-  @override 
+  @override
   void initState() {
     super.initState();
 
@@ -35,7 +35,6 @@ class _MembersState extends State<Members> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,13 +119,11 @@ class _MembersState extends State<Members> {
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                ],
                               ),
                             ),
                           ),
-
-
+                        ),
 
                         const SizedBox(width: 12),
                         GestureDetector(
@@ -138,10 +135,7 @@ class _MembersState extends State<Members> {
                               ),
                             );
                           },
-                          child: const Icon(
-                            Icons.person_2_outlined,
-                            size: 24,
-                          ),
+                          child: const Icon(Icons.person_2_outlined, size: 24),
                         ),
 
                         SizedBox(height: 10),
@@ -156,9 +150,16 @@ class _MembersState extends State<Members> {
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
 
+                const SizedBox(height: 28),
+                const Text(
+                  "Project Team Members",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.brown,
+                  ),
+                ),
                 const SizedBox(height: 16),
-
-
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.only(bottom: 16),
@@ -240,19 +241,16 @@ class _MembersState extends State<Members> {
       ),
 
       // ===== BOTTOM NAV =====
-          bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
         currentIndex: 0,
         elevation: 0,
         onTap: (index) {
           if (index == 1) {
-
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => const AddNotesPage(),
-              ),
+              MaterialPageRoute(builder: (context) => const AddNotesPage()),
             );
           }
         },
@@ -292,7 +290,6 @@ class _MembersState extends State<Members> {
           ),
         ],
       ),
-
     );
   }
 }
