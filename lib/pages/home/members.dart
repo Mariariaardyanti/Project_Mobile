@@ -239,6 +239,7 @@ class _MembersState extends State<Members> {
                                 ],
                               ),
                             ),
+                            SizedBox(height: 20),
                             Align(
                               alignment: Alignment.centerRight,
                               child: ElevatedButton(
