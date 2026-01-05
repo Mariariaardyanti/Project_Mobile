@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project_mobile/pages/login.dart';
+import 'package:project_mobile/pages/auth/login.dart';
+import 'package:project_mobile/pages/home/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
@@ -42,13 +43,8 @@ class _SignUpState extends State<SignUp> {
         'role': 'users',
         'createdAt': FieldValue.serverTimestamp(),
         'team': {
-          'roleInTeam': 'UI Design & Mobile Developer',
-          'contributions': [
-            'UI Design',
-            'Implementasi Firebase Authentication (Sign Up & Login)',
-            'Pembuatan UI Login & Register',
-            'Integrasi Firestore Database',
-          ],
+          'roleInTeam': 'roleCtrl.text.trim(),',
+          'contributions': ['contributionsList'],
         },
       });
 
@@ -56,10 +52,17 @@ class _SignUpState extends State<SignUp> {
         context: context,
         builder: (_) => AlertDialog(
           title: const Text('Sign Success'),
-          content: Text('UID: ${user?.uid}\nEmail: ${user?.email}'),
+          content: Text('Hi! Welcome, ${user?.email?.split('@').first}'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const Homepage()),
+                );
+              },
+
               child: const Text('OK'),
             ),
           ],

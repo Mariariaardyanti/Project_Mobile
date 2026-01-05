@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/splashscreen4.dart';
+import 'package:project_mobile/pages/splash/splashscreen4.dart';
 
 class SplashScreen3 extends StatelessWidget {
   const SplashScreen3({super.key});
@@ -54,6 +54,15 @@ class SplashScreen3 extends StatelessWidget {
                     color: Color(0xFF745624),
                   ),
                 ),
+                SizedBox(width: 10),
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFedede9),
+                  ),
+                ),
               ],
             ),
 
@@ -92,7 +101,7 @@ class SplashScreen3 extends StatelessWidget {
                     backgroundColor: const Color(0xFF745624),
                   ),
                   child: const Text(
-                    'Let’s get started',
+                    'Continue',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.white,

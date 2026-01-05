@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project_mobile/pages/signup.dart';
+import 'package:project_mobile/pages/home/homepage.dart';
+import 'package:project_mobile/pages/auth/signup.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -36,10 +37,16 @@ class _LoginState extends State<Login> {
         context: context,
         builder: (_) => AlertDialog(
           title: const Text('Login Success'),
-          content: Text('UID: ${user?.uid}\nEmail: ${user?.email}'),
+          content: Text('Hi! Welcome Back, ${user?.email?.split('@').first}'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const Homepage()),
+                );
+              },
               child: const Text('OK'),
             ),
           ],
