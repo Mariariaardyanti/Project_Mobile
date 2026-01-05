@@ -202,12 +202,29 @@ class _MembersState extends State<Members> {
                             ),
                           ],
                         ),
-                        child: const Text(
-                          "Project Team Members",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
+                        child: Row(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 2,
+                                  ),
+                                  visualDensity: VisualDensity.compact,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Details",
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
