@@ -11,7 +11,7 @@ class ImageService {
   final _picker = ImagePicker();
 
   //upload image
-   Future<String?> uploadImage(XFile image) async {
+  Future<String?> uploadImage(XFile image) async {
     try {
       final fileName = '${DateTime.now().millisecondsSinceEpoch}_${image.name}';
       final filePath = 'uploads/$fileName';
@@ -40,7 +40,7 @@ class ImageService {
       // Extract path dari URL
       // Contoh URL: https://xxx.supabase.co/storage/v1/object/public/notes-images/uploads/123456.jpg
       final uri = Uri.parse(imageUrl);
-      final path = uri.pathSegments.last; 
+      final path = uri.pathSegments.last;
       final filePath = 'uploads/$path';
 
       await _supabase.storage.from(_bucketName).remove([filePath]);
@@ -51,7 +51,11 @@ class ImageService {
     }
   }
 
-  
-
+  //pick dari galeri
+  Future<XFile?> pickFromGallery() async {
+    return await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 80,
+    );
   }
-
+}
