@@ -15,4 +15,17 @@ class NotesService {
     }
   }
 
+  //read semua notes user (tidak di arsipkan)
+   Stream<QuerySnapshot> getUserNotes(String userId) {
+    return _firestore
+        .collection(collection)
+        .where('userId', isEqualTo: userId)
+        .where('isArchived', isEqualTo: false)
+        .orderBy('isPinned', descending: true)
+        .orderBy('updatedAt', descending: true)
+        .snapshots();
+  }
+
+  //read notes yang diarsipkan
+
 }
