@@ -110,59 +110,59 @@ class AddNotesPage extends StatelessWidget {
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 6),
-                      width: 18,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(left: 6),
+                    width: 18,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 6),
-                      width: 18,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFFE6A7),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 6),
+                    width: 18,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFE6A7),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 6),
-                      width: 18,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE6F0FF),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 6),
+                    width: 18,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE6F0FF),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 6),
-                      width: 18,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE8FFE8),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 6),
+                    width: 18,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE8FFE8),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 6),
-                      width: 18,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFFE8E8),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 6),
+                    width: 18,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFE8E8),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300),
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
 
               ],
             ),
@@ -213,37 +213,87 @@ class AddNotesPage extends StatelessWidget {
                       ),
                     ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: const [
-                            Icon(Icons.add_box_outlined),
-                            SizedBox(width: 12),
-                            Icon(Icons.text_fields),
-                            SizedBox(width: 12),
-                            Icon(Icons.more_vert),
-                          ],
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF8B6B2E),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
-                            ),
-                          ),
-                          child: const Text(
-                            "Save",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
+                  Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    Row(
+      children: [
+        PopupMenuButton(
+          icon: const Icon(Icons.add_box_outlined),
+          offset: const Offset(0, -160), // popup tepat di atas icon
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          itemBuilder: (context) => const [
+            PopupMenuItem(
+              height: 36,
+              child: Row(
+                children: [
+                  Icon(Icons.check_box_outlined, size: 18),
+                  SizedBox(width: 10),
+                  Text("Checkboxes", style: TextStyle(fontSize: 13)),
+                ],
+              ),
+            ),
+            PopupMenuItem(
+              height: 36,
+              child: Row(
+                children: [
+                  Icon(Icons.image_outlined, size: 18),
+                  SizedBox(width: 10),
+                  Text("Add image", style: TextStyle(fontSize: 13)),
+                ],
+              ),
+            ),
+            PopupMenuItem(
+              height: 36,
+              child: Row(
+                children: [
+                  Icon(Icons.brush_outlined, size: 18),
+                  SizedBox(width: 10),
+                  Text("Drawing", style: TextStyle(fontSize: 13)),
+                ],
+              ),
+            ),
+            PopupMenuItem(
+              height: 36,
+              child: Row(
+                children: [
+                  Icon(Icons.mic_none, size: 18),
+                  SizedBox(width: 10),
+                  Text("Recording", style: TextStyle(fontSize: 13)),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(width: 12),
+        const Icon(Icons.text_fields),
+        const SizedBox(width: 12),
+        const Icon(Icons.more_vert),
+      ],
+    ),
+
+    ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF8B6B2E),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 10,
+        ),
+      ),
+      child: const Text(
+        "Save",
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ],
+),
+
                   ],
                 ),
               ),
