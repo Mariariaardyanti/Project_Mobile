@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Note {
-   final String id;
+  final String id;
   final String title;
   final String content;
   final List<String> labels;
@@ -11,7 +11,7 @@ class Note {
   final String userId;
   final bool isPinned;
   final bool isArchived;
-  
+
   Note({
     required this.id,
     required this.title,
@@ -24,5 +24,26 @@ class Note {
     this.isPinned = false,
     this.isArchived = false,
   });
-}
 
+  factory Note.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+    return Note(
+      id: doc.id,
+      title: data['title'] ?? '',
+      content: data['content'] ?? '',
+      labels: List<String>.from(data['labels'] ?? []),
+      imageUrls: List<String>.from(data['imageUrls'] ?? []),
+       createdAt: data['createdAt'] != null 
+          ? (data['createdAt'] as Timestamp).toDate() 
+          : null,
+       updatedAt: data['updatedAt'] != null 
+          ? (data['updatedAt'] as Timestamp).toDate() 
+          : null,
+      userId: data['userId'] ?? '',
+      isPinned: data['isPinned'] ?? false,
+      isArchived: data['isArchived'] ?? false,
+
+    );
+  }
+}
