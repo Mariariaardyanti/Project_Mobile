@@ -2,8 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 import 'package:project_mobile/pages/home/notification_page.dart';
 
-class AddNotesPage extends StatelessWidget {
+class AddNotesPage extends StatefulWidget {
   const AddNotesPage({super.key});
+
+  @override
+  State<AddNotesPage> createState() => _AddNotesPageState();
+}
+
+class _AddNotesPageState extends State<AddNotesPage> {
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
