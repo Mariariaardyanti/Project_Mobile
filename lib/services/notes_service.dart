@@ -36,4 +36,15 @@ class NotesService {
         .snapshots();
   }
 
+  //read notes berdasarkan labels
+  Stream<QuerySnapshot> getNotesByLabel(String userId, String label) {
+    return _firestore
+        .collection(collection)
+        .where('userId', isEqualTo: userId)
+        .where('labels', arrayContains: label)
+        .where('isArchived', isEqualTo: false)
+        .orderBy('updatedAt', descending: true)
+        .snapshots();
+  }
+
 }
