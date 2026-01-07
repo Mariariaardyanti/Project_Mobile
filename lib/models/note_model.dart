@@ -66,5 +66,30 @@ class Note {
     };
   }
 
-  
+  //copy with untuk update tertertu
+   Note copyWith({
+    String? id,
+    String? title,
+    String? content,
+    List<String>? labels,
+    List<String>? imageUrls,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? userId,
+    bool? isPinned,
+    bool? isArchived,
+  }) {
+    return Note(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      labels: labels ?? this.labels,
+      imageUrls: imageUrls ?? this.imageUrls,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      userId: userId ?? this.userId,
+      isPinned: isPinned ?? this.isPinned,
+      isArchived: isArchived ?? this.isArchived,
+    );
+  }
 }
