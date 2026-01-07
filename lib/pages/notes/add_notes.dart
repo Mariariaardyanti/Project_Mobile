@@ -19,6 +19,53 @@ class _AddNotesPageState extends State<AddNotesPage> {
 
   bool _isLoading = false;
 
+  Future<void> _saveNote() async {
+  final title = _titleController.text.trim();
+  final content = _contentController.text.trim();
+
+  if (title.isEmpty || content.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Title dan content wajib diisi')),
+    );
+    return;
+  }
+
+  final user = FirebaseAuth.instance.currentUser;
+  if (user == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('User belum login')),
+    );
+    return;
+  }
+
+  setState(() => _isLoading = true);
+
+  try {
+    final note = Note(
+      id: '', // firestore auto-generate
+      title: title,
+      content: content,
+      userId: user.uid,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      isPinned: false,
+      isArchived: false,
+      labels: [],
+      imageUrls: [],
+    );
+
+    await _notesService.addNote(note);
+
+    Navigator.pop(context); // kembali ke halaman sebelumnya
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Gagal menyimpan note: $e')),
+    );
+  } finally {
+    setState(() => _isLoading = false);
+  }
+}
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -200,14 +247,17 @@ class _AddNotesPageState extends State<AddNotesPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Title",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                      children: [
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: TextField(
+                            controller: _titleController,
+                            decoration: const InputDecoration(
+                              hintText: "Note title",
+                              border: InputBorder.none,
+                            ),
                           ),
                         ),
                         Row(
@@ -417,14 +467,26 @@ class _AddNotesPageState extends State<AddNotesPage> {
                       ),
 
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: _isLoading ? null : _saveNote,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF8B6B2E),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
-                        child: const Text("Save", style: TextStyle(color: Colors.white)),
+                        child: _isLoading
+                            ? const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : const Text(
+                                "Save",
+                                style: TextStyle(color: Colors.white),
+                              ),
                       ),
                     ],
                   ),
