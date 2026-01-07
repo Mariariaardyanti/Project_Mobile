@@ -65,4 +65,17 @@ class NotesService {
     }
   }
 
+  //update - pin notes
+  Future<void> togglePin(String noteId, bool currentPinStatus) async {
+    try {
+      await _firestore.collection(collection).doc(noteId).update({
+        'isPinned': !currentPinStatus,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      print('Error toggling pin: $e');
+      rethrow;
+    }
+  }
+
 }
