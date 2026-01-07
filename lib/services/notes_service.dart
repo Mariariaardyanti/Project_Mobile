@@ -27,5 +27,13 @@ class NotesService {
   }
 
   //read notes yang diarsipkan
+   Stream<QuerySnapshot> getArchivedNotes(String userId) {
+    return _firestore
+        .collection(collection)
+        .where('userId', isEqualTo: userId)
+        .where('isArchived', isEqualTo: true)
+        .orderBy('updatedAt', descending: true)
+        .snapshots();
+  }
 
 }
