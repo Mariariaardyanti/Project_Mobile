@@ -34,31 +34,30 @@ class Note {
       content: data['content'] ?? '',
       labels: List<String>.from(data['labels'] ?? []),
       imageUrls: List<String>.from(data['imageUrls'] ?? []),
-       createdAt: data['createdAt'] != null 
-          ? (data['createdAt'] as Timestamp).toDate() 
+      createdAt: data['createdAt'] != null
+          ? (data['createdAt'] as Timestamp).toDate()
           : null,
-       updatedAt: data['updatedAt'] != null 
-          ? (data['updatedAt'] as Timestamp).toDate() 
+      updatedAt: data['updatedAt'] != null
+          ? (data['updatedAt'] as Timestamp).toDate()
           : null,
       userId: data['userId'] ?? '',
       isPinned: data['isPinned'] ?? false,
       isArchived: data['isArchived'] ?? false,
-
     );
   }
 
   //convert note to map for firestore
-   Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap() {
     return {
       'title': title,
       'content': content,
       'labels': labels,
       'imageUrls': imageUrls,
-      'createdAt': createdAt != null 
-          ? Timestamp.fromDate(createdAt!) 
+      'createdAt': createdAt != null
+          ? Timestamp.fromDate(createdAt!)
           : FieldValue.serverTimestamp(),
-      'updatedAt': updatedAt != null 
-          ? Timestamp.fromDate(updatedAt!) 
+      'updatedAt': updatedAt != null
+          ? Timestamp.fromDate(updatedAt!)
           : FieldValue.serverTimestamp(),
       'userId': userId,
       'isPinned': isPinned,
@@ -67,7 +66,7 @@ class Note {
   }
 
   //copy with untuk update tertertu
-   Note copyWith({
+  Note copyWith({
     String? id,
     String? title,
     String? content,
