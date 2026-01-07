@@ -1,8 +1,8 @@
 import 'package:project_mobile/services/fcm_notification_service.dart';
 import 'package:project_mobile/pages/home/notification_page.dart';
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/home/add_notes.dart';
-import 'package:project_mobile/pages/home/profile.dart';
+import 'package:project_mobile/pages/notes/add_notes.dart';
+import 'package:project_mobile/pages/profile/profile.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -21,7 +21,7 @@ class _HomepageState extends State<Homepage> {
   final FCMNotificationService _fcmService = FCMNotificationService();
   List<String> _notifications = [];
 
-  @override 
+  @override
   void initState() {
     super.initState();
 
@@ -35,7 +35,6 @@ class _HomepageState extends State<Homepage> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,13 +119,11 @@ class _HomepageState extends State<Homepage> {
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                ],
                               ),
                             ),
                           ),
-
-
+                        ),
 
                         const SizedBox(width: 12),
                         GestureDetector(
@@ -138,10 +135,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                             );
                           },
-                          child: const Icon(
-                            Icons.person_2_outlined,
-                            size: 24,
-                          ),
+                          child: const Icon(Icons.person_2_outlined, size: 24),
                         ),
 
                         SizedBox(height: 10),
@@ -174,7 +168,6 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ),
                 const SizedBox(height: 24),
-
 
                 Container(
                   width: double.infinity,
@@ -390,19 +383,16 @@ class _HomepageState extends State<Homepage> {
       ),
 
       // ===== BOTTOM NAV =====
-          bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
         currentIndex: 0,
         elevation: 0,
         onTap: (index) {
           if (index == 1) {
-
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => const AddNotesPage(),
-              ),
+              MaterialPageRoute(builder: (context) => const AddNotesPage()),
             );
           }
         },
@@ -442,7 +432,6 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-
     );
   }
 }

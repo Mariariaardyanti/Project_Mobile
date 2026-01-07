@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/home/add_notes.dart';
+import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
 
 class ProfilePage extends StatelessWidget {

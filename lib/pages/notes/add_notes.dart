@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/home/profile.dart';
+import 'package:project_mobile/pages/profile/profile.dart';
+import 'package:project_mobile/pages/home/notification_page.dart';
 
 class AddNotesPage extends StatelessWidget {
   const AddNotesPage({super.key});
@@ -10,101 +11,97 @@ class AddNotesPage extends StatelessWidget {
       backgroundColor: Colors.white,
 
       appBar: AppBar(
-  backgroundColor: Colors.white,
-  elevation: 0,
-  automaticallyImplyLeading: false,
-  titleSpacing: 0,
-  title: Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-
-        Padding(
-          padding: const EdgeInsets.only(top: 6), 
+        backgroundColor: Colors.white,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 20,
-                  color: Colors.black,
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const Text(
+                      "Add notes",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(width: 4),
-              const Text(
-                "Add notes",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.brown,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.workspace_premium,
+                          size: 18,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          "Get Pro",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Icon(Icons.notifications_none, color: Colors.black),
+                  const SizedBox(width: 12),
+                  InkWell(
+                    borderRadius: BorderRadius.circular(20),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ),
+                      );
+                    },
+                    child: const Icon(Icons.person_2_outlined, size: 24),
+                  ),
+                ],
               ),
             ],
           ),
         ),
-
-        Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 6,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.brown,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Row(
-                children: [
-                  Icon(
-                    Icons.workspace_premium,
-                    size: 18,
-                    color: Colors.white,
-                  ),
-                  SizedBox(width: 6),
-                  Text(
-                    "Get Pro",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 12),
-            const Icon(Icons.notifications_none, color: Colors.black),
-            const SizedBox(width: 12),
-            InkWell(
-                borderRadius: BorderRadius.circular(20),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ProfilePage(),
-                    ),
-                  );
-                },
-                child: const Icon(Icons.person_2_outlined, size: 24),
-              ),
-
-          ],
-        ),
-      ],
-    ),
-  ),
-),
-
+      ),
 
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -148,7 +145,6 @@ class AddNotesPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -222,50 +218,46 @@ class AddNotesPage extends StatelessWidget {
         ),
       ),
 
-    bottomNavigationBar: Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade200,
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.home_outlined, size: 28),
-            onPressed: () {
-            },
-          ),
-
-          Container(
-            width: 56,
-            height: 56,
-            decoration: const BoxDecoration(
-              color: Color(0xFFFFF1D6),
-              shape: BoxShape.circle,
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              blurRadius: 10,
+              offset: const Offset(0, -2),
             ),
-            child: IconButton(
-              icon: const Icon(Icons.add, size: 30),
-              onPressed: () {
-              },
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home_outlined, size: 28),
+              onPressed: () {},
             ),
-          ),
 
+            Container(
+              width: 56,
+              height: 56,
+              decoration: const BoxDecoration(
+                color: Color(0xFFFFF1D6),
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.add, size: 30),
+                onPressed: () {},
+              ),
+            ),
 
-          IconButton(
-            icon: const Icon(Icons.sticky_note_2_outlined, size: 26),
-            onPressed: () {
-            },
-          ),
-        ],
+            IconButton(
+              icon: const Icon(Icons.sticky_note_2_outlined, size: 26),
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
-    )
     );
   }
 }
