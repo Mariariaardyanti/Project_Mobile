@@ -47,4 +47,22 @@ class NotesService {
         .snapshots();
   }
 
+  //update notes
+  Future<void> updateNote(String noteId, Note note) async {
+    try {
+      await _firestore.collection(collection).doc(noteId).update({
+        'title': note.title,
+        'content': note.content,
+        'labels': note.labels,
+        'imageUrls': note.imageUrls,
+        'isPinned': note.isPinned,
+        'isArchived': note.isArchived,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      print('Error updating note: $e');
+      rethrow;
+    }
+  }
+
 }
