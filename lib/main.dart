@@ -9,8 +9,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Supabase.initialize(
-    url: 'https://your-project-url.supabase.co',
-    anonKey: 'your-anon-key-here',
+    url: 'https://jcpuynzpwaahzupeegnm.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcHV5bnpwd2FhaHp1cGVlZ25tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0MTg4NjIsImV4cCI6MjA4MDk5NDg2Mn0.GIFj_MPLS6t_RQDK2tDhHphAs8K_zgrAfnh_y0iTm3Y',
   );
   runApp(const MyApp());
 }
