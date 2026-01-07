@@ -235,7 +235,7 @@ class _HomepageState extends State<Homepage> {
                                 child: const Text(
                                   "Project",
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.normal,
                                     color: Colors.brown,
                                   ),
@@ -254,7 +254,7 @@ class _HomepageState extends State<Homepage> {
                                 ),
                                 child: Icon(
                                   Icons.push_pin,
-                                  size: 16,
+                                  size: 13,
                                   color: Colors.brown.shade400,
                                 ),
                               ),
@@ -265,10 +265,55 @@ class _HomepageState extends State<Homepage> {
 
                       const SizedBox(height: 10),
                       const Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
+                        "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project.",
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+
+                      SizedBox(
+                        height: 32,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              left: 0,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/avatar1.png',
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 18,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/avatar2.png',
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 36,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/avatar3.png',
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 54,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/avatar3.png',
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
 
@@ -363,7 +408,7 @@ class _HomepageState extends State<Homepage> {
                                 child: const Text(
                                   "To-Do",
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.normal,
                                     color: Colors.brown,
                                   ),
