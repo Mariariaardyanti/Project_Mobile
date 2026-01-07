@@ -214,135 +214,197 @@ class AddNotesPage extends StatelessWidget {
                     ),
 
                   Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    Row(
-      children: [
-        PopupMenuButton(
-          icon: const Icon(Icons.add_box_outlined),
-          offset: const Offset(0, -160), // popup tepat di atas icon
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          itemBuilder: (context) => const [
-            PopupMenuItem(
-              height: 36,
-              child: Row(
-                children: [
-                  Icon(Icons.check_box_outlined, size: 18),
-                  SizedBox(width: 10),
-                  Text("Checkboxes", style: TextStyle(fontSize: 13)),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              height: 36,
-              child: Row(
-                children: [
-                  Icon(Icons.image_outlined, size: 18),
-                  SizedBox(width: 10),
-                  Text("Add image", style: TextStyle(fontSize: 13)),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              height: 36,
-              child: Row(
-                children: [
-                  Icon(Icons.brush_outlined, size: 18),
-                  SizedBox(width: 10),
-                  Text("Drawing", style: TextStyle(fontSize: 13)),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              height: 36,
-              child: Row(
-                children: [
-                  Icon(Icons.mic_none, size: 18),
-                  SizedBox(width: 10),
-                  Text("Recording", style: TextStyle(fontSize: 13)),
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(width: 12),
-        const Icon(Icons.text_fields),
-        const SizedBox(width: 12),
-        PopupMenuButton(
-  icon: const Icon(Icons.more_vert),
-  offset: const Offset(0, -170), 
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12),
-  ),
-  itemBuilder: (context) => const [
-    PopupMenuItem(
-      height: 36,
-      child: Row(
-        children: [
-          Icon(Icons.delete_outline, size: 18),
-          SizedBox(width: 10),
-          Text("Delete", style: TextStyle(fontSize: 13)),
-        ],
-      ),
-    ),
-    PopupMenuItem(
-      height: 36,
-      child: Row(
-        children: [
-          Icon(Icons.copy_outlined, size: 18),
-          SizedBox(width: 10),
-          Text("Make a copy", style: TextStyle(fontSize: 13)),
-        ],
-      ),
-    ),
-    PopupMenuItem(
-      height: 36,
-      child: Row(
-        children: [
-          Icon(Icons.send_outlined, size: 18),
-          SizedBox(width: 10),
-          Text("Send", style: TextStyle(fontSize: 13)),
-        ],
-      ),
-    ),
-    PopupMenuItem(
-      height: 36,
-      child: Row(
-        children: [
-          Icon(Icons.person_add_alt_1_outlined, size: 18),
-          SizedBox(width: 10),
-          Text("Collaborator", style: TextStyle(fontSize: 13)),
-        ],
-      ),
-    ),
-  ],
-),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          PopupMenuButton(
+                            icon: const Icon(Icons.add_box_outlined),
+                            offset: const Offset(0, -160),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            itemBuilder: (context) => const [
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.check_box_outlined, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Checkboxes"),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.image_outlined, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Add image"),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.brush_outlined, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Drawing"),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.mic_none, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Recording"),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
 
-      ],
-    ),
+                          const SizedBox(width: 12),
+                          const Icon(Icons.text_fields),
+                          const SizedBox(width: 12),
+                          
+                          PopupMenuButton(
+                            icon: const Icon(Icons.more_vert),
+                            offset: const Offset(0, -170),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            itemBuilder: (context) => const [
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.delete_outline, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Delete"),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.copy_outlined, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Make a copy"),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.send_outlined, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Send"),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.person_add_alt_1_outlined, size: 18),
+                                    SizedBox(width: 10),
+                                    Text("Collaborator"),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
 
-    ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF8B6B2E),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
-      ),
-      child: const Text(
-        "Save",
-        style: TextStyle(color: Colors.white),
-      ),
-    ),
-  ],
-),
+                          const SizedBox(width: 12),
+                          PopupMenuButton(
+                            offset: const Offset(0, -190),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFF1D6),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: const Row(
+                                children: [
+                                  Text("Labels", style: TextStyle(fontSize: 11)),
+                                  SizedBox(width: 2),
+                                  Icon(Icons.keyboard_arrow_down, size: 14),
+                                ],
+                              ),
+                            ),
+                            itemBuilder: (context) => [
+                              const PopupMenuItem(
+                                enabled: false,
+                                height: 28,
+                                child: Text(
+                                  "Labels",
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Text("Random Thoughts", style: TextStyle(fontSize: 11)),
+                                    Checkbox(value: true, onChanged: null),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Text("Project Updates", style: TextStyle(fontSize: 11)),
+                                    Checkbox(value: false, onChanged: null),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Text("Life", style: TextStyle(fontSize: 11)),
+                                    Checkbox(value: false, onChanged: null),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Text("Self-Growth", style: TextStyle(fontSize: 11)),
+                                    Checkbox(value: false, onChanged: null),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Text("Gratitude", style: TextStyle(fontSize: 11)),
+                                    Checkbox(value: false, onChanged: null),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
 
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF8B6B2E),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Text("Save", style: TextStyle(color: Colors.white)),
+                      ),
+                    ],
+                  ),
                   ],
                 ),
               ),
