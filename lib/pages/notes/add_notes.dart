@@ -110,26 +110,60 @@ class AddNotesPage extends StatelessWidget {
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 Row(
-                  children: List.generate(
-                    5,
-                    (index) => Container(
+                  children: [
+                    Container(
                       margin: const EdgeInsets.only(left: 6),
                       width: 18,
                       height: 18,
                       decoration: BoxDecoration(
-                        color: [
-                          Colors.white,
-                          Color(0xFFFFE6A7),
-                          Color(0xFFE6F0FF),
-                          Color(0xFFE8FFE8),
-                          Color(0xFFFFE8E8),
-                        ][index],
+                        color: Colors.white,
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.grey.shade300),
                       ),
                     ),
-                  ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFFE6A7),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE6F0FF),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE8FFE8),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFFE8E8),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                  ],
                 ),
+
               ],
             ),
 
