@@ -16,7 +16,7 @@ class NotesService {
   }
 
   //read semua notes user (tidak di arsipkan)
-   Stream<QuerySnapshot> getUserNotes(String userId) {
+  Stream<QuerySnapshot> getUserNotes(String userId) {
     return _firestore
         .collection(collection)
         .where('userId', isEqualTo: userId)
@@ -27,7 +27,7 @@ class NotesService {
   }
 
   //read notes yang diarsipkan
-   Stream<QuerySnapshot> getArchivedNotes(String userId) {
+  Stream<QuerySnapshot> getArchivedNotes(String userId) {
     return _firestore
         .collection(collection)
         .where('userId', isEqualTo: userId)
@@ -91,14 +91,19 @@ class NotesService {
     }
   }
 
-  //delete 
-   Future<void> deleteNote(String noteId) async {
+  //delete
+  Future<void> deleteNote(String noteId) async {
     try {
       await _firestore.collection(collection).doc(noteId).delete();
     } catch (e) {
       print('Error deleting note: $e');
       rethrow;
     }
+  }
+
+  //read berdasarkan user id
+  Future<DocumentSnapshot> getNoteById(String noteId) async {
+    return await _firestore.collection(collection).doc(noteId).get();
   }
 
 }
