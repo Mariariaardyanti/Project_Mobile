@@ -91,4 +91,14 @@ class NotesService {
     }
   }
 
+  //delete 
+   Future<void> deleteNote(String noteId) async {
+    try {
+      await _firestore.collection(collection).doc(noteId).delete();
+    } catch (e) {
+      print('Error deleting note: $e');
+      rethrow;
+    }
+  }
+
 }
