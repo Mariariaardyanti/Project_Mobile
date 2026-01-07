@@ -270,7 +270,56 @@ class AddNotesPage extends StatelessWidget {
         const SizedBox(width: 12),
         const Icon(Icons.text_fields),
         const SizedBox(width: 12),
-        const Icon(Icons.more_vert),
+        PopupMenuButton(
+  icon: const Icon(Icons.more_vert),
+  offset: const Offset(0, -170), 
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12),
+  ),
+  itemBuilder: (context) => const [
+    PopupMenuItem(
+      height: 36,
+      child: Row(
+        children: [
+          Icon(Icons.delete_outline, size: 18),
+          SizedBox(width: 10),
+          Text("Delete", style: TextStyle(fontSize: 13)),
+        ],
+      ),
+    ),
+    PopupMenuItem(
+      height: 36,
+      child: Row(
+        children: [
+          Icon(Icons.copy_outlined, size: 18),
+          SizedBox(width: 10),
+          Text("Make a copy", style: TextStyle(fontSize: 13)),
+        ],
+      ),
+    ),
+    PopupMenuItem(
+      height: 36,
+      child: Row(
+        children: [
+          Icon(Icons.send_outlined, size: 18),
+          SizedBox(width: 10),
+          Text("Send", style: TextStyle(fontSize: 13)),
+        ],
+      ),
+    ),
+    PopupMenuItem(
+      height: 36,
+      child: Row(
+        children: [
+          Icon(Icons.person_add_alt_1_outlined, size: 18),
+          SizedBox(width: 10),
+          Text("Collaborator", style: TextStyle(fontSize: 13)),
+        ],
+      ),
+    ),
+  ],
+),
+
       ],
     ),
 
