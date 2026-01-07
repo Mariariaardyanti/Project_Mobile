@@ -78,4 +78,17 @@ class NotesService {
     }
   }
 
+  //update - archive notes
+  Future<void> toggleArchive(String noteId, bool currentArchiveStatus) async {
+    try {
+      await _firestore.collection(collection).doc(noteId).update({
+        'isArchived': !currentArchiveStatus,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      print('Error toggling archive: $e');
+      rethrow;
+    }
+  }
+
 }
