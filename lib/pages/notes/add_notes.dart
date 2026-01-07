@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
+import 'package:project_mobile/models/note_model.dart';
+import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/home/notification_page.dart';
 
 class AddNotesPage extends StatefulWidget {
