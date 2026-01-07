@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 import 'package:project_mobile/models/note_model.dart';
 import 'package:project_mobile/services/notes_service.dart';
@@ -14,6 +15,7 @@ class AddNotesPage extends StatefulWidget {
 class _AddNotesPageState extends State<AddNotesPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+  final NotesService _notesService = NotesService();
 
   bool _isLoading = false;
 
@@ -221,14 +223,16 @@ class _AddNotesPageState extends State<AddNotesPage> {
                     ),
 
                     const SizedBox(height: 12),
-
-                    const Expanded(
+                    SizedBox(
+                      height: 280,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: _contentController,
+                        decoration: const InputDecoration(
                           hintText: "Type your note",
                           border: InputBorder.none,
                         ),
                         maxLines: null,
+                        expands: true,
                       ),
                     ),
 
