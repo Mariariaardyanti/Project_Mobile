@@ -46,4 +46,25 @@ class Note {
 
     );
   }
+
+  //convert note to map for firestore
+   Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'content': content,
+      'labels': labels,
+      'imageUrls': imageUrls,
+      'createdAt': createdAt != null 
+          ? Timestamp.fromDate(createdAt!) 
+          : FieldValue.serverTimestamp(),
+      'updatedAt': updatedAt != null 
+          ? Timestamp.fromDate(updatedAt!) 
+          : FieldValue.serverTimestamp(),
+      'userId': userId,
+      'isPinned': isPinned,
+      'isArchived': isArchived,
+    };
+  }
+
+  
 }
