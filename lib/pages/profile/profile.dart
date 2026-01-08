@@ -40,6 +40,24 @@ class _ProfilePageState extends State<ProfilePage> {
     return File(picked.path);
   }
 
+  //upload ke supabase
+   Future<String> uploadProfileImage(File file) async {
+    final supabase = Supabase.instance.client;
+    final path = 'uploads/profile/${user!.uid}.jpg';
+
+    await supabase.storage
+        .from('bucket_imagess')
+        .upload(
+          path,
+          file,
+          fileOptions: const FileOptions(upsert: true),
+        );
+
+    return supabase.storage
+        .from('bucket_imagess')
+        .getPublicUrl(path);
+  }
+
 
   @override
   Widget build(BuildContext context) {
