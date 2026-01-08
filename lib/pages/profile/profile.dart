@@ -58,6 +58,23 @@ class _ProfilePageState extends State<ProfilePage> {
         .getPublicUrl(path);
   }
 
+  //update firestore database
+   Future<void> updateProfilePhoto() async {
+    final file = await pickImage();
+    if (file == null) return;
+
+    final imageUrl = await uploadProfileImage(file);
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .update({
+      'photoUrl': imageUrl,
+    });
+
+    setState(() {}); // refresh UI
+  }
+
 
   @override
   Widget build(BuildContext context) {
