@@ -42,7 +42,7 @@ class _SignUpState extends State<SignUp> {
         'role': 'users',
         'createdAt': FieldValue.serverTimestamp(),
         'team': {
-          'roleInTeam': 'roleCtrl.text.trim(),',
+          'roleInTeam': 'member',
           'contributions': ['contributionsList'],
         },
       });
