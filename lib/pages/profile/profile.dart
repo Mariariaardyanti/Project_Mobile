@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
