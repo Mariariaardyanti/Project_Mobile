@@ -1,12 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+   fb.User? user;
+  final ImagePicker _picker = ImagePicker();
+
+   @override
+  void initState() {
+    super.initState();
+    user = fb.FirebaseAuth.instance.currentUser;
+  }
+
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String uid) {
+    return FirebaseFirestore.instance.collection('users').doc(uid).get();
+  }
+
+  //pick image
+  Future<File?> pickImage() async {
+    final picked = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 70,
+    );
+
+    if (picked == null) return null;
+    return File(picked.path);
+  }
+
+  //upload ke supabase
+   Future<String> uploadProfileImage(File file) async {
+    final supabase = Supabase.instance.client;
+    final path = 'uploads/profile/${user!.uid}.jpg';
+
+    await supabase.storage
+        .from('bucket_imagess')
+        .upload(
+          path,
+          file,
+          fileOptions: const FileOptions(upsert: true),
+        );
+
+    return supabase.storage
+        .from('bucket_imagess')
+        .getPublicUrl(path);
+  }
+
+  //update firestore database
+   Future<void> updateProfilePhoto() async {
+    final file = await pickImage();
+    if (file == null) return;
+
+    final imageUrl = await uploadProfileImage(file);
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .update({
+      'photoUrl': imageUrl,
+    });
+
+    setState(() {}); // refresh UI
+  }
+
+
+  @override
   Widget build(BuildContext context) {
+    final currentUser = fb.FirebaseAuth.instance.currentUser;
+
+    if (currentUser == null) {
+      return const Scaffold(body: Center(child: Text("User not logged in")));
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -74,18 +151,83 @@ class ProfilePage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const CircleAvatar(
-                      radius: 28,
-                      backgroundImage: AssetImage("assets/profile.jpg"),
-                    ),
-                    const SizedBox(height: 6),
-                    const Text(
-                      "Maria Eupharsia",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                  FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+  future: getUserData(user!.uid),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const Column(
+        children: [
+          CircleAvatar(
+            radius: 28,
+            backgroundImage: AssetImage("assets/profile.jpg"),
+          ),
+          SizedBox(height: 6),
+          Text("-"),
+        ],
+      );
+    }
+
+    if (!snapshot.hasData || snapshot.data!.data() == null) {
+      return Column(
+        children: [
+          const CircleAvatar(
+            radius: 28,
+            backgroundImage: AssetImage("assets/profile.jpg"),
+          ),
+          const SizedBox(height: 6),
+          Text('-'),
+        ],
+      );
+    }
+
+    final data = snapshot.data!.data()!;
+
+    return Column(
+      children: [
+        Stack(
+          children: [
+            CircleAvatar(
+              radius: 28,
+              backgroundImage:
+                  data['photoUrl'] != null && data['photoUrl'] != ''
+                      ? NetworkImage(data['photoUrl'])
+                      : const AssetImage("assets/profile.jpg")
+                          as ImageProvider,
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: GestureDetector(
+                onTap: updateProfilePhoto,
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt,
+                    size: 14,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Text(
+          data['name'] ?? user?.email?.split('@').first ?? '-',
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  },
+),
+
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
