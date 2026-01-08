@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -15,13 +15,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-   User? user;
+   fb.User? user;
   final ImagePicker _picker = ImagePicker();
 
    @override
   void initState() {
     super.initState();
-    user = FirebaseAuth.instance.currentUser;
+    user = fb.FirebaseAuth.instance.currentUser;
   }
 
 
@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = FirebaseAuth.instance.currentUser;
+    final currentUser = fb.FirebaseAuth.instance.currentUser;
 
     if (currentUser == null) {
       return const Scaffold(body: Center(child: Text("User not logged in")));
@@ -151,47 +151,83 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: Column(
                   children: [
-                    const CircleAvatar(
-                      radius: 28,
-                      backgroundImage: AssetImage("assets/profile.jpg"),
-                    ),
-                    const SizedBox(height: 6),
-                    FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                      future: getUserData(currentUser.uid),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Text(
-                            "-",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          );
-                        }
+                  FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+  future: getUserData(user!.uid),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const Column(
+        children: [
+          CircleAvatar(
+            radius: 28,
+            backgroundImage: AssetImage("assets/profile.jpg"),
+          ),
+          SizedBox(height: 6),
+          Text("-"),
+        ],
+      );
+    }
 
-                        if (snapshot.hasError ||
-                            !snapshot.hasData ||
-                            snapshot.data!.data() == null) {
-                          return Text(
-                            currentUser.email!.split('@').first,
-                            style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          );
-                        }
+    if (!snapshot.hasData || snapshot.data!.data() == null) {
+      return Column(
+        children: [
+          const CircleAvatar(
+            radius: 28,
+            backgroundImage: AssetImage("assets/profile.jpg"),
+          ),
+          const SizedBox(height: 6),
+          Text('-'),
+        ],
+      );
+    }
 
-                        final data = snapshot.data!.data()!;
-                        return Text(
-                          data['name'] ?? currentUser.email!.split('@').first,
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        );
-                      },
-                    ),
+    final data = snapshot.data!.data()!;
+
+    return Column(
+      children: [
+        Stack(
+          children: [
+            CircleAvatar(
+              radius: 28,
+              backgroundImage:
+                  data['photoUrl'] != null && data['photoUrl'] != ''
+                      ? NetworkImage(data['photoUrl'])
+                      : const AssetImage("assets/profile.jpg")
+                          as ImageProvider,
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: GestureDetector(
+                onTap: updateProfilePhoto,
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt,
+                    size: 14,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Text(
+          data['name'] ?? user?.email?.split('@').first ?? '-',
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  },
+),
+
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
