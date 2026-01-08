@@ -12,16 +12,18 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  User? user;
-
-  @override
-  void initState() {
-    super.initState();
-    user = FirebaseAuth.instance.currentUser;
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String uid) {
+    return FirebaseFirestore.instance.collection('users').doc(uid).get();
   }
 
   @override
   Widget build(BuildContext context) {
+    final currentUser = FirebaseAuth.instance.currentUser;
+
+    if (currentUser == null) {
+      return const Scaffold(body: Center(child: Text("User not logged in")));
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -94,12 +96,41 @@ class _ProfilePageState extends State<ProfilePage> {
                       backgroundImage: AssetImage("assets/profile.jpg"),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
-                      "Maria Eupharsia",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                      future: getUserData(currentUser.uid),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Text(
+                            "-",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          );
+                        }
+
+                        if (snapshot.hasError ||
+                            !snapshot.hasData ||
+                            snapshot.data!.data() == null) {
+                          return Text(
+                            currentUser.email!.split('@').first,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          );
+                        }
+
+                        final data = snapshot.data!.data()!;
+                        return Text(
+                          data['name'] ?? currentUser.email!.split('@').first,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(height: 8),
                     Row(
