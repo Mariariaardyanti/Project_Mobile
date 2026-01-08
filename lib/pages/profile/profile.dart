@@ -3,6 +3,7 @@ import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -14,9 +15,31 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+   User? user;
+  final ImagePicker _picker = ImagePicker();
+
+   @override
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.currentUser;
+  }
+
+
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String uid) {
     return FirebaseFirestore.instance.collection('users').doc(uid).get();
   }
+
+  //pick image
+  Future<File?> pickImage() async {
+    final picked = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 70,
+    );
+
+    if (picked == null) return null;
+    return File(picked.path);
+  }
+
 
   @override
   Widget build(BuildContext context) {
