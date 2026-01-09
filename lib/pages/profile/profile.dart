@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb;
@@ -17,6 +18,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
    fb.User? user;
   final ImagePicker _picker = ImagePicker();
+  bool _isUploading = false;
 
    @override
   void initState() {
