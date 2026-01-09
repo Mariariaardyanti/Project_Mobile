@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_mobile/pages/auth/login.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
@@ -43,7 +42,7 @@ class _SignUpState extends State<SignUp> {
         'role': 'users',
         'createdAt': FieldValue.serverTimestamp(),
         'team': {
-          'roleInTeam': 'roleCtrl.text.trim(),',
+          'roleInTeam': 'member',
           'contributions': ['contributionsList'],
         },
       });

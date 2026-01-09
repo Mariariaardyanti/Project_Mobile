@@ -1,8 +1,9 @@
 import 'package:project_mobile/services/fcm_notification_service.dart';
 import 'package:project_mobile/pages/home/notification_page.dart';
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/home/add_notes.dart';
-import 'package:project_mobile/pages/home/profile.dart';
+import 'package:project_mobile/pages/notes/add_notes.dart';
+import 'package:project_mobile/pages/profile/profile.dart';
+import 'package:project_mobile/pages/home/members.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -21,7 +22,7 @@ class _HomepageState extends State<Homepage> {
   final FCMNotificationService _fcmService = FCMNotificationService();
   List<String> _notifications = [];
 
-  @override 
+  @override
   void initState() {
     super.initState();
 
@@ -35,7 +36,6 @@ class _HomepageState extends State<Homepage> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,13 +120,11 @@ class _HomepageState extends State<Homepage> {
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                ],
                               ),
                             ),
                           ),
-
-
+                        ),
 
                         const SizedBox(width: 12),
                         GestureDetector(
@@ -138,10 +136,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                             );
                           },
-                          child: const Icon(
-                            Icons.person_2_outlined,
-                            size: 24,
-                          ),
+                          child: const Icon(Icons.person_2_outlined, size: 24),
                         ),
 
                         SizedBox(height: 10),
@@ -175,7 +170,7 @@ class _HomepageState extends State<Homepage> {
                 ),
                 const SizedBox(height: 24),
 
-
+                // ===== CARD 1 =====
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.only(bottom: 16),
@@ -188,42 +183,138 @@ class _HomepageState extends State<Homepage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white70,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ), // warna shadow
-                              blurRadius: 6,
-                              offset: const Offset(0, 1),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //title
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
                             ),
-                          ],
-                        ),
-                        child: const Text(
-                          "Project Team Members",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.grey.shade300,
+                                width: 1,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 1),
+                                ),
+                              ],
+                            ),
+                            child: const Text(
+                              "Project Team Members",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
                           ),
-                        ),
+
+                          //label dan pin
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: Colors.grey.shade300,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Project",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.brown,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Container(
+                                padding: const EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: Colors.grey.shade300,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.push_pin,
+                                  size: 13,
+                                  color: Colors.brown.shade400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 8),
+
+                      const SizedBox(height: 10),
                       const Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
+                        "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project.",
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+
+                      SizedBox(
+                        height: 32,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              left: 0,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/images/bubbles.jpg',
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 18,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/avatar2.png',
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 36,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/avatar3.png',
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 54,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage: AssetImage(
+                                  'assets/avatar3.png',
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
 
@@ -264,36 +355,71 @@ class _HomepageState extends State<Homepage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white70,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ), // warna shadow
-                              blurRadius: 6,
-                              offset: const Offset(0, 1),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //title
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
                             ),
-                          ],
-                        ),
-                        child: const Text(
-                          "To-Do List",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            decoration: BoxDecoration(
+                              color: Colors.white70,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.grey.shade300,
+                                width: 1,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(
+                                    0.1,
+                                  ), // warna shadow
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 1),
+                                ),
+                              ],
+                            ),
+
+                            child: const Text(
+                              "To-Do List",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
                           ),
-                        ),
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: Colors.grey.shade300,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: const Text(
+                                  "To-Do",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.brown,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
+
                       const SizedBox(height: 10),
                       Row(
                         children: [
@@ -390,19 +516,16 @@ class _HomepageState extends State<Homepage> {
       ),
 
       // ===== BOTTOM NAV =====
-          bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
         currentIndex: 0,
         elevation: 0,
         onTap: (index) {
           if (index == 1) {
-
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => const AddNotesPage(),
-              ),
+              MaterialPageRoute(builder: (context) => const AddNotesPage()),
             );
           }
         },
@@ -442,7 +565,6 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-
     );
   }
 }

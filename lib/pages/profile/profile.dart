@@ -1,12 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:project_mobile/pages/home/add_notes.dart';
+import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+   fb.User? user;
+  final ImagePicker _picker = ImagePicker();
+
+   @override
+  void initState() {
+    super.initState();
+    user = fb.FirebaseAuth.instance.currentUser;
+  }
+
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String uid) {
+    return FirebaseFirestore.instance.collection('users').doc(uid).get();
+  }
+
+  //pick image
+  Future<File?> pickImage() async {
+    final picked = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 70,
+    );
+
+    if (picked == null) return null;
+    return File(picked.path);
+  }
+
+  //upload ke supabase
+   Future<String> uploadProfileImage(File file) async {
+    final supabase = Supabase.instance.client;
+    final path = 'uploads/profile/${user!.uid}.jpg';
+
+    await supabase.storage
+        .from('bucket_imagess')
+        .upload(
+          path,
+          file,
+          fileOptions: const FileOptions(upsert: true),
+        );
+
+    return supabase.storage
+        .from('bucket_imagess')
+        .getPublicUrl(path);
+  }
+
+  //update firestore database
+   Future<void> updateProfilePhoto() async {
+    final file = await pickImage();
+    if (file == null) return;
+
+    final imageUrl = await uploadProfileImage(file);
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .update({
+      'photoUrl': imageUrl,
+    });
+
+    setState(() {}); // refresh UI
+  }
+
+
+  @override
   Widget build(BuildContext context) {
+    final currentUser = fb.FirebaseAuth.instance.currentUser;
+
+    if (currentUser == null) {
+      return const Scaffold(body: Center(child: Text("User not logged in")));
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -23,21 +100,29 @@ class ProfilePage extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFF8B5E3C),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Row(
                           children: [
-                            Icon(Icons.workspace_premium, size: 14, color: Colors.white),
+                            Icon(
+                              Icons.workspace_premium,
+                              size: 14,
+                              color: Colors.white,
+                            ),
                             SizedBox(width: 4),
                             Text(
                               "Get Pro",
                               style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500),
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ],
                         ),
@@ -47,7 +132,7 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(width: 12),
                       const Icon(Icons.person_outline, size: 20),
                     ],
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -66,50 +151,134 @@ class ProfilePage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const CircleAvatar(
-                        radius: 28, backgroundImage: AssetImage("assets/profile.jpg")),
-                    const SizedBox(height: 6),
-                    const Text(
-                      "Maria Eupharsia",
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                    ),
+                  FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+  future: getUserData(user!.uid),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const Column(
+        children: [
+          CircleAvatar(
+            radius: 28,
+            backgroundImage: AssetImage("assets/profile.jpg"),
+          ),
+          SizedBox(height: 6),
+          Text("-"),
+        ],
+      );
+    }
+
+    if (!snapshot.hasData || snapshot.data!.data() == null) {
+      return Column(
+        children: [
+          const CircleAvatar(
+            radius: 28,
+            backgroundImage: AssetImage("assets/profile.jpg"),
+          ),
+          const SizedBox(height: 6),
+          Text('-'),
+        ],
+      );
+    }
+
+    final data = snapshot.data!.data()!;
+
+    return Column(
+      children: [
+        Stack(
+          children: [
+            CircleAvatar(
+              radius: 28,
+              backgroundImage:
+                  data['photoUrl'] != null && data['photoUrl'] != ''
+                      ? NetworkImage(data['photoUrl'])
+                      : const AssetImage("assets/profile.jpg")
+                          as ImageProvider,
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: GestureDetector(
+                onTap: updateProfilePhoto,
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt,
+                    size: 14,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Text(
+          data['name'] ?? user?.email?.split('@').first ?? '-',
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  },
+),
+
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
                           children: const [
-                            Text("61",
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold)),
+                            Text(
+                              "61",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             SizedBox(height: 2),
                             Text("Friend", style: TextStyle(fontSize: 11)),
                           ],
                         ),
                         Container(
-                            height: 24,
-                            width: 1,
-                            color: Colors.black12,
-                            margin: const EdgeInsets.symmetric(horizontal: 14)),
+                          height: 24,
+                          width: 1,
+                          color: Colors.black12,
+                          margin: const EdgeInsets.symmetric(horizontal: 14),
+                        ),
                         Column(
                           children: const [
-                            Text("20",
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold)),
+                            Text(
+                              "20",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             SizedBox(height: 2),
                             Text("Group", style: TextStyle(fontSize: 11)),
                           ],
                         ),
                         Container(
-                            height: 24,
-                            width: 1,
-                            color: Colors.black12,
-                            margin: const EdgeInsets.symmetric(horizontal: 14)),
+                          height: 24,
+                          width: 1,
+                          color: Colors.black12,
+                          margin: const EdgeInsets.symmetric(horizontal: 14),
+                        ),
                         Column(
                           children: const [
-                            Text("0",
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold)),
+                            Text(
+                              "0",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             SizedBox(height: 2),
                             Text("Post", style: TextStyle(fontSize: 11)),
                           ],
@@ -123,7 +292,10 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 10),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   color: Color(0xFFFFF6E9),
                   borderRadius: BorderRadius.circular(16),
@@ -134,19 +306,10 @@ class ProfilePage extends StatelessWidget {
                     const Text(
                       "Personal",
                       style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF8B5E3C)),
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
-                      children: const [
-                        Icon(Icons.note_outlined, size: 18),
-                        SizedBox(width: 10),
-                        Text("Mood tracker", style: TextStyle(fontSize: 13)),
-                        Spacer(),
-                        Icon(Icons.chevron_right, size: 18),
-                      ],
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF8B5E3C),
+                      ),
                     ),
                     const SizedBox(height: 6),
                     Row(
@@ -163,7 +326,10 @@ class ProfilePage extends StatelessWidget {
                       children: const [
                         Icon(Icons.group_outlined, size: 18),
                         SizedBox(width: 10),
-                        Text("Invite your friend", style: TextStyle(fontSize: 13)),
+                        Text(
+                          "Invite your friend",
+                          style: TextStyle(fontSize: 13),
+                        ),
                         Spacer(),
                         Icon(Icons.chevron_right, size: 18),
                       ],
@@ -175,7 +341,10 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 8),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   color: Color(0xFFFFF6E9),
                   borderRadius: BorderRadius.circular(16),
@@ -186,9 +355,10 @@ class ProfilePage extends StatelessWidget {
                     const Text(
                       "Setting",
                       style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF8B5E3C)),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF8B5E3C),
+                      ),
                     ),
                     const SizedBox(height: 6),
                     Row(
@@ -217,7 +387,10 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 8),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   color: Color(0xFFFFF6E9),
                   borderRadius: BorderRadius.circular(16),
@@ -228,16 +401,20 @@ class ProfilePage extends StatelessWidget {
                     const Text(
                       "Support us",
                       style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF8B5E3C)),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF8B5E3C),
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Row(
                       children: const [
                         Icon(Icons.camera_alt_outlined, size: 18),
                         SizedBox(width: 10),
-                        Text("Follow us on instagram", style: TextStyle(fontSize: 13)),
+                        Text(
+                          "Follow us on instagram",
+                          style: TextStyle(fontSize: 13),
+                        ),
                         Spacer(),
                         Icon(Icons.chevron_right, size: 18),
                       ],
@@ -264,7 +441,13 @@ class ProfilePage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [BoxShadow(color: Colors.grey.shade200, blurRadius: 10, offset: const Offset(0, -2))],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              blurRadius: 10,
+              offset: const Offset(0, -2),
+            ),
+          ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -274,9 +457,7 @@ class ProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const Homepage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const Homepage()),
                 );
               },
             ),
