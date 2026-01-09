@@ -15,7 +15,8 @@ class _SplashScreenPageBoard extends State<SplashScreenBoard> {
     super.initState();
 
     // Delay 3 detik lalu pindah halaman
-    Timer(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const SplashScreenPage()),

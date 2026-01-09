@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 import 'pages/onboarding/splashscreenboard.dart';
+import 'pages/splash/splashscreen1.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
