@@ -180,98 +180,9 @@ class _MembersState extends State<Members> {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
+
+                      // ===== MEMBER ITEM ARI =====
                       const SizedBox(height: 12),
-                      // ===== MEMBER ITEM Helen =====
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(126, 255, 235, 59),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ), // warna shadow
-                              blurRadius: 6,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.amber[50],
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/image1.png"),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(
-                                      0.1,
-                                    ), // warna shadow
-                                    blurRadius: 6,
-                                    offset: const Offset(0, 1),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Text(
-                                    "Helen",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    "Progammer Magang",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 2,
-                                  ),
-                                  visualDensity: VisualDensity.compact,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18),
-                                  ),
-                                ),
-                                child: const Text(
-                                  "Details",
-                                  style: TextStyle(fontSize: 10),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
@@ -362,8 +273,30 @@ class _MembersState extends State<Members> {
                           ],
                         ),
                       ),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(126, 255, 235, 59),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 1,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(
+                                0.1,
+                              ), // warna shadow
+                              blurRadius: 6,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // ===== MEMBER ITEM HELEN =====
                       const SizedBox(height: 12),
-                      // ===== MEMBER ITEM Ari =====
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
@@ -413,7 +346,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "Ari Purwo Aji",
+                                    "HELEN OKTAVIANI",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -421,7 +354,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Magang",
+                                    "Progammer Real",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
