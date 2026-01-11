@@ -1,9 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
+import 'package:project_mobile/models/note_model.dart';
+import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/home/notification_page.dart';
 
-class AddNotesPage extends StatelessWidget {
-  const AddNotesPage({super.key});
+class AddNotesPage extends StatefulWidget {
+  final Note? note;
+
+  const AddNotesPage({super.key, this.note});
+
+  @override
+  State<AddNotesPage> createState() => _AddNotesPageState();
+}
+
+class _AddNotesPageState extends State<AddNotesPage> {
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+  final NotesService _notesService = NotesService();
+
+  bool _isLoading = false;
+
+  Future<void> _saveNote() async {
+    final title = _titleController.text.trim();
+    final content = _contentController.text.trim();
+
+    if (title.isEmpty || content.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Title dan content wajib diisi')),
+      );
+      return;
+    }
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('User belum login')));
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    try {
+      final note = Note(
+        id: '', // firestore auto-generate
+        title: title,
+        content: content,
+        userId: user.uid,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        isPinned: false,
+        isArchived: false,
+        labels: [],
+        imageUrls: [],
+      );
+
+      await _notesService.addNote(note);
+
+      Navigator.pop(context); // kembali ke halaman sebelumnya
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Gagal menyimpan note: $e')));
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,25 +180,58 @@ class AddNotesPage extends StatelessWidget {
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 Row(
-                  children: List.generate(
-                    5,
-                    (index) => Container(
+                  children: [
+                    Container(
                       margin: const EdgeInsets.only(left: 6),
                       width: 18,
                       height: 18,
                       decoration: BoxDecoration(
-                        color: [
-                          Colors.white,
-                          Color(0xFFFFE6A7),
-                          Color(0xFFE6F0FF),
-                          Color(0xFFE8FFE8),
-                          Color(0xFFFFE8E8),
-                        ][index],
+                        color: Colors.white,
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.grey.shade300),
                       ),
                     ),
-                  ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFFE6A7),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE6F0FF),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE8FFE8),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFFE8E8),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -147,12 +250,15 @@ class AddNotesPage extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Title",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                      children: [
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: TextField(
+                            controller: _titleController,
+                            decoration: const InputDecoration(
+                              hintText: "Note title",
+                              border: InputBorder.none,
+                            ),
                           ),
                         ),
                         Row(
@@ -168,14 +274,16 @@ class AddNotesPage extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 12),
-
-                    const Expanded(
+                    SizedBox(
+                      height: 280,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: _contentController,
+                        decoration: const InputDecoration(
                           hintText: "Type your note",
                           border: InputBorder.none,
                         ),
                         maxLines: null,
+                        expands: true,
                       ),
                     ),
 
@@ -183,30 +291,235 @@ class AddNotesPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: const [
-                            Icon(Icons.add_box_outlined),
-                            SizedBox(width: 12),
-                            Icon(Icons.text_fields),
-                            SizedBox(width: 12),
-                            Icon(Icons.more_vert),
+                          children: [
+                            PopupMenuButton(
+                              icon: const Icon(Icons.add_box_outlined),
+                              offset: const Offset(0, -160),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              itemBuilder: (context) => const [
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.check_box_outlined, size: 18),
+                                      SizedBox(width: 10),
+                                      Text("Checkboxes"),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.image_outlined, size: 18),
+                                      SizedBox(width: 10),
+                                      Text("Add image"),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.brush_outlined, size: 18),
+                                      SizedBox(width: 10),
+                                      Text("Drawing"),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.mic_none, size: 18),
+                                      SizedBox(width: 10),
+                                      Text("Recording"),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(width: 12),
+                            const Icon(Icons.text_fields),
+                            const SizedBox(width: 12),
+
+                            PopupMenuButton(
+                              icon: const Icon(Icons.more_vert),
+                              offset: const Offset(0, -170),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              itemBuilder: (context) => const [
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.delete_outline, size: 18),
+                                      SizedBox(width: 10),
+                                      Text("Delete"),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.copy_outlined, size: 18),
+                                      SizedBox(width: 10),
+                                      Text("Make a copy"),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.send_outlined, size: 18),
+                                      SizedBox(width: 10),
+                                      Text("Send"),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.person_add_alt_1_outlined,
+                                        size: 18,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text("Collaborator"),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(width: 12),
+                            PopupMenuButton(
+                              offset: const Offset(0, -190),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFFFF1D6),
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                                child: const Row(
+                                  children: [
+                                    Text(
+                                      "Labels",
+                                      style: TextStyle(fontSize: 11),
+                                    ),
+                                    SizedBox(width: 2),
+                                    Icon(Icons.keyboard_arrow_down, size: 14),
+                                  ],
+                                ),
+                              ),
+                              itemBuilder: (context) => [
+                                const PopupMenuItem(
+                                  enabled: false,
+                                  height: 28,
+                                  child: Text(
+                                    "Labels",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      Text(
+                                        "Random Thoughts",
+                                        style: TextStyle(fontSize: 11),
+                                      ),
+                                      Checkbox(value: true, onChanged: null),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      Text(
+                                        "Project Updates",
+                                        style: TextStyle(fontSize: 11),
+                                      ),
+                                      Checkbox(value: false, onChanged: null),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      Text(
+                                        "Life",
+                                        style: TextStyle(fontSize: 11),
+                                      ),
+                                      Checkbox(value: false, onChanged: null),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      Text(
+                                        "Self-Growth",
+                                        style: TextStyle(fontSize: 11),
+                                      ),
+                                      Checkbox(value: false, onChanged: null),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      Text(
+                                        "Gratitude",
+                                        style: TextStyle(fontSize: 11),
+                                      ),
+                                      Checkbox(value: false, onChanged: null),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
+
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: _isLoading ? null : _saveNote,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF8B6B2E),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
-                            ),
                           ),
-                          child: const Text(
-                            "Save",
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          child: _isLoading
+                              ? const SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Text(
+                                  "Save",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                         ),
                       ],
                     ),
