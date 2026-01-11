@@ -280,7 +280,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(126, 255, 235, 59),
+                          color: const Color(0xFFFFF3E0),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
