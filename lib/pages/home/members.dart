@@ -387,6 +387,9 @@ class _MembersState extends State<Members> {
                           ],
                         ),
                       ),
+
+                      // ===== MEMBER ITEM MARIA =====
+                      const SizedBox(height: 12),
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
@@ -436,7 +439,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "Ari Purwo Aji",
+                                    "MARIA EUPRASIA ADRIANTI",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -444,7 +447,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Magang",
+                                    "Progammer Setengah Magang",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
