@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
+import 'pages/home/homepage.dart';
 import 'pages/onboarding/splashscreenboard.dart';
 
 void main() async {

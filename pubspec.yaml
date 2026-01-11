@@ -72,6 +72,7 @@ flutter:
     - assets/images/imageee.png
     - assets/images/logo kampus.png
     - assets/images/bubbles.jpg
+    - assets/animations/Notes.json
 
 
   fonts:
