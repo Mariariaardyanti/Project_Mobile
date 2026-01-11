@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_mobile/pages/home/members.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 import 'pages/onboarding/splashscreenboard.dart';
 import 'pages/splash/splashscreen1.dart';
+import 'pages/home/homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         fontFamily: 'Poppins',
       ),
-      home: const SplashScreenBoard(),
+      home: const Members(),
     );
   }
 }

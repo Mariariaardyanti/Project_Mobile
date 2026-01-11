@@ -232,7 +232,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "placeholder name",
+                                    "Ari Purwo Aji",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
