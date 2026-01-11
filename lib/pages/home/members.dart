@@ -273,27 +273,6 @@ class _MembersState extends State<Members> {
                           ],
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(126, 255, 235, 59),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ), // warna shadow
-                              blurRadius: 6,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
-                        ),
-                      ),
 
                       // ===== MEMBER ITEM HELEN =====
                       const SizedBox(height: 12),
