@@ -71,6 +71,7 @@ flutter:
     - assets/images/imagee.png
     - assets/images/imageee.png
     - assets/images/logo kampus.png
+    - assets/images/bubbles.jpg
 
 
   fonts:
