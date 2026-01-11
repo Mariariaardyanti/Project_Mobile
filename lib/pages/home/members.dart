@@ -532,7 +532,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "MARIA EUPRASIA ADRIANTI",
+                                    "RIAN SHOLAT 61",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -540,7 +540,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Setengah Magang",
+                                    "Progammer RELIGIUS",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
