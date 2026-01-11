@@ -352,26 +352,6 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ),
 
-                // ===== HEADER NOTES FROM DATABASE =====
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Recent Notes",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        // TODO: Navigate to all notes page
-                      },
-                      child: const Text("See all"),
-                    ),
-                  ],
-                ),
-
                 const SizedBox(height: 12),
 
                 // ===== NOTES FROM FIRESTORE (Dynamic) =====
@@ -459,7 +439,7 @@ class _HomepageState extends State<Homepage> {
                           },
                           child: Container(
                             width: double.infinity,
-                            margin: const EdgeInsets.only(bottom: 12),
+                            margin: const EdgeInsets.only(bottom: 16),
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: const Color(0xFFFFF8EE),
@@ -476,6 +456,7 @@ class _HomepageState extends State<Homepage> {
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // Title
                                     Expanded(
@@ -707,10 +688,10 @@ class _HomepageState extends State<Homepage> {
                                               context: context,
                                               builder: (context) => AlertDialog(
                                                 title: const Text(
-                                                  'Hapus Catatan?',
+                                                  'Delete Note?',
                                                 ),
                                                 content: const Text(
-                                                  'Catatan akan dihapus permanen.',
+                                                  'Notes will be permanently deleted.',
                                                 ),
                                                 actions: [
                                                   TextButton(
@@ -719,7 +700,7 @@ class _HomepageState extends State<Homepage> {
                                                           context,
                                                           false,
                                                         ),
-                                                    child: const Text('Batal'),
+                                                    child: const Text('Cancel'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
@@ -728,7 +709,7 @@ class _HomepageState extends State<Homepage> {
                                                           true,
                                                         ),
                                                     child: const Text(
-                                                      'Hapus',
+                                                      'Delete',
                                                       style: TextStyle(
                                                         color: Colors.red,
                                                       ),
