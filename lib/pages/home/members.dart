@@ -144,10 +144,18 @@ class _MembersState extends State<Members> {
                     ),
                   ],
                 ),
+                IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ),
                 const SizedBox(height: 24),
 
                 const Text(
-                  "My notes",
+                  "Our Members",
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
 
