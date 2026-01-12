@@ -180,6 +180,40 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
 
+              const SizedBox(height: 20),
+
+              // Save Button (Full Width)
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: _isLoading ? null : _saveProfile,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8B5E3C),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: _isLoading
+                      ? const SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : const Text(
+                          'Save Changes',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                ),
+              ),
+
                ],
             )
           )
