@@ -313,15 +313,42 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Row(
-                      children: const [
-                        Icon(Icons.edit_outlined, size: 18),
-                        SizedBox(width: 10),
-                        Text("Edit profile", style: TextStyle(fontSize: 13)),
-                        Spacer(),
-                        Icon(Icons.chevron_right, size: 18),
-                      ],
+                    GestureDetector(
+                      onTap: () async {
+                        final userData = await getUserData(user!.uid);
+
+                        if (context.mounted && userData.exists) {
+                          final result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EditProfile(userData: userData.data()!),
+                            ),
+                          );
+
+                          if (result == true) {
+                            setState(() {});
+                          }
+                        }
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Row(
+                          children: const [
+                            Icon(Icons.edit_outlined, size: 18),
+                            SizedBox(width: 10),
+                            Text(
+                              "Edit profile",
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            Spacer(),
+                            Icon(Icons.chevron_right, size: 18),
+                          ],
+                        ),
+                      ),
                     ),
+
                     const SizedBox(height: 6),
                     Row(
                       children: const [
