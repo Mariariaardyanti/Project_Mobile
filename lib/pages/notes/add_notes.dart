@@ -25,7 +25,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
   bool _isUploadingImage = false;
   bool _isPinned = false;
   bool _isArchived = false;
-  
+
   // Labels
   List<String> _selectedLabels = [];
   final List<String> _availableLabels = [
@@ -67,9 +67,9 @@ class _AddNotesPageState extends State<AddNotesPage> {
 
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('User belum login')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('User belum login')));
       return;
     }
 
@@ -116,9 +116,9 @@ class _AddNotesPageState extends State<AddNotesPage> {
       Navigator.pop(context);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal menyimpan: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Gagal menyimpan: $e')));
       }
     } finally {
       if (mounted) {
@@ -247,9 +247,9 @@ class _AddNotesPageState extends State<AddNotesPage> {
       if (deleted) {
         setState(() => _imageUrls.removeAt(index));
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Gambar dihapus')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Gambar dihapus')));
         }
       }
     }
@@ -295,9 +295,9 @@ class _AddNotesPageState extends State<AddNotesPage> {
         }
       } catch (e) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: $e')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Error: $e')));
         }
       }
     }
@@ -485,8 +485,9 @@ class _AddNotesPageState extends State<AddNotesPage> {
                           fit: FlexFit.loose,
                           child: TextField(
                             controller: _titleController,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                             decoration: const InputDecoration(
-                              hintText: "Note title",
+                              hintText: "Title",
                               border: InputBorder.none,
                             ),
                           ),
@@ -514,8 +515,9 @@ class _AddNotesPageState extends State<AddNotesPage> {
                                     ? Icons.archive
                                     : Icons.archive_outlined,
                                 size: 18,
-                                color:
-                                    _isArchived ? Colors.brown : Colors.black,
+                                color: _isArchived
+                                    ? Colors.brown
+                                    : Colors.black,
                               ),
                               onPressed: () {
                                 setState(() => _isArchived = !_isArchived);
@@ -703,8 +705,10 @@ class _AddNotesPageState extends State<AddNotesPage> {
                                   value: 'collaborator',
                                   child: Row(
                                     children: [
-                                      Icon(Icons.person_add_alt_1_outlined,
-                                          size: 18),
+                                      Icon(
+                                        Icons.person_add_alt_1_outlined,
+                                        size: 18,
+                                      ),
                                       SizedBox(width: 10),
                                       Text("Collaborator"),
                                     ],
@@ -720,15 +724,19 @@ class _AddNotesPageState extends State<AddNotesPage> {
                               ),
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 4),
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
                                 decoration: BoxDecoration(
                                   color: const Color(0xFFFFF1D6),
                                   borderRadius: BorderRadius.circular(18),
                                 ),
                                 child: const Row(
                                   children: [
-                                    Text("Labels",
-                                        style: TextStyle(fontSize: 11)),
+                                    Text(
+                                      "Labels",
+                                      style: TextStyle(fontSize: 11),
+                                    ),
                                     SizedBox(width: 2),
                                     Icon(Icons.keyboard_arrow_down, size: 14),
                                   ],
@@ -741,13 +749,15 @@ class _AddNotesPageState extends State<AddNotesPage> {
                                   child: Text(
                                     "Labels",
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ),
                                 ..._availableLabels.map((label) {
-                                  final isSelected =
-                                      _selectedLabels.contains(label);
+                                  final isSelected = _selectedLabels.contains(
+                                    label,
+                                  );
                                   return PopupMenuItem(
                                     onTap: () {
                                       setState(() {
@@ -762,9 +772,10 @@ class _AddNotesPageState extends State<AddNotesPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(label,
-                                            style:
-                                                const TextStyle(fontSize: 11)),
+                                        Text(
+                                          label,
+                                          style: const TextStyle(fontSize: 11),
+                                        ),
                                         Checkbox(
                                           value: isSelected,
                                           onChanged: null,
