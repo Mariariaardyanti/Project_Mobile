@@ -8,6 +8,7 @@ import 'package:project_mobile/models/note_model.dart';
 import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
+import 'package:project_mobile/pages/home/members.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -331,7 +332,14 @@ class _HomepageState extends State<Homepage> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Members(),
+                              ),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 12,
@@ -729,7 +737,7 @@ class _HomepageState extends State<Homepage> {
                                                 ).showSnackBar(
                                                   const SnackBar(
                                                     content: Text(
-                                                      'Catatan berhasil dihapus',
+                                                      'Note deleted successfully',
                                                     ),
                                                   ),
                                                 );
