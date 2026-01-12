@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/splash/splashscreen1.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreenBoard extends StatefulWidget {
   const SplashScreenBoard({super.key});
@@ -15,7 +16,8 @@ class _SplashScreenPageBoard extends State<SplashScreenBoard> {
     super.initState();
 
     // Delay 3 detik lalu pindah halaman
-    Timer(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const SplashScreenPage()),
@@ -30,6 +32,12 @@ class _SplashScreenPageBoard extends State<SplashScreenBoard> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Lottie.asset(
+              'assets/animations/Notes.json',
+              width: 200,
+              height: 200,
+              fit: BoxFit.contain,
+            ),
             const SizedBox(height: 20),
             Text(
               "B O A R D",
