@@ -170,15 +170,6 @@ class _MembersState extends State<Members> {
                 ),
 
                 const SizedBox(height: 28),
-                const Text(
-                  "Project Team Members",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.brown,
-                  ),
-                ),
-                const SizedBox(height: 16),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.only(bottom: 16),
@@ -192,6 +183,15 @@ class _MembersState extends State<Members> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 8),
+                      const Text(
+                        "Project Team Members",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.brown,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
                       const Text(
                         "Created as a learning project, this app combines notes, tasks, and collaboration features.",
                         style: TextStyle(
