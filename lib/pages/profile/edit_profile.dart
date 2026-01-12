@@ -20,8 +20,6 @@ class _EditProfileState extends State<EditProfile> {
 
   bool _isLoading = false;
   fb.User? user;
-  String? _selectedRole;
-  final List<String> _roles = ['users'];
 
   @override
   void initState() {
@@ -30,17 +28,12 @@ class _EditProfileState extends State<EditProfile> {
 
     _nameController.text = widget.userData['name'] ?? '';
     _emailController.text = widget.userData['email'] ?? '';
-    _teamController.text = widget.userData['team'] ?? '';
-    _roleInTeamController.text = widget.userData['roleInTeam'] ?? '';
-    _selectedRole = widget.userData['role'] ?? 'users';
   }
 
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
-    _teamController.dispose();
-    _roleInTeamController.dispose();
     super.dispose();
   }
 
@@ -55,10 +48,6 @@ class _EditProfileState extends State<EditProfile> {
             .doc(user!.uid)
             .update({
               'name': _nameController.text.trim(),
-              'team': _teamController.text.trim(),
-              'roleInTeam': _roleInTeamController.text.trim(),
-              'role': _selectedRole,
-              // Note: email dan photoUrl tidak diupdate di sini
             });
 
         if (mounted) {
@@ -68,7 +57,7 @@ class _EditProfileState extends State<EditProfile> {
               backgroundColor: Colors.green,
             ),
           );
-          Navigator.pop(context, true); // Return true to indicate success
+          Navigator.pop(context, true); 
         }
       } catch (e) {
         if (mounted) {
@@ -83,4 +72,23 @@ class _EditProfileState extends State<EditProfile> {
       }
     }
   }
+
+   @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+            appBar: AppBar(
+              title: const Text("Dashboard"),
+              actions: const [],
+            ),
+            body: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.all(20.0),
+                child: const Column(
+                  children: [],
+                ),
+              ),
+            ),
+          );
+  }
+  
 }
