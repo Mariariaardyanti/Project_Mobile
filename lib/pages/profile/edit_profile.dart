@@ -148,6 +148,38 @@ class _EditProfileState extends State<EditProfile> {
                 },
               ),
 
+               const SizedBox(height: 20),
+
+                // Email Field (Read-only)
+              const Text(
+                'Email',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF8B5E3C),
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _emailController,
+                readOnly: true, // Email tidak bisa diubah
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  prefixIcon: const Icon(Icons.email_outlined),
+                  suffixIcon: const Icon(
+                    Icons.lock_outline,
+                    size: 18,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+
                ],
             )
           )
