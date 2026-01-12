@@ -3,7 +3,7 @@ import 'package:project_mobile/models/note_model.dart';
 
 class NotesService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final String collection = 'notes';
+  final String collection = 'Notes';
 
   //create notes
   Future<void> addNote(Note note) async {
@@ -105,5 +105,4 @@ class NotesService {
   Future<DocumentSnapshot> getNoteById(String noteId) async {
     return await _firestore.collection(collection).doc(noteId).get();
   }
-
 }

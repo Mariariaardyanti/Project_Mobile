@@ -16,16 +16,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-   fb.User? user;
+  fb.User? user;
   final ImagePicker _picker = ImagePicker();
   bool _isUploading = false;
 
-   @override
+  @override
   void initState() {
     super.initState();
     user = fb.FirebaseAuth.instance.currentUser;
   }
-
 
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String uid) {
     return FirebaseFirestore.instance.collection('users').doc(uid).get();
@@ -43,40 +42,30 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   //upload ke supabase
-   Future<String> uploadProfileImage(File file) async {
+  Future<String> uploadProfileImage(File file) async {
     final supabase = Supabase.instance.client;
     final path = 'uploads/profile/${user!.uid}.jpg';
 
     await supabase.storage
         .from('bucket_imagess')
-        .upload(
-          path,
-          file,
-          fileOptions: const FileOptions(upsert: true),
-        );
+        .upload(path, file, fileOptions: const FileOptions(upsert: true));
 
-    return supabase.storage
-        .from('bucket_imagess')
-        .getPublicUrl(path);
+    return supabase.storage.from('bucket_imagess').getPublicUrl(path);
   }
 
   //update firestore database
-   Future<void> updateProfilePhoto() async {
+  Future<void> updateProfilePhoto() async {
     final file = await pickImage();
     if (file == null) return;
 
     final imageUrl = await uploadProfileImage(file);
 
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .update({
+    await FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
       'photoUrl': imageUrl,
     });
 
     setState(() {}); // refresh UI
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -153,82 +142,91 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: Column(
                   children: [
-                  FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-  future: getUserData(user!.uid),
-  builder: (context, snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return const Column(
-        children: [
-          CircleAvatar(
-            radius: 28,
-            backgroundImage: AssetImage("assets/profile.jpg"),
-          ),
-          SizedBox(height: 6),
-          Text("-"),
-        ],
-      );
-    }
+                    FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                      future: getUserData(user!.uid),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 28,
+                                backgroundImage: AssetImage(
+                                  "assets/profile.jpg",
+                                ),
+                              ),
+                              SizedBox(height: 6),
+                              Text("-"),
+                            ],
+                          );
+                        }
 
-    if (!snapshot.hasData || snapshot.data!.data() == null) {
-      return Column(
-        children: [
-          const CircleAvatar(
-            radius: 28,
-            backgroundImage: AssetImage("assets/profile.jpg"),
-          ),
-          const SizedBox(height: 6),
-          Text('-'),
-        ],
-      );
-    }
+                        if (!snapshot.hasData ||
+                            snapshot.data!.data() == null) {
+                          return Column(
+                            children: [
+                              const CircleAvatar(
+                                radius: 28,
+                                backgroundImage: AssetImage(
+                                  "assets/profile.jpg",
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text('-'),
+                            ],
+                          );
+                        }
 
-    final data = snapshot.data!.data()!;
+                        final data = snapshot.data!.data()!;
 
-    return Column(
-      children: [
-        Stack(
-          children: [
-            CircleAvatar(
-              radius: 28,
-              backgroundImage:
-                  data['photoUrl'] != null && data['photoUrl'] != ''
-                      ? NetworkImage(data['photoUrl'])
-                      : const AssetImage("assets/profile.jpg")
-                          as ImageProvider,
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: updateProfilePhoto,
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.camera_alt,
-                    size: 14,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 6),
-        Text(
-          data['name'] ?? user?.email?.split('@').first ?? '-',
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ],
-    );
-  },
-),
+                        return Column(
+                          children: [
+                            Stack(
+                              children: [
+                                CircleAvatar(
+                                  radius: 28,
+                                  backgroundImage:
+                                      data['photoUrl'] != null &&
+                                          data['photoUrl'] != ''
+                                      ? NetworkImage(data['photoUrl'])
+                                      : const AssetImage("assets/profile.jpg")
+                                            as ImageProvider,
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: GestureDetector(
+                                    onTap: updateProfilePhoto,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.camera_alt,
+                                        size: 14,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              data['name'] ??
+                                  user?.email?.split('@').first ??
+                                  '-',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
 
                     const SizedBox(height: 8),
                     Row(
