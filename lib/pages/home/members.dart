@@ -144,7 +144,13 @@ class _MembersState extends State<Members> {
                     ),
                   ],
                 ),
-                IconButton(
+                const SizedBox(height: 24),
+
+                // ===== TOMBOL KEMBALI =====
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(
                         Icons.arrow_back_ios_new,
@@ -152,11 +158,15 @@ class _MembersState extends State<Members> {
                         color: Colors.black,
                       ),
                     ),
-                const SizedBox(height: 24),
-
-                const Text(
-                  "Our Members",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    const SizedBox(width: 8),
+                    const Text(
+                      "Our Members",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: 28),
