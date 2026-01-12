@@ -38,7 +38,7 @@ class _SplashScreenPageBoard extends State<SplashScreenBoard> {
               height: 200,
               fit: BoxFit.contain,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
             Text(
               "B O A R D",
               style: TextStyle(
