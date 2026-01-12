@@ -113,7 +113,44 @@ class _EditProfileState extends State<EditProfile> {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20.0),
-          child: const Column(children: []),
+          child: Form(
+            key: _formKey,
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: [
+                // Name Field
+              const Text(
+                'Full Name',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF8B5E3C),
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  hintText: 'Enter your name',
+                  filled: true,
+                  fillColor: const Color(0xFFFFF6E9),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  prefixIcon: const Icon(Icons.person_outline),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Name is required';
+                  }
+                  return null;
+                },
+              ),
+
+               ],
+            )
+          )
         ),
       ),
     );
