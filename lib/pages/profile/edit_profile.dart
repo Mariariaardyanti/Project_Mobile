@@ -46,9 +46,7 @@ class _EditProfileState extends State<EditProfile> {
         await FirebaseFirestore.instance
             .collection('users')
             .doc(user!.uid)
-            .update({
-              'name': _nameController.text.trim(),
-            });
+            .update({'name': _nameController.text.trim()});
 
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -57,7 +55,7 @@ class _EditProfileState extends State<EditProfile> {
               backgroundColor: Colors.green,
             ),
           );
-          Navigator.pop(context, true); 
+          Navigator.pop(context, true);
         }
       } catch (e) {
         if (mounted) {
@@ -73,22 +71,32 @@ class _EditProfileState extends State<EditProfile> {
     }
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-            appBar: AppBar(
-              title: const Text("Dashboard"),
-              actions: const [],
-            ),
-            body: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(20.0),
-                child: const Column(
-                  children: [],
-                ),
-              ),
-            ),
-          );
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          'Edit Profile',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          child: const Column(children: []),
+        ),
+      ),
+    );
   }
-  
 }
