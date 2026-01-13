@@ -180,10 +180,10 @@ class _HelenState extends State<Helen> {
 
                             // Major
                             Text(
-                              'Mobile Developer',
+                              'UI/UX Enthusiast | Informatics Engineering Student',
                               style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.grey[600],
+                                fontSize: 14,
+                                color: Colors.black,
                               ),
                             ),
 
@@ -191,7 +191,8 @@ class _HelenState extends State<Helen> {
 
                             // Description
                             Text(
-                              'Hi, I am Helen! 👋🏻 as an Informatics Engineering student and UI-UX enthusiast, I always exploring new trends and technologies to refine my skills and make meaningful contributions to the intersection of technology and design.',
+                              'Hi, I am Helen! 👋🏻 as an Informatics Engineering student and UI-UX enthusiast always exploring new trends and technologies to improve my skills and create meaningful contributions to the intersection of technology and design.',
+                              textAlign: TextAlign.justify,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey[700],
