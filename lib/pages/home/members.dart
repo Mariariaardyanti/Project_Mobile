@@ -146,21 +146,30 @@ class _MembersState extends State<Members> {
                 ),
                 const SizedBox(height: 24),
 
-                const Text(
-                  "My notes",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                // ===== TOMBOL KEMBALI =====
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    const Text(
+                      "Our Members",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: 28),
-                const Text(
-                  "Project Team Members",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.brown,
-                  ),
-                ),
-                const SizedBox(height: 16),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.only(bottom: 16),
@@ -174,6 +183,15 @@ class _MembersState extends State<Members> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 8),
+                      const Text(
+                        "Project Team Members",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.brown,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
                       const Text(
                         "Created as a learning project, this app combines notes, tasks, and collaboration features.",
                         style: TextStyle(
@@ -512,7 +530,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "RIAN SHOLAT 61",
+                                    "RIAN MAULANA 61",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
