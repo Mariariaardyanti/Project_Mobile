@@ -211,6 +211,25 @@ class _HelenState extends State<Helen> {
                             ),
 
                             const SizedBox(height: 20),
+
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.link,
+                                  size: 18,
+                                  color: Colors.blue[600],
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'https://github.com/helenoktaa',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.blue[600],
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ],
+                            ),
                             
                             
 
