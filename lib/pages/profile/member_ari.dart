@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 
-class Members extends StatefulWidget {
-  const Members({super.key});
+class Member_Ari extends StatefulWidget {
+  const Member_Ari({super.key});
 
   @override
-  State<Members> createState() => _MembersState();
+  State<Member_Ari> createState() => _Member_AriState();
 }
 
-class _MembersState extends State<Members> {
+class _Member_AriState extends State<Member_Ari> {
   bool task1 = false;
   bool task2 = false;
   bool task3 = false;
@@ -163,6 +163,20 @@ class _MembersState extends State<Members> {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 28),
+                Row(
+                  children: [
+                    const Text(
+                      "Project Team Members",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.brown,
                       ),
                     ),
                   ],
