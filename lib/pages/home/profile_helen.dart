@@ -253,12 +253,47 @@ class _HelenState extends State<Helen> {
                           ],
                         ),
                       ),
-                            
-                            
 
-
-
-
+                      // Bottom Button
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            top: BorderSide(
+                              color: Colors.grey[200]!,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.open_in_new,
+                              size: 20,
+                              color: Colors.black87,
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              'Visit site',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.refresh,
+                              size: 24,
+                              color: Colors.grey[700],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -266,4 +301,9 @@ class _HelenState extends State<Helen> {
       ),
     );
   }
-}
+                            
+                            
+
+
+
+
