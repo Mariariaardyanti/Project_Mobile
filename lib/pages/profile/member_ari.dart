@@ -3,7 +3,6 @@ import 'package:project_mobile/pages/home/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
-import 'package:project_mobile/pages/home/homepage.dart';
 
 class Members extends StatefulWidget {
   const Members({super.key});
@@ -156,11 +155,11 @@ class _MembersState extends State<Members> {
                         Icons.arrow_back_ios_new,
                         size: 20,
                         color: Colors.black,
-                      )
+                      ),
                     ),
                     const SizedBox(width: 8),
                     const Text(
-                      "Our Members",
+                      "Members",
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
