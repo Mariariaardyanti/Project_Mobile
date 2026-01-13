@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb;
@@ -6,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:project_mobile/pages/profile/edit_profile.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -15,15 +17,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-   fb.User? user;
+  fb.User? user;
   final ImagePicker _picker = ImagePicker();
+  bool _isUploading = false;
 
-   @override
+  @override
   void initState() {
     super.initState();
     user = fb.FirebaseAuth.instance.currentUser;
   }
-
 
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String uid) {
     return FirebaseFirestore.instance.collection('users').doc(uid).get();
@@ -41,40 +43,30 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   //upload ke supabase
-   Future<String> uploadProfileImage(File file) async {
+  Future<String> uploadProfileImage(File file) async {
     final supabase = Supabase.instance.client;
     final path = 'uploads/profile/${user!.uid}.jpg';
 
     await supabase.storage
         .from('bucket_imagess')
-        .upload(
-          path,
-          file,
-          fileOptions: const FileOptions(upsert: true),
-        );
+        .upload(path, file, fileOptions: const FileOptions(upsert: true));
 
-    return supabase.storage
-        .from('bucket_imagess')
-        .getPublicUrl(path);
+    return supabase.storage.from('bucket_imagess').getPublicUrl(path);
   }
 
   //update firestore database
-   Future<void> updateProfilePhoto() async {
+  Future<void> updateProfilePhoto() async {
     final file = await pickImage();
     if (file == null) return;
 
     final imageUrl = await uploadProfileImage(file);
 
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .update({
+    await FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
       'photoUrl': imageUrl,
     });
 
     setState(() {}); // refresh UI
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -151,82 +143,91 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: Column(
                   children: [
-                  FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-  future: getUserData(user!.uid),
-  builder: (context, snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return const Column(
-        children: [
-          CircleAvatar(
-            radius: 28,
-            backgroundImage: AssetImage("assets/profile.jpg"),
-          ),
-          SizedBox(height: 6),
-          Text("-"),
-        ],
-      );
-    }
+                    FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                      future: getUserData(user!.uid),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 28,
+                                backgroundImage: AssetImage(
+                                  "assets/profile.jpg",
+                                ),
+                              ),
+                              SizedBox(height: 6),
+                              Text("-"),
+                            ],
+                          );
+                        }
 
-    if (!snapshot.hasData || snapshot.data!.data() == null) {
-      return Column(
-        children: [
-          const CircleAvatar(
-            radius: 28,
-            backgroundImage: AssetImage("assets/profile.jpg"),
-          ),
-          const SizedBox(height: 6),
-          Text('-'),
-        ],
-      );
-    }
+                        if (!snapshot.hasData ||
+                            snapshot.data!.data() == null) {
+                          return Column(
+                            children: [
+                              const CircleAvatar(
+                                radius: 28,
+                                backgroundImage: AssetImage(
+                                  "assets/profile.jpg",
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text('-'),
+                            ],
+                          );
+                        }
 
-    final data = snapshot.data!.data()!;
+                        final data = snapshot.data!.data()!;
 
-    return Column(
-      children: [
-        Stack(
-          children: [
-            CircleAvatar(
-              radius: 28,
-              backgroundImage:
-                  data['photoUrl'] != null && data['photoUrl'] != ''
-                      ? NetworkImage(data['photoUrl'])
-                      : const AssetImage("assets/profile.jpg")
-                          as ImageProvider,
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: updateProfilePhoto,
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.camera_alt,
-                    size: 14,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 6),
-        Text(
-          data['name'] ?? user?.email?.split('@').first ?? '-',
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ],
-    );
-  },
-),
+                        return Column(
+                          children: [
+                            Stack(
+                              children: [
+                                CircleAvatar(
+                                  radius: 28,
+                                  backgroundImage:
+                                      data['photoUrl'] != null &&
+                                          data['photoUrl'] != ''
+                                      ? NetworkImage(data['photoUrl'])
+                                      : const AssetImage("assets/profile.jpg")
+                                            as ImageProvider,
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: GestureDetector(
+                                    onTap: updateProfilePhoto,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.camera_alt,
+                                        size: 14,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              data['name'] ??
+                                  user?.email?.split('@').first ??
+                                  '-',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
 
                     const SizedBox(height: 8),
                     Row(
@@ -312,15 +313,42 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Row(
-                      children: const [
-                        Icon(Icons.edit_outlined, size: 18),
-                        SizedBox(width: 10),
-                        Text("Edit profile", style: TextStyle(fontSize: 13)),
-                        Spacer(),
-                        Icon(Icons.chevron_right, size: 18),
-                      ],
+                    GestureDetector(
+                      onTap: () async {
+                        final userData = await getUserData(user!.uid);
+
+                        if (context.mounted && userData.exists) {
+                          final result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EditProfile(userData: userData.data()!),
+                            ),
+                          );
+
+                          if (result == true) {
+                            setState(() {});
+                          }
+                        }
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Row(
+                          children: const [
+                            Icon(Icons.edit_outlined, size: 18),
+                            SizedBox(width: 10),
+                            Text(
+                              "Edit profile",
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            Spacer(),
+                            Icon(Icons.chevron_right, size: 18),
+                          ],
+                        ),
+                      ),
                     ),
+
                     const SizedBox(height: 6),
                     Row(
                       children: const [

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "488198956646",
-    "project_id": "notification-prmb",
-    "storage_bucket": "notification-prmb.firebasestorage.app"
+    "project_number": "173038283040",
+    "project_id": "projectmobile-25650",
+    "storage_bucket": "projectmobile-25650.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:488198956646:android:dafc3772064e30ff142fa7",
+        "mobilesdk_app_id": "1:173038283040:android:8e26e0a330ac0b86df0f45",
         "android_client_info": {
           "package_name": "com.example.project_mobile"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCYaZBHgPeUnF5Yqi8UES2B70WWuZwqN3c"
+          "current_key": "AIzaSyDhs6A7LSjNLL6VHvgOBZmb8rVOyWkLHH0"
         }
       ],
       "services": {
