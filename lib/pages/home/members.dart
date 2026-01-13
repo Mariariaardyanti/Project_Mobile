@@ -197,7 +197,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -290,7 +290,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -383,7 +383,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -428,7 +428,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "MARIA EUPRASIA ADRIANTI",
+                                    "Maria Euphrasia",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -476,7 +476,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -521,7 +521,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "RIAN MAULANA 61",
+                                    "Rian Maulana",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -529,7 +529,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Religius",
+                                    "1123150061",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
