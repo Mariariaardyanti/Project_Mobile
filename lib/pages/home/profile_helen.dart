@@ -125,6 +125,28 @@ class _HelenState extends State<Helen> {
                                     ],
                                   ),
                                 ),
+                                const Spacer(),
+                                
+                                // Follow Button
+                                ElevatedButton.icon(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.add, size: 18),
+                                  label: const Text('Follow'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF0EA5E9),
+                                    foregroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    elevation: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
                               ],
                             ),
                     ],
@@ -177,6 +199,20 @@ class _HelenState extends State<Helen> {
                                 height: 1.4,
                               ),
                             ),
+
+                             const SizedBox(height: 20),
+
+                             Row(
+                              children: [
+                                _buildStat('12', 'Projects'),
+                                const SizedBox(width: 40),
+                                _buildStat('8', 'Courses'),
+                              ],
+                            ),
+
+                            const SizedBox(height: 20),
+                            
+                            
 
 
 
