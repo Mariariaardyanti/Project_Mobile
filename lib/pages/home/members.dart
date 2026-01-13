@@ -158,11 +158,11 @@ class _MembersState extends State<Members> {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(width: 8),
+
                     const Text(
-                      "Our Members",
+                      "Project Team Members",
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -182,20 +182,11 @@ class _MembersState extends State<Members> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 10),
                       const Text(
-                        "Project Team Members",
+                        "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project",
                         style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.brown,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
-                        style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 13,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -344,7 +335,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "HELEN OKTAVIANI",
+                                    "Helen Oktaviani",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -352,7 +343,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Real",
+                                    "1123150205",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
