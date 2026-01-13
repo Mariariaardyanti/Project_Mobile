@@ -137,7 +137,7 @@ class _HelenState extends State<Helen> {
                   Row(
                               children: [
                                 const Text(
-                                  'Helen Mahasiswa',
+                                  'Helen Oktaviani',
                                   style: TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
@@ -154,6 +154,20 @@ class _HelenState extends State<Helen> {
                                 ),
                               ],
                             ),
+
+                            const SizedBox(height: 4),
+
+                            //Major
+                            Text(
+                              'Mobile Developer',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+
+                            const SizedBox(height: 12),
+                            
 
 
 
