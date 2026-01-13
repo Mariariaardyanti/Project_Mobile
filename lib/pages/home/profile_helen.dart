@@ -93,7 +93,7 @@ class _HelenState extends State<Helen> {
                                     shape: BoxShape.circle,
                                     border: Border.all(color: Colors.white, width: 4),
                                     image: const DecorationImage(
-                                      image: NetworkImage('https://i.pravatar.cc/150?img=45'),
+                                      image: AssetImage("assets/images/bubbles.jpg"),
                                       fit: BoxFit.cover,
                                     ),
                                     boxShadow: [
@@ -132,6 +132,28 @@ class _HelenState extends State<Helen> {
                 ),
 
                 const SizedBox(height: 16),
+
+                //Name
+                  Row(
+                              children: [
+                                const Text(
+                                  'Helen Mahasiswa',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '(She/her)',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
 
 
 
