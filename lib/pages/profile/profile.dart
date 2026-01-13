@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb;
@@ -6,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:project_mobile/pages/profile/edit_profile.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -17,6 +19,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   fb.User? user;
   final ImagePicker _picker = ImagePicker();
+  bool _isUploading = false;
 
   @override
   void initState() {
@@ -310,15 +313,42 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Row(
-                      children: const [
-                        Icon(Icons.edit_outlined, size: 18),
-                        SizedBox(width: 10),
-                        Text("Edit profile", style: TextStyle(fontSize: 13)),
-                        Spacer(),
-                        Icon(Icons.chevron_right, size: 18),
-                      ],
+                    GestureDetector(
+                      onTap: () async {
+                        final userData = await getUserData(user!.uid);
+
+                        if (context.mounted && userData.exists) {
+                          final result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EditProfile(userData: userData.data()!),
+                            ),
+                          );
+
+                          if (result == true) {
+                            setState(() {});
+                          }
+                        }
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Row(
+                          children: const [
+                            Icon(Icons.edit_outlined, size: 18),
+                            SizedBox(width: 10),
+                            Text(
+                              "Edit profile",
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            Spacer(),
+                            Icon(Icons.chevron_right, size: 18),
+                          ],
+                        ),
+                      ),
                     ),
+
                     const SizedBox(height: 6),
                     Row(
                       children: const [
