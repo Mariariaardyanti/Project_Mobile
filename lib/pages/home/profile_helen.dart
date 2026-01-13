@@ -69,7 +69,7 @@ class _HelenState extends State<Helen> {
                             topRight: Radius.circular(20),
                           ),
                           image: const DecorationImage(
-                            image: AssetImage("assets/images/bubbles.jpg"),
+                            image: AssetImage("assets/images/coverilen.png"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -180,7 +180,7 @@ class _HelenState extends State<Helen> {
 
                             // Major
                             Text(
-                              'UI/UX Enthusiast | Informatics Engineering Student',
+                              'UI/UX Enthusiast',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black,
@@ -191,7 +191,7 @@ class _HelenState extends State<Helen> {
 
                             // Description
                             Text(
-                              'Hi, I am Helen! 👋🏻 as an Informatics Engineering student and UI-UX enthusiast always exploring new trends and technologies to improve my skills and create meaningful contributions to the intersection of technology and design.',
+                              'Hi, I am Helen! 👋🏻 as an Informatics Engineering student and UI/UX enthusiast always exploring new trends and technologies to improve my skills and create meaningful contributions to the intersection of technology and design.',
                               textAlign: TextAlign.justify,
                               style: TextStyle(
                                 fontSize: 14,
