@@ -315,7 +315,9 @@ class _MembersState extends State<Members> {
                                 shape: BoxShape.circle,
                                 color: Colors.amber[50],
                                 image: DecorationImage(
-                                  image: AssetImage("assets/images/image1.png"),
+                                  image: AssetImage(
+                                    "assets/images/bubbles.jpg",
+                                  ),
                                 ),
                                 boxShadow: [
                                   BoxShadow(
