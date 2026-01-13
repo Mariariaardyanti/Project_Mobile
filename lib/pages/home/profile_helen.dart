@@ -35,7 +35,6 @@ class _HelenState extends State<Helen> {
                         color: Colors.black,
                       ),
                     ),
-
                     const Text(
                       "Profile card members",
                       style: TextStyle(
@@ -61,7 +60,7 @@ class _HelenState extends State<Helen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      //background image header
+                      // Background image header
                       Container(
                         height: 120,
                         decoration: BoxDecoration(
@@ -69,7 +68,7 @@ class _HelenState extends State<Helen> {
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),
                           ),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image: AssetImage("assets/images/bubbles.jpg"),
                             fit: BoxFit.cover,
                           ),
@@ -82,7 +81,7 @@ class _HelenState extends State<Helen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Profile Picture 
+                            // Profile Picture & Follow Button
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -91,9 +90,14 @@ class _HelenState extends State<Helen> {
                                   height: 80,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.white, width: 4),
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 4,
+                                    ),
                                     image: const DecorationImage(
-                                      image: AssetImage("assets/images/bubbles.jpg"),
+                                      image: AssetImage(
+                                        "assets/images/bubbles.jpg",
+                                      ),
                                       fit: BoxFit.cover,
                                     ),
                                     boxShadow: [
@@ -126,7 +130,7 @@ class _HelenState extends State<Helen> {
                                   ),
                                 ),
                                 const Spacer(),
-                                
+
                                 // Follow Button
                                 ElevatedButton.icon(
                                   onPressed: () {},
@@ -147,16 +151,11 @@ class _HelenState extends State<Helen> {
                                 ),
                               ],
                             ),
-                              ],
-                            ),
-                    ],
-                  ),
-                ),
 
-                const SizedBox(height: 16),
+                            const SizedBox(height: 16),
 
-                //Name
-                  Row(
+                            // Name
+                            Row(
                               children: [
                                 const Text(
                                   'Helen Oktaviani',
@@ -179,7 +178,7 @@ class _HelenState extends State<Helen> {
 
                             const SizedBox(height: 4),
 
-                            //Major
+                            // Major
                             Text(
                               'Mobile Developer',
                               style: TextStyle(
@@ -190,7 +189,7 @@ class _HelenState extends State<Helen> {
 
                             const SizedBox(height: 12),
 
-                             // Description
+                            // Description
                             Text(
                               'Hi, I am Helen! 👋🏻 as an Informatics Engineering student and UI-UX enthusiast, I always exploring new trends and technologies to refine my skills and make meaningful contributions to the intersection of technology and design.',
                               style: TextStyle(
@@ -200,9 +199,10 @@ class _HelenState extends State<Helen> {
                               ),
                             ),
 
-                             const SizedBox(height: 20),
+                            const SizedBox(height: 20),
 
-                             Row(
+                            // Stats
+                            Row(
                               children: [
                                 _buildStat('12', 'Projects'),
                                 const SizedBox(width: 40),
@@ -212,6 +212,7 @@ class _HelenState extends State<Helen> {
 
                             const SizedBox(height: 20),
 
+                            // GitHub Link
                             Row(
                               children: [
                                 Icon(
@@ -220,12 +221,14 @@ class _HelenState extends State<Helen> {
                                   color: Colors.blue[600],
                                 ),
                                 const SizedBox(width: 8),
-                                Text(
-                                  'https://github.com/helenoktaa',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.blue[600],
-                                    decoration: TextDecoration.underline,
+                                Expanded(
+                                  child: Text(
+                                    'https://github.com/helenoktaa',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.blue[600],
+                                      decoration: TextDecoration.underline,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -233,7 +236,8 @@ class _HelenState extends State<Helen> {
 
                             const SizedBox(height: 12),
 
-                             Row(
+                            // Location
+                            Row(
                               children: [
                                 Icon(
                                   Icons.location_on_outlined,
@@ -253,44 +257,6 @@ class _HelenState extends State<Helen> {
                           ],
                         ),
                       ),
-
-                      // Bottom Button
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide(
-                              color: Colors.grey[200]!,
-                              width: 1,
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.open_in_new,
-                              size: 20,
-                              color: Colors.black87,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              'Visit site',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.refresh,
-                              size: 24,
-                              color: Colors.grey[700],
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -301,9 +267,21 @@ class _HelenState extends State<Helen> {
       ),
     );
   }
-                            
-                            
 
-
-
-
+  Widget _buildStat(String number, String label) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          number,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        Text(label, style: TextStyle(fontSize: 13, color: Colors.grey[600])),
+      ],
+    );
+  }
+}
