@@ -167,7 +167,17 @@ class _HelenState extends State<Helen> {
                             ),
 
                             const SizedBox(height: 12),
-                            
+
+                             // Description
+                            Text(
+                              'Hi, I am Helen! 👋🏻 as an Informatics Engineering student and UI-UX enthusiast, I always exploring new trends and technologies to refine my skills and make meaningful contributions to the intersection of technology and design.',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey[700],
+                                height: 1.4,
+                              ),
+                            ),
+
 
 
 
