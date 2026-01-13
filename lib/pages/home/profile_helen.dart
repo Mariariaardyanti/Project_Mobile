@@ -230,6 +230,29 @@ class _HelenState extends State<Helen> {
                                 ),
                               ],
                             ),
+
+                            const SizedBox(height: 12),
+
+                             Row(
+                              children: [
+                                Icon(
+                                  Icons.location_on_outlined,
+                                  size: 18,
+                                  color: Colors.grey[600],
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Indonesia',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                             
                             
 
