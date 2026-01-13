@@ -174,9 +174,27 @@ class _Member_AriState extends State<Member_Ari> {
                     const Text(
                       "Project Team Members",
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.brown,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.brown,
+                      ),
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      ">",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.brown,
+                      ),
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      "Ari Purwo Aji",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.brown,
                       ),
                     ),
                   ],
