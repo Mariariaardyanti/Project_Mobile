@@ -81,7 +81,7 @@ class _HelenState extends State<Helen> {
                         // Profile Picture - Overlapping the cover
                         Positioned(
                           left: 20,
-                          bottom: -40,
+                          bottom: -55,
                           child: Container(
                             width: 100,
                             height: 100,
@@ -122,31 +122,10 @@ class _HelenState extends State<Helen> {
                             ),
                           ),
                         ),
-
-                        // Follow Button
-                        Positioned(
-                          right: 20,
-                          bottom: -20,
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: const Icon(Icons.add, size: 18),
-                            label: const Text('Follow'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF0EA5E9),
-                              foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 10,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              elevation: 2,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
+
+                    const SizedBox(height: 5),
 
                     // Scrollable Content
                     Expanded(
