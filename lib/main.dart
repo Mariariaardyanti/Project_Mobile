@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/foundation.dart';
+
 import 'firebase_options.dart';
 import 'pages/home/homepage.dart';
 import 'pages/onboarding/splashscreenboard.dart';
 import 'services/fcm_background_handler.dart';
 import 'services/local_notification_service.dart';
-import 'package:flutter/foundation.dart';
 
 @pragma('vm:entry-point')
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -27,9 +28,15 @@ void main() async {
         options: DefaultFirebaseOptions.currentPlatform,
       );
     } else {
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
     }
   }
+
+  FirebaseMessaging.onBackgroundMessage(
+    _firebaseMessagingBackgroundHandler,
+  );
 
   await Supabase.initialize(
     url: 'https://jcpuynzpwaahzupeegnm.supabase.co',
