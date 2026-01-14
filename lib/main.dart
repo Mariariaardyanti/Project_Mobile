@@ -4,7 +4,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 import 'pages/onboarding/splashscreenboard.dart';
 import 'package:flutter/foundation.dart';
-import 'pages/profile/member_ari.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
