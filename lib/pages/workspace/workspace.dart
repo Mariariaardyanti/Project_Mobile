@@ -151,6 +151,18 @@ class _WorkspaceCard extends StatelessWidget {
     return DateFormat('MMM dd').format(date);
   }
 
+  Color _statusColor(String status) {
+    switch (status) {
+      case 'Today':
+        return Colors.red.shade400;
+      case 'Tomorrow':
+        return Colors.orange.shade400;
+      case 'Yesterday':
+        return Colors.grey.shade600;
+      default:
+        return Colors.green.shade400;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
