@@ -16,6 +16,8 @@ class WorkspacePage extends StatefulWidget {
 }
 
 class _WorkspacePageState extends State<WorkspacePage> {
+  final NotesService _notesService = NotesService();
+  
   @override
   Widget build(BuildContext context) {
     return const Scaffold();
