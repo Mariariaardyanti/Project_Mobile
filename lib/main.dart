@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         fontFamily: 'Poppins',
       ),
-      home: const Member_Ari(),
+      home: const SplashScreenBoard(),
     );
   }
 }
