@@ -235,7 +235,14 @@ class _WorkspaceCard extends StatelessWidget {
             const SizedBox(height: 12),
 
             Row(
-              children: [],
+              children: [
+                SizedBox(
+                  height: 28,
+                  child: Stack(
+                    children: [],
+                  ),
+                ),
+              ],
             ),
           ],
         ),
