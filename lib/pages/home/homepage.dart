@@ -27,12 +27,14 @@ class _HomepageState extends State<Homepage> {
   // ===== Notes Service =====
   final NotesService _notesService = NotesService();
 
-  @override
-  void initState() {
-    super.initState();
+@override
+void initState() {
+  super.initState();
 
+  WidgetsBinding.instance.addPostFrameCallback((_) {
     _fcmService.init(
       onMessageReceived: (String message) {
+        if (!mounted) return;
         setState(() {
           if (!_notifications.contains(message)) {
             _notifications.insert(0, message);
@@ -40,7 +42,8 @@ class _HomepageState extends State<Homepage> {
         });
       },
     );
-  }
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -303,7 +306,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar2.png',
+                                  'assets/images/bubbles.jpg',
                                 ),
                               ),
                             ),
@@ -312,7 +315,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar3.png',
+                                  'assets/images/bubbles.jpg',
                                 ),
                               ),
                             ),
@@ -321,7 +324,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar3.png',
+                                  'assets/images/bubbles.jpg',
                                 ),
                               ),
                             ),
