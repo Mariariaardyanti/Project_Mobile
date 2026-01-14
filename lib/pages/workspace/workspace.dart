@@ -14,3 +14,11 @@ class WorkspacePage extends StatefulWidget {
   @override
   State<WorkspacePage> createState() => _WorkspacePageState();
 }
+
+class _WorkspacePageState extends State<WorkspacePage> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold();
+  }
+}
+
