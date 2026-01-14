@@ -32,7 +32,12 @@ class _WorkspacePageState extends State<WorkspacePage> {
       appBar: const _WorkspaceAppBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Container(),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: _notesService.getUserNotes(user.uid),
+          builder: (context, snapshot) {
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }
