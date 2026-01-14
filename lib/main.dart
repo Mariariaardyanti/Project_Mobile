@@ -9,6 +9,7 @@ import 'services/fcm_background_handler.dart';
 import 'services/local_notification_service.dart';
 import 'package:flutter/foundation.dart';
 
+@pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
