@@ -232,7 +232,7 @@ class _Member_AriState extends State<Member_Ari> {
                         ),
                       ),
 
-                      // ===== MEMBER ITEM ARI =====
+                      // ===== DETAIL MEMBER ARI =====
                       const SizedBox(height: 12),
                       Container(
                         width: double.infinity,
@@ -254,74 +254,18 @@ class _Member_AriState extends State<Member_Ari> {
                             ),
                           ],
                         ),
-                        
-                        child: Row(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.amber[50],
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/image1.png"),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(
-                                      0.1,
-                                    ), // warna shadow
-                                    blurRadius: 6,
-                                    offset: const Offset(0, 1),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Text(
-                                    "Ari Purwo Aji",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    "Progammer Magang",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ],
+                            const Text(
+                              "Hello I’am… 👋",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 111, 101, 66),
                               ),
                             ),
                             const SizedBox(height: 12),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 2,
-                                  ),
-                                  visualDensity: VisualDensity.compact,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18),
-                                  ),
-                                ),
-                                child: const Text(
-                                  "Details",
-                                  style: TextStyle(fontSize: 10),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       ),
