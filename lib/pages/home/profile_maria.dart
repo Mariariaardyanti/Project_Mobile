@@ -16,6 +16,11 @@ class ProfileMaria extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
                 ),
             ),
+            body: SingleChildScrollView(
+                child: Column(
+                    children: [],
+                ),
+              ),
     );
   }
 }
