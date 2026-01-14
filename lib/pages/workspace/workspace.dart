@@ -265,8 +265,10 @@ class _WorkspaceCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-
                 ),
+
+                if (firstLabel != null) ...[
+                ],
               ],
             ),
           ],
