@@ -334,10 +334,18 @@ class _Member_AriState extends State<Member_Ari> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
+                                      SizedBox(height: 24),
                                     ],
                                   ),
                                 ),
                               ],
+                            ),
+
+                            // ===== GARIS PEMISAH =====
+                            const SizedBox(height: 24),
+                            Divider(
+                              thickness: 1,
+                              color: Colors.brown.shade200,
                             ),
                           ],
                         ),
