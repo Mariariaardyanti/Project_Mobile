@@ -93,9 +93,7 @@ class _WorkspacePageState extends State<WorkspacePage> {
                   );
                 },
               ),
-
             );
-
           },
         ),
       ),
@@ -125,5 +123,14 @@ class _WorkspaceAppBar extends StatelessWidget
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _WorkspaceCard extends StatelessWidget {
+  const _WorkspaceCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox();
+  }
 }
 
