@@ -134,6 +134,11 @@ class _WorkspaceCard extends StatelessWidget {
     required this.onTap,
   });
 
+  String _shortContent(String text) {
+    if (text.length <= 80) return text;
+    return text.substring(0, 80) + '…';
+  }
+
   @override
   Widget build(BuildContext context) {
     final title = note.title;
