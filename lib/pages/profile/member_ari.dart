@@ -42,339 +42,352 @@ class _Member_AriState extends State<Member_Ari> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 480),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(width: 5),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.brown,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Row(
-                            children: [
-                              Icon(
-                                Icons.workspace_premium,
-                                size: 18,
-                                color: Colors.white,
+                        SizedBox(width: 5),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 6,
                               ),
-                              SizedBox(width: 6),
-                              Text(
-                                "Get Pro",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                              decoration: BoxDecoration(
+                                color: Colors.brown,
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          onEnter: (_) {
-                            setState(() => _isNotifHovered = true);
-                          },
-                          onExit: (_) {
-                            setState(() => _isNotifHovered = false);
-                          },
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NotificationPage(
-                                    notifications: _notifications,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: AnimatedScale(
-                              scale: _isNotifHovered ? 1.1 : 1.0,
-                              duration: const Duration(milliseconds: 150),
-                              child: Stack(
+                              child: const Row(
                                 children: [
-                                  const Icon(Icons.notifications_none),
-                                  if (_notifications.isNotEmpty)
-                                    Positioned(
-                                      right: 0,
-                                      top: 0,
-                                      child: Container(
-                                        width: 8,
-                                        height: 8,
-                                        decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
+                                  Icon(
+                                    Icons.workspace_premium,
+                                    size: 18,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    "Get Pro",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
                                     ),
+                                  ),
                                 ],
                               ),
                             ),
-                          ),
-                        ),
-
-                        const SizedBox(width: 12),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProfilePage(),
-                              ),
-                            );
-                          },
-                          child: const Icon(Icons.person_2_outlined, size: 24),
-                        ),
-
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-
-                // ===== TOMBOL KEMBALI =====
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      "Members",
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 28),
-                Row(
-                  children: [
-                    const Text(
-                      "Project Team Members",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.brown,
-                      ),
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      ">",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.brown,
-                      ),
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      "Ari Purwo Aji",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.brown,
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 16),
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.only(bottom: 16),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFFCF7),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.grey.shade300, width: 1),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 8),
-                      const Text(
-                        "< Project Team Members",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 161, 145, 139),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      const Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project and learn a little about what they built",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                          color: Color.fromARGB(255, 111, 101, 66),
-                        ),
-                      ),
-
-                      // ===== DETAIL MEMBER ARI =====
-                      const SizedBox(height: 12),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ), // warna shadow
-                              blurRadius: 6,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Hello I’am… 👋",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 111, 101, 66),
-                              ),
-                            ),
-                            const SizedBox(height: 18),
-
-                            // ===== NAMA LENGKAP =====
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(top: 4),
-                                  width: 56,
-                                  height: 56,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.amber[50],
-                                    image: const DecorationImage(
-                                      image: AssetImage(
-                                        'assets/images/image1.png',
+                            const SizedBox(width: 12),
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              onEnter: (_) {
+                                setState(() => _isNotifHovered = true);
+                              },
+                              onExit: (_) {
+                                setState(() => _isNotifHovered = false);
+                              },
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => NotificationPage(
+                                        notifications: _notifications,
                                       ),
-                                      fit: BoxFit.cover,
                                     ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),
-                                        blurRadius: 6,
-                                        offset: const Offset(0, 1),
-                                      ),
+                                  );
+                                },
+                                child: AnimatedScale(
+                                  scale: _isNotifHovered ? 1.1 : 1.0,
+                                  duration: const Duration(milliseconds: 150),
+                                  child: Stack(
+                                    children: [
+                                      const Icon(Icons.notifications_none),
+                                      if (_notifications.isNotEmpty)
+                                        Positioned(
+                                          right: 0,
+                                          top: 0,
+                                          child: Container(
+                                            width: 8,
+                                            height: 8,
+                                            decoration: BoxDecoration(
+                                              color: Colors.red,
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: 24),
+                              ),
+                            ),
 
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      Text(
-                                        "NAMA      : Ari Purwo Aji",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.brown,
-                                          fontWeight: FontWeight.bold,
+                            const SizedBox(width: 12),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ProfilePage(),
+                                  ),
+                                );
+                              },
+                              child: const Icon(
+                                Icons.person_2_outlined,
+                                size: 24,
+                              ),
+                            ),
+
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+
+                    // ===== TOMBOL KEMBALI =====
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(
+                            Icons.arrow_back_ios_new,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const Text(
+                          "Members",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 24),
+                    Row(
+                      children: [
+                        const Text(
+                          "Project Team Members",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown,
+                          ),
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          ">",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown,
+                          ),
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          "Ari Purwo Aji",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 16),
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFFCF7),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: Colors.grey.shade300,
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 8),
+                          const Text(
+                            "< Project Team Members",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 161, 145, 139),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project and learn a little about what they built",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                              color: Color.fromARGB(255, 111, 101, 66),
+                            ),
+                          ),
+
+                          // ===== DETAIL MEMBER ARI =====
+                          const SizedBox(height: 12),
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFFF3E0),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.grey.shade300,
+                                width: 1,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(
+                                    0.1,
+                                  ), // warna shadow
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 1),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Hello I’am… 👋",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 111, 101, 66),
+                                  ),
+                                ),
+                                const SizedBox(height: 18),
+
+                                // ===== NAMA LENGKAP =====
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 4),
+                                      width: 56,
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.amber[50],
+                                        image: const DecorationImage(
+                                          image: AssetImage(
+                                            'assets/images/image1.png',
+                                          ),
+                                          fit: BoxFit.cover,
                                         ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(
+                                              0.1,
+                                            ),
+                                            blurRadius: 6,
+                                            offset: const Offset(0, 1),
+                                          ),
+                                        ],
                                       ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        "NIM       : 1123150126",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.brown,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                    ),
+                                    const SizedBox(width: 24),
+
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: const [
+                                          Text(
+                                            "NAMA      : Ari Purwo Aji",
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.brown,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 4),
+                                          Text(
+                                            "NIM       : 1123150126",
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.brown,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 4),
+                                          Text(
+                                            "KELAS     : TI 23 M SE",
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.brown,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 4),
+                                          Text(
+                                            "KEAHLIAN  : Menganalisi & Merancang Sistem",
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.brown,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 24),
+                                        ],
                                       ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        "KELAS     : TI 23 M SE",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.brown,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        "KEAHLIAN  : Menganalisi & Merancang Sistem",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.brown,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(height: 24),
-                                    ],
+                                    ),
+                                  ],
+                                ),
+
+                                // ===== GARIS PEMISAH =====
+                                const SizedBox(height: 18),
+                                Divider(
+                                  thickness: 0.8,
+                                  color: Colors.brown.withOpacity(0.3),
+                                ),
+
+                                // ===== ROLE IN PROJECT =====
+                                const SizedBox(height: 18),
+                                Text(
+                                  "Role in Project :",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.brown.shade700,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    height: 1.5,
+                                    color: Colors.brown.shade700,
                                   ),
                                 ),
                               ],
                             ),
-
-                            // ===== GARIS PEMISAH =====
-                            const SizedBox(height: 18),
-                            Divider(
-                              thickness: 0.8,
-                              color: Colors.brown.withOpacity(0.3),
-                            ),
-
-                            // ===== ROLE IN PROJECT =====
-                            const SizedBox(height: 18),
-                            Text(
-                              "Role in Project :",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.brown.shade700,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                              style: TextStyle(
-                                fontSize: 12,
-                                height: 1.5,
-                                color: Colors.brown.shade700,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
