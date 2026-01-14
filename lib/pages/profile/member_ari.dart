@@ -285,12 +285,28 @@ class _Member_AriState extends State<Member_Ari> {
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.black.withOpacity(  
-                                          0.1
-                                        ),
+                                        color: Colors.black.withOpacity(0.1),
                                         blurRadius: 6,
                                         offset: const Offset(0, 1),
-                                      )
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 24),
+
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        "Full Name : Ari Purwo Aji",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
