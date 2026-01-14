@@ -110,7 +110,6 @@ class ProfileMaria extends StatelessWidget {
         ],
       ),
 
-      // ===== BODY =====
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -126,7 +125,6 @@ class ProfileMaria extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
-                      // ===== PROFILE HEADER =====
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -146,7 +144,7 @@ class ProfileMaria extends StatelessWidget {
                             child: const CircleAvatar(
                               radius: 38,
                               backgroundImage:
-                                  AssetImage('assets/images/profile.jpg'),
+                                  AssetImage('assets/images/maria_P.jpg'),
                             ),
                           ),
                           const SizedBox(width: 16),
@@ -179,7 +177,7 @@ class ProfileMaria extends StatelessWidget {
                                 ),
                                 SizedBox(height: 4),
                                 Text(
-                                  'Memotret perjalanan, menemukan damai di Goa Maria.',
+                                  'Keahlian : Flutter Basic',
                                   style: TextStyle(
                                     fontSize: 11,
                                     color: Colors.black54,
@@ -193,8 +191,6 @@ class ProfileMaria extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 10),
-
-                      // ===== DESKRIPSI PANJANG =====
                       const Text(
                         'Menjalani peran sebagai mahasiswi Teknologi Informasi sekaligus bekerja '
                         'sebagai admin di salah satu toko mengajarkan saya tentang kedisiplinan '
@@ -209,7 +205,6 @@ class ProfileMaria extends StatelessWidget {
 
                       const Divider(height: 24, thickness: 0.6),
 
-                      // ===== GRID POST =====
                       GridView.count(
                         crossAxisCount: 3,
                         shrinkWrap: true,
@@ -218,27 +213,27 @@ class ProfileMaria extends StatelessWidget {
                         mainAxisSpacing: 4,
                         children: const [
                           Image(
-                            image: AssetImage('assets/images/post1.jpg'),
+                            image: AssetImage('assets/images/maria1.jpg'),
                             fit: BoxFit.cover,
                           ),
                           Image(
-                            image: AssetImage('assets/images/post2.jpg'),
+                            image: AssetImage('assets/images/maria2.jpg'),
                             fit: BoxFit.cover,
                           ),
                           Image(
-                            image: AssetImage('assets/images/post3.jpg'),
+                            image: AssetImage('assets/images/maria3.jpg'),
                             fit: BoxFit.cover,
                           ),
                           Image(
-                            image: AssetImage('assets/images/post4.jpg'),
+                            image: AssetImage('assets/images/maria4.jpg'),
                             fit: BoxFit.cover,
                           ),
                           Image(
-                            image: AssetImage('assets/images/post5.jpg'),
+                            image: AssetImage('assets/images/maria5.jpg'),
                             fit: BoxFit.cover,
                           ),
                           Image(
-                            image: AssetImage('assets/images/post6.jpg'),
+                            image: AssetImage('assets/images/maria6.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ],
