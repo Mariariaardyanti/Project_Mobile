@@ -38,7 +38,10 @@ class _WorkspacePageState extends State<WorkspacePage> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
-            return const SizedBox();
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
+            final docs = snapshot.data?.docs ?? [];
           },
         ),
       ),
