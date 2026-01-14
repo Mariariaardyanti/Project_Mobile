@@ -219,7 +219,7 @@ class _Member_AriState extends State<Member_Ari> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.brown,
+                          color: Color.fromARGB(255, 161, 145, 139),
                         ),
                       ),
                       const SizedBox(height: 12),
