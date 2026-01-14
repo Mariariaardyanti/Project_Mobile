@@ -38,6 +38,8 @@ void main() async {
     _firebaseMessagingBackgroundHandler,
   );
 
+  await LocalNotificationService.initialize();
+
   await Supabase.initialize(
     url: 'https://jcpuynzpwaahzupeegnm.supabase.co',
     anonKey: '',
