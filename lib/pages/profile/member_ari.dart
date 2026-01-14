@@ -307,8 +307,18 @@ class _Member_AriState extends State<Member_Ari> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
+                                      SizedBox(height: 4),
                                       Text(
                                         "NIM       : 1123150126",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "KELAS     : TI 23 M SE",
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.brown,
