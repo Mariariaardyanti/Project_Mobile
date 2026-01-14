@@ -79,6 +79,7 @@ class _WorkspacePageState extends State<WorkspacePage> {
                 itemCount: notes.length,
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
                 itemBuilder: (context, index) {
+                  final note = notes[index];
                   return const SizedBox();
                 },
               ),
