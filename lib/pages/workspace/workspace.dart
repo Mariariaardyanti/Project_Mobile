@@ -205,7 +205,12 @@ class _WorkspaceCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 if (statusText.isNotEmpty)
-                 Container(),
+                 Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
               ],
             ),
           ],
