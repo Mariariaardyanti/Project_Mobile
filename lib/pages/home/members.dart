@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
+import 'package:project_mobile/pages/home/profile_maria.dart';
 
 class Members extends StatefulWidget {
   const Members({super.key});
@@ -452,7 +453,14 @@ class _MembersState extends State<Members> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfileMaria(),
+                              ),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 12,
