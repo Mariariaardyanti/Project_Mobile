@@ -771,13 +771,22 @@ void initState() {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
-        currentIndex: 0,
         elevation: 0,
+        currentIndex: _currentIndex,
         onTap: (index) {
+          setState(() => _currentIndex = index);
+
           if (index == 1) {
+            // Add note
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const AddNotesPage()),
+            );
+          } else if (index == 2) {
+            // Workspace
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const WorkspacePage()),
             );
           }
         },
@@ -787,7 +796,7 @@ void initState() {
             icon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.amber[50],
+                color: _currentIndex == 0 ? Colors.amber[50] : Colors.grey[100],
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Icon(Icons.home_outlined, size: 30),
@@ -809,7 +818,7 @@ void initState() {
             icon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: _currentIndex == 2 ? Colors.amber[50] : Colors.grey[100],
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Icon(Icons.sticky_note_2_outlined, size: 28),
