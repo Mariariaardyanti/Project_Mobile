@@ -211,6 +211,9 @@ class _WorkspaceCard extends StatelessWidget {
                       color: _statusColor(statusText).withOpacity(0.12),
                       borderRadius: BorderRadius.circular(12),
                     ),
+                    child: Text(
+                      statusText,
+                    ),
                   ),
               ],
             ),
