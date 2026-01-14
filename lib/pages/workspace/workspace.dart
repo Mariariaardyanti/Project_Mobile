@@ -269,7 +269,18 @@ class _WorkspaceCard extends StatelessWidget {
 
                 if (firstLabel != null) ...[
                   const SizedBox(width: 8),
-                  Container(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey.shade200),
+                    ),
+                    child: Text(
+                      firstLabel,
+                      style: const TextStyle(fontSize: 11),
+                    ),
+                  ),
                 ],
               ],
             ),
