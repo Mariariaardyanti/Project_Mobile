@@ -265,7 +265,28 @@ class _Member_AriState extends State<Member_Ari> {
                                 color: Color.fromARGB(255, 111, 101, 66),
                               ),
                             ),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 18),
+
+                            // ===== NAMA LENGKAP =====
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 56,
+                                  height: 56,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.amber[50],
+                                    image: const DecorationImage(
+                                      image: AssetImage(
+                                        'assets/images/image1.png',
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
