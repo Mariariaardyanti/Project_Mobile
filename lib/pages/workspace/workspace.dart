@@ -231,6 +231,9 @@ class _WorkspaceCard extends StatelessWidget {
                 color: Colors.black87,
               ),
             ),
+
+            const SizedBox(height: 12),
+            
           ],
         ),
       ),
