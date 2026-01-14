@@ -263,11 +263,8 @@ class _HelenState extends State<Helen> {
                                     vertical: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.purple[50],
+                                    color: Colors.grey[100],
                                     borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: Colors.purple[200]!,
-                                    ),
                                   ),
                                   child: const Text(
                                     'Figma',
@@ -283,11 +280,8 @@ class _HelenState extends State<Helen> {
                                     vertical: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.pink[50],
+                                    color: Colors.grey[100],
                                     borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: Colors.pink[200]!,
-                                    ),
                                   ),
                                   child: const Text(
                                     'UI/UX Design',
@@ -303,11 +297,8 @@ class _HelenState extends State<Helen> {
                                     vertical: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.green[50],
+                                    color: Colors.grey[100],
                                     borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: Colors.green[200]!,
-                                    ),
                                   ),
                                   child: const Text(
                                     'Flutter',
@@ -323,11 +314,8 @@ class _HelenState extends State<Helen> {
                                     vertical: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.orange[50],
+                                    color: Colors.grey[100],
                                     borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: Colors.orange[200]!,
-                                    ),
                                   ),
                                   child: const Text(
                                     'Prototyping',
@@ -343,11 +331,8 @@ class _HelenState extends State<Helen> {
                                     vertical: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.cyan[50],
+                                    color: Colors.grey[100],
                                     borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: Colors.cyan[200]!,
-                                    ),
                                   ),
                                   child: const Text(
                                     'User Research',
