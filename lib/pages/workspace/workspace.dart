@@ -240,7 +240,15 @@ class _WorkspaceCard extends StatelessWidget {
                   height: 28,
                   child: Stack(
                     clipBehavior: Clip.none,
-                    children: [],
+                    children: [
+                      for (var i = 0; i < 3; i++)
+                        Positioned(
+                          left: i * 18.0,
+                          child: CircleAvatar(
+                            radius: 12,
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ],
