@@ -78,7 +78,7 @@ class _HelenState extends State<Helen> {
                           ),
                         ),
 
-                        // Profile Picture - Overlapping the cover
+                        // Profile Picture
                         Positioned(
                           left: 20,
                           bottom: -55,
@@ -162,7 +162,7 @@ class _HelenState extends State<Helen> {
 
                             // Major
                             const Text(
-                              'UI/UX Enthusiast',
+                              '1123150205 | TI SE 23 M',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black,
