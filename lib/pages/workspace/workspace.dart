@@ -139,6 +139,19 @@ class _WorkspaceCard extends StatelessWidget {
     return text.substring(0, 80) + '…';
   }
 
+  String _relativeStatus(DateTime? date) {
+    if (date == null) return '';
+    final now = DateTime.now();
+    final diff = date.difference(DateTime(now.year, now.month, now.day));
+
+    if (diff.inDays == 0) return 'Today';
+    if (diff.inDays == 1) return 'Tomorrow';
+    if (diff.isNegative && diff.inDays == -1) return 'Yesterday';
+    if (diff.inDays < 7 && diff.inDays > 1) return '${diff.inDays} days';
+    return DateFormat('MMM dd').format(date);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final title = note.title;
