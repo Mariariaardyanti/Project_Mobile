@@ -28,7 +28,9 @@ class _WorkspacePageState extends State<WorkspacePage> {
       );
     }
 
-    return const scaffold();
+    return const scaffold(
+      appBar: const _WorkspaceAppBar(),
+    );
   }
 }
 
