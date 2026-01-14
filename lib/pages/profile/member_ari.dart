@@ -272,6 +272,7 @@ class _Member_AriState extends State<Member_Ari> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
+                                  margin: const EdgeInsets.only(top: 4),
                                   width: 56,
                                   height: 56,
                                   decoration: BoxDecoration(
@@ -352,6 +353,14 @@ class _Member_AriState extends State<Member_Ari> {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.brown.shade700,
+                              ),
+                            ),
+                            const SizedBox(height: 18),
+                            Text(
+                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                              style: TextStyle(
+                                fontSize: 12,
                                 color: Colors.brown.shade700,
                               ),
                             ),
