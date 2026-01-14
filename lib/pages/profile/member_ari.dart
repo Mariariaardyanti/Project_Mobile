@@ -327,7 +327,7 @@ class _Member_AriState extends State<Member_Ari> {
                                       ),
                                       SizedBox(height: 4),
                                       Text(
-                                        "KEAHLIAN  : PROGRAMMING DASAR, MEMBUAT PERENCANGAN SISTEM, DAN ANALISIS SISTEM",
+                                        "KEAHLIAN  : Menganalisi & Merancang Sistem",
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.brown,
