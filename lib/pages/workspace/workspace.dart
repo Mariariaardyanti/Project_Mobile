@@ -144,6 +144,13 @@ class _WorkspaceCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xFFF7F6F5),
           borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
       ),
 
