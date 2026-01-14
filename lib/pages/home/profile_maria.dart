@@ -44,7 +44,15 @@ class ProfileMaria extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [],
+                    children: [
+                        const Text(
+                            'Maria Euphrasia',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                            ),
+                       ),
+                    ],
                 ),
              ),
           ],
