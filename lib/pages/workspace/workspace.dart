@@ -70,6 +70,8 @@ class _WorkspacePageState extends State<WorkspacePage> {
                 ),
               );
             }
+
+            final notes = docs.map((d) => Note.fromFirestore(d)).toList();
           },
         ),
       ),
