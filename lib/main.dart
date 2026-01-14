@@ -39,6 +39,7 @@ void main() async {
   );
 
   await LocalNotificationService.initialize();
+  await LocalNotificationService.createNotificationChannel();
 
   await Supabase.initialize(
     url: 'https://jcpuynzpwaahzupeegnm.supabase.co',
