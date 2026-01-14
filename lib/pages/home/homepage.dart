@@ -19,8 +19,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  bool _isNotifHovered = false;
   int _currentIndex = 0;
+  late final List<Widget> _pages;
 
   // ===== FCM =====
   final FCMNotificationService _fcmService = FCMNotificationService();
@@ -32,6 +32,16 @@ class _HomepageState extends State<Homepage> {
 @override
 void initState() {
   super.initState();
+
+  _pages = [
+  _HomeContent(
+    notifications: _notifications,
+    notesService: _notesService,
+    user: FirebaseAuth.instance.currentUser!,
+  ),
+  const SizedBox(),
+  const WorkspacePage(),
+];
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
     _fcmService.init(
@@ -57,7 +67,101 @@ void initState() {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
+      ),
+
+      // ===== BOTTOM NAV =====
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AddNotesPage()),
+            );
+            return;
+          }
+
+          setState(() => _currentIndex = index);
+        },
+
+        items: [
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: _currentIndex == 0 ? Colors.amber[50] : Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.home_outlined, size: 30),
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.add, size: 30),
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: _currentIndex == 2 ? Colors.amber[50] : Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.sticky_note_2_outlined, size: 28),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _formatDate(DateTime? date) {
+  if (date == null) return '';
+
+  final now = DateTime.now();
+  final difference = now.difference(date);
+
+  if (difference.inDays == 0) {
+    return 'Today ${DateFormat('HH:mm').format(date)}';
+  } else if (difference.inDays == 1) {
+    return 'Yesterday';
+  } else if (difference.inDays < 7) {
+    return '${difference.inDays} days ago';
+  } else {
+    return DateFormat('MMM dd, yyyy').format(date);
+  }
+}
+
+class _HomeBody extends StatelessWidget {
+  final List<String> notifications;
+  final NotesService notesService;
+  final User user;
+
+  const _HomeBody({
+    super.key,
+    required this.notifications,
+    required this.notesService,
+    required this.user,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -98,46 +202,40 @@ void initState() {
                           ),
                         ),
                         const SizedBox(width: 12),
-                        MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          onEnter: (_) {
-                            setState(() => _isNotifHovered = true);
-                          },
-                          onExit: (_) {
-                            setState(() => _isNotifHovered = false);
-                          },
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NotificationPage(
-                                    notifications: _notifications,
-                                  ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NotificationPage(
+                                  notifications: notifications,
                                 ),
-                              );
-                            },
-                            child: AnimatedScale(
-                              scale: _isNotifHovered ? 1.1 : 1.0,
-                              duration: const Duration(milliseconds: 150),
-                              child: Stack(
-                                children: [
-                                  const Icon(Icons.notifications_none),
-                                  if (_notifications.isNotEmpty)
-                                    Positioned(
-                                      right: 0,
-                                      top: 0,
-                                      child: Container(
-                                        width: 8,
-                                        height: 8,
-                                        decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          shape: BoxShape.circle,
-                                        ),
+                              ),
+                            );
+                          },
+                          child: SizedBox(
+                            width: 28,
+                            height: 28,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                const Center(
+                                  child: Icon(Icons.notifications_none, size: 24),
+                                ),
+                                if (notifications.isNotEmpty)
+                                  Positioned(
+                                    right: 2,
+                                    top: 2,
+                                    child: Container(
+                                      width: 8,
+                                      height: 8,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
                                       ),
                                     ),
-                                ],
-                              ),
+                                  ),
+                              ],
                             ),
                           ),
                         ),
@@ -369,7 +467,7 @@ void initState() {
 
                 // ===== NOTES FROM FIRESTORE (Dynamic) =====
                 StreamBuilder<QuerySnapshot>(
-                  stream: _notesService.getUserNotes(user.uid),
+                  stream: notesService.getUserNotes(user.uid),
                   builder: (context, snapshot) {
                     // Loading
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -673,7 +771,7 @@ void initState() {
                                             ],
                                           ),
                                           onTap: () async {
-                                            await _notesService.togglePin(
+                                            await notesService.togglePin(
                                               note.id,
                                               note.isPinned,
                                             );
@@ -733,7 +831,7 @@ void initState() {
                                             );
 
                                             if (confirm == true) {
-                                              await _notesService.deleteNote(
+                                              await notesService.deleteNote(
                                                 note.id,
                                               );
                                               if (context.mounted) {
@@ -766,84 +864,28 @@ void initState() {
             ),
           ),
         ),
-      ),
-
-      // ===== BOTTOM NAV =====
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() => _currentIndex = index);
-
-          if (index == 1) {
-            // Add note
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AddNotesPage()),
-            );
-          } else if (index == 2) {
-            // Workspace
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const WorkspacePage()),
-            );
-          }
-        },
-        items: [
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: _currentIndex == 0 ? Colors.amber[50] : Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.home_outlined, size: 30),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.add, size: 30),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: _currentIndex == 2 ? Colors.amber[50] : Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.sticky_note_2_outlined, size: 28),
-            ),
-          ),
-        ],
-      ),
-    );
+      );
   }
 }
 
-String _formatDate(DateTime? date) {
-  if (date == null) return '';
+class _HomeContent extends StatelessWidget {
+  final List<String> notifications;
+  final NotesService notesService;
+  final User user;
 
-  final now = DateTime.now();
-  final difference = now.difference(date);
+  const _HomeContent({
+    super.key,
+    required this.notifications,
+    required this.notesService,
+    required this.user,
+  });
 
-  if (difference.inDays == 0) {
-    return 'Today ${DateFormat('HH:mm').format(date)}';
-  } else if (difference.inDays == 1) {
-    return 'Yesterday';
-  } else if (difference.inDays < 7) {
-    return '${difference.inDays} days ago';
-  } else {
-    return DateFormat('MMM dd, yyyy').format(date);
+  @override
+  Widget build(BuildContext context) {
+    return _HomeBody(
+      notifications: notifications,
+      notesService: notesService,
+      user: user,
+    );
   }
 }
