@@ -325,6 +325,15 @@ class _Member_AriState extends State<Member_Ari> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "KEAHLIAN  : PROGRAMMING DASAR, MEMBUAT PERENCANGAN SISTEM, DAN ANALISIS SISTEM",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
