@@ -222,6 +222,7 @@ class _WorkspaceCard extends StatelessWidget {
                   ),
               ],
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
