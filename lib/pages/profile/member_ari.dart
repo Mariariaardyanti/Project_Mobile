@@ -217,7 +217,7 @@ class _Member_AriState extends State<Member_Ari> {
                       const Text(
                         "< Project Team Members",
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 161, 145, 139),
                         ),
