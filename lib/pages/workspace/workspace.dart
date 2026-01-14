@@ -45,6 +45,12 @@ class _WorkspaceAppBar extends StatelessWidget
       backgroundColor: Colors.white,
       elevation: 0,
       iconTheme: const IconThemeData(color: Colors.black),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.filter_list, color: Colors.black),
+        )
+      ],
     );
   }
 
