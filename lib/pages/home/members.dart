@@ -267,7 +267,7 @@ class _MembersState extends State<Members> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Members(),
+                                      builder: (context) => Member_Ari(),
                                     ),
                                   );
                                 },
