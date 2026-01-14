@@ -34,3 +34,18 @@ class _WorkspacePageState extends State<WorkspacePage> {
   }
 }
 
+class _WorkspaceAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const _WorkspaceAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: const Text('Workspace'),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
