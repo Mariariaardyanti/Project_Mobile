@@ -213,6 +213,11 @@ class _WorkspaceCard extends StatelessWidget {
                     ),
                     child: Text(
                       statusText,
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: _statusColor(statusText),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
               ],
@@ -220,7 +225,6 @@ class _WorkspaceCard extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }
