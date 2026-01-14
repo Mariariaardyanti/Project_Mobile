@@ -41,7 +41,10 @@ class _WorkspaceAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Workspace'),
+      title: const Text('Workspace', style: TextStyle(color: Colors.black)),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      iconTheme: const IconThemeData(color: Colors.black),
     );
   }
 
