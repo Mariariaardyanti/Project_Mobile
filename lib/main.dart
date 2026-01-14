@@ -9,6 +9,10 @@ import 'services/fcm_background_handler.dart';
 import 'services/local_notification_service.dart';
 import 'package:flutter/foundation.dart';
 
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+}
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
