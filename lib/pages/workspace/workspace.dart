@@ -17,10 +17,18 @@ class WorkspacePage extends StatefulWidget {
 
 class _WorkspacePageState extends State<WorkspacePage> {
   final NotesService _notesService = NotesService();
-  
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      return const Scaffold(
+        body: Center(child: Text('Please login first')),
+      );
+    }
+
+    return const scaffold();
   }
 }
 
