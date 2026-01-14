@@ -5,6 +5,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 import 'pages/home/homepage.dart';
 import 'pages/onboarding/splashscreenboard.dart';
+import 'services/fcm_background_handler.dart';
+import 'services/local_notification_service.dart';
 import 'package:flutter/foundation.dart';
 
 void main() async {
