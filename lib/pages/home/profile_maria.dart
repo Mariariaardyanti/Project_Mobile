@@ -56,6 +56,8 @@ class ProfileMaria extends StatelessWidget {
 
                        const Text('Programmer Setengah Magang 💻'),
                        const Text('Flutter • Firebase • UI/UX'),
+                       const Text('Belajar pelan-pelan yang penting konsisten ✨'),
+
                     ],
                 ),
              ),
