@@ -35,6 +35,9 @@ class _WorkspacePageState extends State<WorkspacePage> {
         child: StreamBuilder<QuerySnapshot>(
           stream: _notesService.getUserNotes(user.uid),
           builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
             return const SizedBox();
           },
         ),
