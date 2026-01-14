@@ -307,6 +307,14 @@ class _Member_AriState extends State<Member_Ari> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
+                                      Text(
+                                        "NIM       : 1123150126",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
