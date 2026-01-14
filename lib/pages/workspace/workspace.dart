@@ -75,7 +75,14 @@ class _WorkspacePageState extends State<WorkspacePage> {
 
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: ListView(),
+              child: ListView.separated(
+                itemCount: notes.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+                itemBuilder: (context, index) {
+                  return const SizedBox();
+                },
+              ),
+
             );
 
           },
