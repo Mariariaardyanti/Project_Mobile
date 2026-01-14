@@ -359,7 +359,7 @@ class _Member_AriState extends State<Member_Ari> {
                                 color: Colors.brown.shade700,
                               ),
                             ),
-                            const SizedBox(height: 18),
+                            const SizedBox(height: 4),
                             Text(
                               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                               style: TextStyle(
