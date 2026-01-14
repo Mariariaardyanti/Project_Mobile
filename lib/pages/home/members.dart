@@ -437,7 +437,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "MARIA EUPRASIA ADRIANTI",
+                                    "MARIA EUPHRASIA A",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
