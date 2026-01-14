@@ -30,6 +30,10 @@ class _WorkspacePageState extends State<WorkspacePage> {
 
     return const scaffold(
       appBar: const _WorkspaceAppBar(),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Container(),
+      ),
     );
   }
 }
