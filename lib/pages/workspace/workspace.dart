@@ -28,7 +28,7 @@ class _WorkspacePageState extends State<WorkspacePage> {
       );
     }
 
-    return const scaffold(
+    return const Scaffold(
       appBar: const _WorkspaceAppBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -42,6 +42,34 @@ class _WorkspacePageState extends State<WorkspacePage> {
               return Center(child: Text('Error: ${snapshot.error}'));
             }
             final docs = snapshot.data?.docs ?? [];
+            if (docs.isEmpty) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.note_alt_outlined, size: 56, color: Colors.grey[400]),
+                      const SizedBox(height: 12),
+                      Text(
+                        'Belum ada catatan',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                      const SizedBox(height: 8),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const AddNotesPage()),
+                          );
+                        },
+                        child: const Text('Buat Catatan'),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
           },
         ),
       ),
