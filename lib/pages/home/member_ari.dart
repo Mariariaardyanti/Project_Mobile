@@ -165,7 +165,7 @@ class _Member_AriState extends State<Member_Ari> {
                         ),
                         const SizedBox(width: 8),
                         const Text(
-                          "Members",
+                          "Member",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -180,7 +180,7 @@ class _Member_AriState extends State<Member_Ari> {
                         const Text(
                           "Project Team Members",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.brown,
                           ),
@@ -189,7 +189,7 @@ class _Member_AriState extends State<Member_Ari> {
                         Text(
                           ">",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.brown,
                           ),
@@ -198,7 +198,7 @@ class _Member_AriState extends State<Member_Ari> {
                         Text(
                           "Ari Purwo Aji",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.brown,
                           ),
@@ -289,7 +289,7 @@ class _Member_AriState extends State<Member_Ari> {
                                         color: Colors.amber[50],
                                         image: const DecorationImage(
                                           image: AssetImage(
-                                            'assets/images/image1.png',
+                                            'assets/images/lockscreen.jpg',
                                           ),
                                           fit: BoxFit.cover,
                                         ),
