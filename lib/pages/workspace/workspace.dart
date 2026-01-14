@@ -126,7 +126,13 @@ class _WorkspaceAppBar extends StatelessWidget
 }
 
 class _WorkspaceCard extends StatelessWidget {
-  const _WorkspaceCard({super.key});
+  final Note note;
+  final VoidCallback onTap;
+
+  const _WorkspaceCard({
+    required this.note,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
