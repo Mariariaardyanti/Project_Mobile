@@ -18,7 +18,12 @@ class ProfileMaria extends StatelessWidget {
             ),
             body: SingleChildScrollView(
                 child: Column(
-                    children: [],
+                    children: [
+                        Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Container(),
+                            ),
+                    ],
                 ),
               ),
     );
