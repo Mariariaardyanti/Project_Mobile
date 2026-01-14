@@ -12,4 +12,7 @@ class LocalNotificationService {
     description: 'This channel is used for important notifications.',
     importance: Importance.high,
   );
+
+  static Future<void> initialize() async {
+  }
 }
