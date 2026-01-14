@@ -72,6 +72,12 @@ class _WorkspacePageState extends State<WorkspacePage> {
             }
 
             final notes = docs.map((d) => Note.fromFirestore(d)).toList();
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: ListView(),
+            );
+
           },
         ),
       ),
