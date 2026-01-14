@@ -222,7 +222,7 @@ class _Member_AriState extends State<Member_Ari> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 4),
                           const Text(
                             "< Project Team Members",
                             style: TextStyle(
@@ -271,10 +271,10 @@ class _Member_AriState extends State<Member_Ari> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 111, 101, 66),
+                                    color: Colors.brown,
                                   ),
                                 ),
-                                const SizedBox(height: 18),
+                                const SizedBox(height: 16),
 
                                 // ===== NAMA LENGKAP =====
                                 Row(
@@ -312,41 +312,73 @@ class _Member_AriState extends State<Member_Ari> {
                                             CrossAxisAlignment.start,
                                         children: const [
                                           Text(
-                                            "NAMA      : Ari Purwo Aji",
+                                            "Nama",
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 11,
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            "Ari Purwo Aji",
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.brown,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+
+                                          SizedBox(height: 4),
+                                          Text(
+                                            "NIM",
+                                            style: TextStyle(
+                                              fontSize: 11,
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            "1123150126",
+                                            style: TextStyle(
+                                              fontSize: 13,
                                               color: Colors.brown,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           SizedBox(height: 4),
                                           Text(
-                                            "NIM       : 1123150126",
+                                            "KELAS",
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 11,
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            "TI 23 M SE",
+                                            style: TextStyle(
+                                              fontSize: 13,
                                               color: Colors.brown,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           SizedBox(height: 4),
                                           Text(
-                                            "KELAS     : TI 23 M SE",
+                                            "KEAHLIAN",
                                             style: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.brown,
-                                              fontWeight: FontWeight.bold,
+                                              fontSize: 11,
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          SizedBox(height: 4),
                                           Text(
-                                            "KEAHLIAN  : Menganalisi & Merancang Sistem",
+                                            "Menganalisa & Merancang Sistem",
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 13,
                                               color: Colors.brown,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          SizedBox(height: 24),
                                         ],
                                       ),
                                     ),
@@ -354,14 +386,14 @@ class _Member_AriState extends State<Member_Ari> {
                                 ),
 
                                 // ===== GARIS PEMISAH =====
-                                const SizedBox(height: 18),
+                                const SizedBox(height: 20),
                                 Divider(
                                   thickness: 0.8,
                                   color: Colors.brown.withOpacity(0.3),
                                 ),
 
                                 // ===== ROLE IN PROJECT =====
-                                const SizedBox(height: 18),
+                                const SizedBox(height: 16),
                                 Text(
                                   "Role in Project :",
                                   style: TextStyle(
@@ -372,7 +404,7 @@ class _Member_AriState extends State<Member_Ari> {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                                  "Terlibat dalam proses analisis kebutuhan, perancangan alur aplikasi, dan pengembangan antarmuka sebagai bagian dari pembelajaran pengembangan aplikasi mobile.",
                                   style: TextStyle(
                                     fontSize: 12,
                                     height: 1.5,
