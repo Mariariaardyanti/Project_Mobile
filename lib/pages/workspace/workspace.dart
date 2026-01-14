@@ -80,9 +80,16 @@ class _WorkspacePageState extends State<WorkspacePage> {
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   final note = notes[index];
-                  return const SizedBox(
+                  return  _WorkspaceCard(
                     note: note,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => AddNotesPage(note: note),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
