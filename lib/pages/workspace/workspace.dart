@@ -136,6 +136,10 @@ class _WorkspaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = note.title;
+    final desc = note.content;
+    final firstLabel = note.labels.isNotEmpty ? note.labels.first : null;
+
     
     return InkWell(
       onTap: onTap,
