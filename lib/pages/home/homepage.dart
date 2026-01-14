@@ -9,6 +9,7 @@ import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 import 'package:project_mobile/pages/home/members.dart';
+import 'package:project_mobile/pages/workspace/workspace.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
