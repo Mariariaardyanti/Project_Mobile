@@ -35,4 +35,25 @@ class LocalNotificationService {
         ?.createNotificationChannel(channel);
   }
 
+  static Future<void> showNotification({
+    required String title,
+    required String body,
+  }) async {
+    await _plugin.show(
+      title.hashCode,
+      title,
+      body,
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          channel.id,
+          channel.name,
+          channelDescription: channel.description,
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
+      ),
+    );
+  }
+
+
 }
