@@ -158,11 +158,11 @@ class _MembersState extends State<Members> {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(width: 8),
+
                     const Text(
-                      "Our Members",
+                      "Project Team Members",
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -182,20 +182,11 @@ class _MembersState extends State<Members> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 10),
                       const Text(
-                        "Project Team Members",
+                        "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project",
                         style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.brown,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
-                        style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 13,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -206,7 +197,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -299,7 +290,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -324,7 +315,9 @@ class _MembersState extends State<Members> {
                                 shape: BoxShape.circle,
                                 color: Colors.amber[50],
                                 image: DecorationImage(
-                                  image: AssetImage("assets/images/image1.png"),
+                                  image: AssetImage(
+                                    "assets/images/bubbles.jpg",
+                                  ),
                                 ),
                                 boxShadow: [
                                   BoxShadow(
@@ -344,7 +337,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "HELEN OKTAVIANI",
+                                    "Helen Oktaviani",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -352,7 +345,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Real",
+                                    "1123150205",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
@@ -392,7 +385,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -438,6 +431,7 @@ class _MembersState extends State<Members> {
                                 children: const [
                                   Text(
                                     "MARIA EUPHRASIA A",
+
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -485,7 +479,7 @@ class _MembersState extends State<Members> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFFF3E0),
+                          color: const Color(0xFFFFF6E8),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
@@ -530,7 +524,7 @@ class _MembersState extends State<Members> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Text(
-                                    "RIAN MAULANA 61",
+                                    "Rian Maulana",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -538,7 +532,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Religius",
+                                    "1123150061",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
