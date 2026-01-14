@@ -53,6 +53,8 @@ class ProfileMaria extends StatelessWidget {
                                 fontSize: 16,
                             ),
                        ),
+                       
+                       const Text('Programmer Setengah Magang 💻'),
                     ],
                 ),
              ),
