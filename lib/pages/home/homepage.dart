@@ -19,6 +19,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   bool _isNotifHovered = false;
+  int _currentIndex = 0;
 
   // ===== FCM =====
   final FCMNotificationService _fcmService = FCMNotificationService();

@@ -28,7 +28,7 @@ class _WorkspacePageState extends State<WorkspacePage> {
       );
     }
 
-    return const Scaffold(
+    return Scaffold(
       appBar: const _WorkspaceAppBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -51,20 +51,12 @@ class _WorkspacePageState extends State<WorkspacePage> {
                     children: [
                       Icon(Icons.note_alt_outlined, size: 56, color: Colors.grey[400]),
                       const SizedBox(height: 12),
-                      Text(
-                        'Belum ada catatan',
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
+                      Text('Belum ada catatan', style: TextStyle(color: Colors.grey[600])),
                       const SizedBox(height: 8),
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const AddNotesPage()),
-                          );
-                        },
+                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AddNotesPage())),
                         child: const Text('Buat Catatan'),
-                      ),
+                      )
                     ],
                   ),
                 ),
