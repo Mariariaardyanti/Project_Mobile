@@ -282,6 +282,9 @@ class _WorkspaceCard extends StatelessWidget {
                     ),
                   ),
                 ],
+                const SizedBox(width: 8),
+
+                const Icon(Icons.chevron_right, color: Colors.grey),
               ],
             ),
           ],
