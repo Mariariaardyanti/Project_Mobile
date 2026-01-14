@@ -244,8 +244,9 @@ class _WorkspaceCard extends StatelessWidget {
                       for (var i = 0; i < 3; i++)
                         Positioned(
                           left: i * 18.0,
-                          child: CircleAvatar(
+                          CircleAvatar(
                             radius: 12,
+                            backgroundImage: const AssetImage('assets/images/bubbles.jpg'),
                           ),
                         ),
                     ],
