@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project_mobile/pages/home/notification_page.dart';
+import 'package:project_mobile/pages/notes/add_notes.dart';
+import 'package:project_mobile/pages/profile/profile.dart';
+import 'package:project_mobile/pages/home/homepage.dart';
+
 
 class ProfileMaria extends StatelessWidget {
   const ProfileMaria({super.key});
@@ -6,7 +11,7 @@ class ProfileMaria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // tetap putih
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -20,8 +25,8 @@ class ProfileMaria extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Card(
-            color: const Color(0xffFFF6EA), // card putih
-            elevation: 1, // shadow tipis
+            color: const Color(0xffFFF6EA),
+            elevation: 1,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -29,67 +34,87 @@ class ProfileMaria extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  // FOTO PROFILE
-                  Container(
-                    padding: const EdgeInsets.all(3),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xffF58529),
-                          Color(0xffDD2A7B),
-                          Color(0xff8134AF),
-                          Color(0xff515BD4),
-                        ],
+                  // FOTO + BIO (INSTAGRAM STYLE)
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0xffF58529),
+                              Color(0xffDD2A7B),
+                              Color(0xff8134AF),
+                              Color(0xff515BD4),
+                            ],
+                          ),
+                        ),
+                        child: const CircleAvatar(
+                          radius: 38,
+                          backgroundImage:
+                              AssetImage('assets/images/profile.jpg'),
+                        ),
                       ),
-                    ),
-                    child: const CircleAvatar(
-                      radius: 42,
-                      backgroundImage:
-                          AssetImage('assets/images/profile.jpg'),
-                    ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Maria Euphrasia',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Text(
+                              '1123150050',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black54,
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Text(
+                              'TI SE 23 M',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black54,
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              'Memotret perjalanan, menemukan damai di Goa Maria.',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black54,
+                                height: 1.3,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-
-                  const SizedBox(height: 12),
-
-                  // BIO
-                  const Text(
-                    'Maria Euphrasia',
+                  
+                  const SizedBox(height: 10),
+                    const Text(
+                    'Menjalani peran sebagai mahasiswi Teknologi Informasi sekaligus bekerja '
+                    'sebagai admin di salah satu toko mengajarkan saya tentang kedisiplinan '
+                    'dan tanggung jawab. Melalui fotografi dan perjalanan ke Goa Maria, saya '
+                    'menemukan keseimbangan antara kesibukan sehari-hari dan ketenangan batin.',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                        fontSize: 11,
+                        color: Colors.black54,
+                        height: 1.4,
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  const Text(
-                    '1123150050',
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  const Text(
-                    'TI SE 23 M',
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  const Text(
-                    'Menyukai cahaya, doa, dan langkah kecil dalam perjalanan.\nMemotret momen, berjalan ke Goa Maria.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Colors.black54,
-                      height: 1.3,
-                    ),
-                  ),
+                ),
 
                   const Divider(height: 24, thickness: 0.6),
 
-                  // GRID FOTO
                   GridView.count(
                     crossAxisCount: 3,
                     shrinkWrap: true,
@@ -128,6 +153,56 @@ class ProfileMaria extends StatelessWidget {
             ),
           ),
         ),
+      ),
+      // ===== BOTTOM NAV =====
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.transparent,
+        currentIndex: 0,
+        elevation: 0,
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddNotesPage()),
+            );
+          }
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.amber[50],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.home_outlined, size: 30),
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.add, size: 30),
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.sticky_note_2_outlined, size: 28),
+            ),
+          ),
+        ],
       ),
     );
   }
