@@ -300,7 +300,7 @@ class _Member_AriState extends State<Member_Ari> {
                                         CrossAxisAlignment.start,
                                     children: const [
                                       Text(
-                                        "Full Name : Ari Purwo Aji",
+                                        "NAMA      : Ari Purwo Aji",
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.brown,
