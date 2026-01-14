@@ -167,7 +167,7 @@ class _Member_AriState extends State<Member_Ari> {
                         const Text(
                           "Members",
                           style: TextStyle(
-                            fontSize: 28,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -180,7 +180,7 @@ class _Member_AriState extends State<Member_Ari> {
                         const Text(
                           "Project Team Members",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.brown,
                           ),
