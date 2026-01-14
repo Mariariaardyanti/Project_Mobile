@@ -187,9 +187,47 @@ class _HelenState extends State<Helen> {
                             // Stats
                             Row(
                               children: [
-                                _buildStat('12', 'Projects'),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      '12',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Projects',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 const SizedBox(width: 40),
-                                _buildStat('8', 'Courses'),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      '8',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Courses',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
 
@@ -210,7 +248,6 @@ class _HelenState extends State<Helen> {
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.blue[600],
-                                      decoration: TextDecoration.underline,
                                     ),
                                   ),
                                 ),
@@ -359,23 +396,6 @@ class _HelenState extends State<Helen> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildStat(String number, String label) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          number,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-        Text(label, style: TextStyle(fontSize: 13, color: Colors.grey[600])),
-      ],
     );
   }
 }
