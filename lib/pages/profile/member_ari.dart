@@ -222,7 +222,7 @@ class _Member_AriState extends State<Member_Ari> {
                           color: Colors.brown,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 12),
                       const Text(
                         "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project and learn a little about what they built",
                         style: TextStyle(
