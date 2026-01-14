@@ -54,9 +54,16 @@ class ProfileMaria extends StatelessWidget {
                             ),
                        ),
 
-                       const Text('Programmer Setengah Magang 💻'),
-                       const Text('Flutter • Firebase • UI/UX'),
-                       const Text('Belajar pelan-pelan yang penting konsisten'),
+                       const SizedBox(height: 2),
+                        const Text(
+                        '1123150050',
+                        style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.black54,
+                        ),
+                    ),
+                       const Text('TI SE 23 M'),
+                       const Text('Memotret perjalanan, menemukan damai di Goa Maria.'),
                        const Divider(
                         thickness: 0.6,
                         height: 24,
