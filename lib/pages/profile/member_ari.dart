@@ -283,6 +283,15 @@ class _Member_AriState extends State<Member_Ari> {
                                       ),
                                       fit: BoxFit.cover,
                                     ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(  
+                                          0.1
+                                        ),
+                                        blurRadius: 6,
+                                        offset: const Offset(0, 1),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ],
