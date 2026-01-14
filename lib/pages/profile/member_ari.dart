@@ -200,7 +200,7 @@ class _Member_AriState extends State<Member_Ari> {
                   ],
                 ),
 
-                const SizedBox(height: 18),
+                const SizedBox(height: 16),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.only(bottom: 16),
@@ -254,6 +254,7 @@ class _Member_AriState extends State<Member_Ari> {
                             ),
                           ],
                         ),
+                        
                         child: Row(
                           children: [
                             Container(
