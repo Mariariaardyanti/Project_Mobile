@@ -152,6 +152,10 @@ class _WorkspaceCard extends StatelessWidget {
             ),
           ],
         ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [],
+        ),
       ),
 
     );
