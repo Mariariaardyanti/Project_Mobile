@@ -188,7 +188,12 @@ class _WorkspaceCard extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [],
+            ),
+          ],
         ),
       ),
 
