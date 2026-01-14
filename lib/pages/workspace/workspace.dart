@@ -239,6 +239,7 @@ class _WorkspaceCard extends StatelessWidget {
                 SizedBox(
                   height: 28,
                   child: Stack(
+                    clipBehavior: Clip.none,
                     children: [],
                   ),
                 ),
