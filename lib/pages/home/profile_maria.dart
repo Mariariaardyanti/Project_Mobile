@@ -61,6 +61,12 @@ class ProfileMaria extends StatelessWidget {
                         thickness: 0.6,
                         height: 24,
                         ),
+                        GridView.count(
+                            crossAxisCount: 3,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: [],
+                         ),
                     ],
                 ),
              ),
