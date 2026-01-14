@@ -139,7 +139,10 @@ class _WorkspaceCard extends StatelessWidget {
     
     return InkWell(
       onTap: onTap,
-      child: const SizedBox(),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+      ),
+
     );
   }
 }
