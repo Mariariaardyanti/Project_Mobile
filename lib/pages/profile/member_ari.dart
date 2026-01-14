@@ -215,19 +215,20 @@ class _Member_AriState extends State<Member_Ari> {
                     children: [
                       const SizedBox(height: 8),
                       const Text(
-                        "Project Team Members",
+                        "< Project Team Members",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: Colors.brown,
                         ),
                       ),
                       const SizedBox(height: 16),
                       const Text(
-                        "Created as a learning project, this app combines notes, tasks, and collaboration features.",
+                        "Created as a learning project, this app combines notes, tasks, and collaboration features. Meet the people behind this project and learn a little about what they built",
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.normal,
+                          color: Color.fromARGB(255, 111, 101, 66),
                         ),
                       ),
 
