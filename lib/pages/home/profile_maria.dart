@@ -65,6 +65,8 @@ class ProfileMaria extends StatelessWidget {
                             crossAxisCount: 3,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
+                            crossAxisSpacing: 2,
+                            mainAxisSpacing: 2,
                             children: [],
                          ),
                     ],
