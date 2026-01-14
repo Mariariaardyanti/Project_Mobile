@@ -169,7 +169,7 @@ class _WorkspaceCard extends StatelessWidget {
     final title = note.title;
     final desc = note.content;
     final firstLabel = note.labels.isNotEmpty ? note.labels.first : null;
-
+    final statusText = _relativeStatus(note.updatedAt);
     
     return InkWell(
       onTap: onTap,
