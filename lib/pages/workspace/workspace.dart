@@ -256,7 +256,16 @@ class _WorkspaceCard extends StatelessWidget {
 
                 //Collaborator label text (contoh)
                 Expanded(
-                  child: Text('Collaborate with Rian, Ari'),
+                  child: Text(
+                    'Collaborate with Rian, Ari',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey[700],
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
                 ),
               ],
             ),
