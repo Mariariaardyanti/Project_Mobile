@@ -21,9 +21,23 @@ class ProfileMaria extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
-              child: const CircleAvatar(
-                radius: 45,
-                backgroundImage: AssetImage('assets/images/profile.jpg'),
+              child: Container(
+                padding: const EdgeInsets.all(3),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xffF58529),
+                      Color(0xffDD2A7B),
+                      Color(0xff8134AF),
+                      Color(0xff515BD4),
+                    ],
+                  ),
+                ),
+                child: const CircleAvatar(
+                  radius: 42,
+                  backgroundImage: AssetImage('assets/images/profile.jpg'),
+                ),
               ),
             ),
           ],
