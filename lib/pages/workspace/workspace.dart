@@ -253,6 +253,11 @@ class _WorkspaceCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 12),
+
+                //Collaborator label text (contoh)
+                Expanded(
+                  child: Text('Collaborate with Rian, Ari'),
+                ),
               ],
             ),
           ],
