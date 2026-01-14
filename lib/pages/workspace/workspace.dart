@@ -141,6 +141,10 @@ class _WorkspaceCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF7F6F5),
+          borderRadius: BorderRadius.circular(14),
+        ),
       ),
 
     );
