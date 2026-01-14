@@ -69,6 +69,19 @@ class ProfileMaria extends StatelessWidget {
                             mainAxisSpacing: 2,
                             children: [],
                          ),
+
+                         const Image(
+                            image: AssetImage('assets/images/post1.jpg'),
+                            fit: BoxFit.cover,
+                        ),
+                            const Image(
+                                image: AssetImage('assets/images/post2.jpg'),
+                                fit: BoxFit.cover,
+                            ),
+                            const Image(
+                                image: AssetImage('assets/images/post3.jpg'),
+                                fit: BoxFit.cover,
+                            ),
                     ],
                 ),
              ),
