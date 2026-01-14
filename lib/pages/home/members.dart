@@ -250,7 +250,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Magang",
+                                    "1123150126",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
