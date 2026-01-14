@@ -27,4 +27,12 @@ class LocalNotificationService {
 
     await _plugin.initialize(settings);
   }
+
+  static Future<void> createNotificationChannel() async {
+    await _plugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+  }
+
 }
