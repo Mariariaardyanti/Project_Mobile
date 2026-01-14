@@ -136,7 +136,11 @@ class _WorkspaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox();
+    
+    return InkWell(
+      onTap: onTap,
+      child: const SizedBox(),
+    );
   }
 }
 
