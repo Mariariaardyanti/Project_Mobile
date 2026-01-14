@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/home/notification_page.dart';
+import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 import 'package:project_mobile/pages/home/homepage.dart';
@@ -101,17 +101,17 @@ class ProfileMaria extends StatelessWidget {
                   ),
                   
                   const SizedBox(height: 10),
-                    const Text(
-                    'Menjalani peran sebagai mahasiswi Teknologi Informasi sekaligus bekerja '
-                    'sebagai admin di salah satu toko mengajarkan saya tentang kedisiplinan '
-                    'dan tanggung jawab. Melalui fotografi dan perjalanan ke Goa Maria, saya '
-                    'menemukan keseimbangan antara kesibukan sehari-hari dan ketenangan batin.',
-                    style: TextStyle(
-                        fontSize: 11,
-                        color: Colors.black54,
-                        height: 1.4,
-                    ),
+                const Text(
+                'Menjalani peran sebagai mahasiswi Teknologi Informasi sekaligus bekerja '
+                'sebagai admin di salah satu toko mengajarkan saya tentang kedisiplinan '
+                'dan tanggung jawab. Melalui fotografi dan perjalanan ke Goa Maria, saya '
+                'menemukan keseimbangan antara kesibukan sehari-hari dan ketenangan batin.',
+                style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.black54,
+                    height: 1.4,
                 ),
+            ),
 
                   const Divider(height: 24, thickness: 0.6),
 
@@ -154,6 +154,7 @@ class ProfileMaria extends StatelessWidget {
           ),
         ),
       ),
+
       // ===== BOTTOM NAV =====
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
