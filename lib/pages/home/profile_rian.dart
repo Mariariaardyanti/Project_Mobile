@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// Pastikan import file lain yang dibutuhkan sesuai struktur project kamu
+// import 'package:project_mobile/pages/home/homepage.dart'; 
 
 class Rian extends StatefulWidget {
   const Rian({super.key});
@@ -11,14 +13,17 @@ class _RianState extends State<Rian> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      // Menggunakan background warna gelap (Dark Theme) untuk kesan elegan & techy
+      backgroundColor: const Color(0xFF0F172A), 
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // --- HEADER SECTION ---
             Stack(
               clipBehavior: Clip.none,
               children: [
+                // Background Gradient Header
                 Container(
                   height: 220,
                   width: double.infinity,
@@ -26,7 +31,7 @@ class _RianState extends State<Rian> {
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [Color(0xFF3B82F6), Color(0xFF2563EB)],
+                      colors: [Color(0xFF3B82F6), Color(0xFF2563EB)], // Blue Gradient
                     ),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(40),
@@ -34,7 +39,8 @@ class _RianState extends State<Rian> {
                     ),
                   ),
                 ),
-
+                
+                // Pattern Overlay (Optional decoration)
                 Positioned(
                   top: -50,
                   right: -50,
@@ -48,6 +54,7 @@ class _RianState extends State<Rian> {
                   ),
                 ),
 
+                // Back Button
                 Positioned(
                   top: 50,
                   left: 20,
@@ -64,6 +71,8 @@ class _RianState extends State<Rian> {
                   ),
                 ),
 
+                // PROFILE IMAGE
+                // Dibuat menumpuk (overlap) antara header dan body
                 Positioned(
                   bottom: -60,
                   left: 0,
@@ -72,7 +81,7 @@ class _RianState extends State<Rian> {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFF0F172A), width: 6),
+                        border: Border.all(color: const Color(0xFF0F172A), width: 6), // Border warna background
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.3),
@@ -84,15 +93,18 @@ class _RianState extends State<Rian> {
                       child: const CircleAvatar(
                         radius: 65,
                         backgroundColor: Colors.grey,
-                        backgroundImage: AssetImage("assets/images/wangja.png"), 
+                        // Ganti dengan path gambar kamu sendiri
+                        backgroundImage: AssetImage("assets/images/rian_profile.png"), 
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 70), 
 
+            const SizedBox(height: 70), // Spasi untuk Profile Image yang overlap
+
+            // --- IDENTITY SECTION ---
             Center(
               child: Column(
                 children: [
@@ -105,20 +117,18 @@ class _RianState extends State<Rian> {
                       letterSpacing: 0.5,
                     ),
                   ),
-
                   const SizedBox(height: 8),
-
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E293B),
+                      color: const Color(0xFF1E293B), 
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: const Color(0xFF334155)),
                     ),
                     child: const Text(
                       "TI 23 SE M  •  1123150061",
                       style: TextStyle(
-                        color: Color(0xFF94A3B8),
+                        color: Color(0xFF94A3B8), 
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
                       ),
@@ -130,6 +140,7 @@ class _RianState extends State<Rian> {
 
             const SizedBox(height: 30),
 
+            // --- ABOUT SECTION (Style Terminal/Card) ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -138,21 +149,19 @@ class _RianState extends State<Rian> {
                   const Text(
                     "ABOUT ME",
                     style: TextStyle(
-                      color: Color(0xFF64748B),
+                      color: Color(0xFF64748B), 
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
                     ),
                   ),
-
                   const SizedBox(height: 10),
-
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: const Color(0xFF1E293B),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.only(
+                      border: Border(
                         left: BorderSide(color: Colors.blueAccent.shade400, width: 4)
                       )
                     ),
@@ -172,6 +181,7 @@ class _RianState extends State<Rian> {
 
             const SizedBox(height: 25),
 
+            // --- SKILLS SECTION (Modern Chips) ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -192,14 +202,13 @@ class _RianState extends State<Rian> {
                       Icon(Icons.code, color: Color(0xFF64748B), size: 18)
                     ],
                   ),
-
                   const SizedBox(height: 15),
-
                   Wrap(
                     spacing: 10,
                     runSpacing: 10,
                     children: [
-                      _buildSkillChip("Python", null, Colors.blue.withOpacity(0.2), Colors.blue),
+                      // Skill Items dengan warna custom
+                      _buildSkillChip("Python", "assets/icons/python.png", Colors.blue.withOpacity(0.2), Colors.blue),
                       _buildSkillChip("PHP", null, Colors.indigo.withOpacity(0.2), Colors.indigoAccent),
                       _buildSkillChip("HTML 5", null, Colors.orange.withOpacity(0.2), Colors.orange),
                       _buildSkillChip("CSS 3", null, Colors.blueAccent.withOpacity(0.2), Colors.blueAccent),
@@ -211,36 +220,40 @@ class _RianState extends State<Rian> {
               ),
             ),
 
-            const SizedBox(height: 40),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 5,
-                  ),
-                  child: const Text(
-                    "Contact Me",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
+             const SizedBox(height: 40),
+             
+             // --- CONTACT BUTTON ---
+             Padding(
+               padding: const EdgeInsets.symmetric(horizontal: 24),
+               child: SizedBox(
+                 width: double.infinity,
+                 height: 55,
+                 child: ElevatedButton(
+                   onPressed: () {},
+                   style: ElevatedButton.styleFrom(
+                     backgroundColor: Colors.white,
+                     foregroundColor: Colors.black,
+                     shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(16),
+                     ),
+                     elevation: 5,
+                   ),
+                   child: const Text(
+                     "Contact Me",
+                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                   ),
+                 ),
+               ),
+             ),
+             
+             const SizedBox(height: 40),
           ],
         ),
       ),
     );
   }
+
+  // Widget Helper untuk Skill Chip agar kodingan lebih rapi
   Widget _buildSkillChip(String label, String? iconPath, Color bgColor, Color borderColor) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -252,9 +265,10 @@ class _RianState extends State<Rian> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // Jika ada icon, tampilkan, jika tidak pakai icon code default
           if (iconPath != null) ...[
-            Image.asset(iconPath, height: 16),
-             const SizedBox(width: 8),
+             // Image.asset(iconPath, height: 16), // Uncomment jika punya aset icon
+             // const SizedBox(width: 8),
           ],
           Text(
             label,
