@@ -105,7 +105,9 @@ class _RianState extends State<Rian> {
                       letterSpacing: 0.5,
                     ),
                   ),
+
                   const SizedBox(height: 8),
+                  
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     decoration: BoxDecoration(
@@ -125,7 +127,9 @@ class _RianState extends State<Rian> {
                 ],
               ),
             ),
+
             const SizedBox(height: 30),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -140,7 +144,9 @@ class _RianState extends State<Rian> {
                       letterSpacing: 1.2,
                     ),
                   ),
+
                   const SizedBox(height: 10),
+
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
@@ -163,7 +169,9 @@ class _RianState extends State<Rian> {
                 ],
               ),
             ),
+
             const SizedBox(height: 25),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -184,7 +192,9 @@ class _RianState extends State<Rian> {
                       Icon(Icons.code, color: Color(0xFF64748B), size: 18)
                     ],
                   ),
+
                   const SizedBox(height: 15),
+
                   Wrap(
                     spacing: 10,
                     runSpacing: 10,
@@ -198,6 +208,31 @@ class _RianState extends State<Rian> {
                     ],
                   ),
                 ],
+              ),
+            ),
+
+            const SizedBox(height: 40),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 5,
+                  ),
+                  child: const Text(
+                    "Contact Me",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
             ),
           ],
