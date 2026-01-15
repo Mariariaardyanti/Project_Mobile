@@ -47,6 +47,22 @@ class _RianState extends State<Rian> {
                     ),
                   ),
                 ),
+                
+                Positioned(
+                  top: 50,
+                  left: 20,
+                  child: IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(Icons.arrow_back, color: Colors.white),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
