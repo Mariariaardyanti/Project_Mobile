@@ -100,6 +100,7 @@ class _WorkspaceAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       title: const Text('Workspace', style: TextStyle(color: Colors.black)),
       backgroundColor: Colors.white,
       elevation: 0,
@@ -230,6 +231,7 @@ class _WorkspaceCard extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 28,
+                  width: 60,
                   child: Stack(
                     clipBehavior: Clip.none,
                     children: [
@@ -249,11 +251,7 @@ class _WorkspaceCard extends StatelessWidget {
                 //Collaborator label text (contoh)
                 Expanded(
                   child: Text(
-                    'Collaborate with Rian, Ari',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[700],
-                    ),
+                    'Collaborate with Rian, Ari, Helen, Maria',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
