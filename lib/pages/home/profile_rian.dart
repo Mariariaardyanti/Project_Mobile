@@ -184,6 +184,19 @@ class _RianState extends State<Rian> {
                       Icon(Icons.code, color: Color(0xFF64748B), size: 18)
                     ],
                   ),
+                  const SizedBox(height: 15),
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      _buildSkillChip("Python", null, Colors.blue.withOpacity(0.2), Colors.blue),
+                      _buildSkillChip("PHP", null, Colors.indigo.withOpacity(0.2), Colors.indigoAccent),
+                      _buildSkillChip("HTML 5", null, Colors.orange.withOpacity(0.2), Colors.orange),
+                      _buildSkillChip("CSS 3", null, Colors.blueAccent.withOpacity(0.2), Colors.blueAccent),
+                      _buildSkillChip("JavaScript", null, Colors.yellow.withOpacity(0.15), Colors.yellow),
+                      _buildSkillChip("Flutter", null, Colors.cyan.withOpacity(0.2), Colors.cyan),
+                    ],
+                  ),
                 ],
               ),
             ),
