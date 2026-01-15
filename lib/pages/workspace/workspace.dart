@@ -16,6 +16,8 @@ class WorkspacePage extends StatefulWidget {
 
 class _WorkspacePageState extends State<WorkspacePage> {
   final NotesService _notesService = NotesService();
+  bool _isNotifHovered = false; 
+  List<String> _notifications = [];
 
   @override
   Widget build(BuildContext context) {
