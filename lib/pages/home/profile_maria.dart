@@ -19,7 +19,7 @@ class ProfileMaria extends StatelessWidget {
         foregroundColor: Colors.black,
         elevation: 0,
         title: const Text(
-          'maria_euphrasia',
+          'Profile Member',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -144,7 +144,7 @@ class ProfileMaria extends StatelessWidget {
                             child: const CircleAvatar(
                               radius: 38,
                               backgroundImage:
-                                  AssetImage('assets/images/maria_P.jpg'),
+                                  AssetImage('assets/images/maria_P.png'),
                             ),
                           ),
                           const SizedBox(width: 16),
@@ -192,10 +192,10 @@ class ProfileMaria extends StatelessWidget {
 
                       const SizedBox(height: 10),
                       const Text(
-                        'Menjalani peran sebagai mahasiswi Teknologi Informasi sekaligus bekerja '
-                        'sebagai admin di salah satu toko mengajarkan saya tentang kedisiplinan '
-                        'dan tanggung jawab. Melalui fotografi dan perjalanan ke Goa Maria, saya '
-                        'menemukan keseimbangan antara kesibukan sehari-hari dan ketenangan batin.',
+                        'Memiliki keahlian dasar dalam pengembangan aplikasi menggunakan Flutter, termasuk pembuatan '
+                        'tampilan antarmuka (UI) dengan widget dasar, pengelolaan layout, navigasi antar halaman, serta '
+                        'penggunaan asset seperti gambar dan ikon. Terbiasa menerapkan konsep StatelessWidget dan '
+                        'StatefulWidget untuk membangun aplikasi yang terstruktur dan mudah dikembangkan.',
                         style: TextStyle(
                           fontSize: 11,
                           color: Colors.black54,
