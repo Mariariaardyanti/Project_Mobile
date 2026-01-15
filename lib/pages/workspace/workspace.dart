@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:project_mobile/models/note_model.dart';
 import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
+import 'package:project_mobile/pages/home/notification_page.dart';
+import 'package:project_mobile/pages/profile/profile.dart';
 
 class WorkspacePage extends StatefulWidget {
   const WorkspacePage({super.key});
