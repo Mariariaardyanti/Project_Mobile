@@ -140,6 +140,26 @@ class _RianState extends State<Rian> {
                       letterSpacing: 1.2,
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1E293B),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.only(
+                        left: BorderSide(color: Colors.blueAccent.shade400, width: 4)
+                      )
+                    ),
+                    child: const Text(
+                      "Hello World! Saya adalah mahasiswa Teknik Informatika yang memiliki passion tinggi dalam Back-End Development dan Web Technologies. Suka memecahkan masalah kompleks dengan kode yang efisien.",
+                      style: TextStyle(
+                        color: Color(0xFFE2E8F0),
+                        height: 1.6,
+                        fontSize: 15,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
                 ],
               ),
             ),
