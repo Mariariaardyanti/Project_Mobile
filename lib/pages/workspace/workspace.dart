@@ -122,7 +122,9 @@ class _WorkspaceCard extends StatelessWidget {
   final Note note;
   final VoidCallback onTap;
 
-  const _WorkspaceCard({
+  final NotesService _notesService = NotesService();
+
+  _WorkspaceCard({
     required this.note,
     required this.onTap,
   });
@@ -212,6 +214,53 @@ class _WorkspaceCard extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+                  ),
+
+                  const SizedBox(height: 4),
+
+                  PopupMenuButton<String>(
+                    icon: const Icon(Icons.more_vert, size: 20),
+                    onSelected: (value) async {
+                      if (value == 'pin') {
+                        await _notesService.togglePin(
+                          note.id,
+                          note.isPinned,
+                        );
+                      } else if (value == 'delete') {
+                        await _notesService.deleteNote(note.id);
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 'pin',
+                        child: Row(
+                          children: [
+                            Icon(
+                              note.isPinned
+                                  ? Icons.push_pin
+                                  : Icons.push_pin_outlined,
+                              size: 18,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(note.isPinned ? 'Unpin' : 'Pin'),
+                          ],
+                        ),
+                      ),
+                      const PopupMenuItem(
+                        value: 'delete',
+                        child: Row(
+                          children: [
+                            Icon(Icons.delete_outline,
+                                size: 18, color: Colors.red),
+                            SizedBox(width: 8),
+                            Text(
+                              'Delete',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
               ],
             ),

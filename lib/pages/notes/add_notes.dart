@@ -819,44 +819,6 @@ class _AddNotesPageState extends State<AddNotesPage> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade200,
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home_outlined, size: 28),
-              onPressed: () => Navigator.pop(context),
-            ),
-            Container(
-              width: 56,
-              height: 56,
-              decoration: const BoxDecoration(
-                color: Color(0xFFFFF1D6),
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                icon: const Icon(Icons.add, size: 30),
-                onPressed: () {},
-              ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.sticky_note_2_outlined, size: 26),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
     );
   }
 
