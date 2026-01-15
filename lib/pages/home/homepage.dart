@@ -324,7 +324,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/images/bubbles.jpg',
+                                  'assets/images/bubbles.jpg', //punya ari
                                 ),
                               ),
                             ),
@@ -333,7 +333,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/images/bubbles.jpg',
+                                  'assets/images/bubbles.jpg', //punya helen
                                 ),
                               ),
                             ),
@@ -342,7 +342,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/images/bubbles.jpg',
+                                  'assets/images/bubbles.jpg', //punya maria
                                 ),
                               ),
                             ),
@@ -351,7 +351,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/images/bubbles.jpg',
+                                  'assets/images/wangja.png', //punya rian
                                 ),
                               ),
                             ),

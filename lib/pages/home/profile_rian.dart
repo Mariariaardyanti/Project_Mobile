@@ -181,7 +181,7 @@ class _RianState extends State<Rian> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
-                        "TECH STACK",
+                        "Skill dimiliki",
                         style: TextStyle(
                           color: Color(0xFF64748B),
                           fontSize: 12,
@@ -198,7 +198,7 @@ class _RianState extends State<Rian> {
                     runSpacing: 10,
                     children: [
                       // Skill Items dengan warna custom
-                      _buildSkillChip("Python", "assets/icons/python.png", Colors.blue.withValues(alpha: 0.2), Colors.blue),
+                      _buildSkillChip("Python",null, Colors.blue.withValues(alpha: 0.2), Colors.blue),
                       _buildSkillChip("PHP", null, Colors.indigo.withValues(alpha:0.2), Colors.indigoAccent),
                       _buildSkillChip("HTML 5", null, Colors.orange.withValues(alpha: 0.2), Colors.orange),
                       _buildSkillChip("CSS 3", null, Colors.blueAccent.withValues(alpha: 0.2), Colors.blueAccent),
