@@ -27,9 +27,12 @@ class _HomepageState extends State<Homepage> {
   // ===== Notes Service =====
   final NotesService _notesService = NotesService();
 
-@override
-void initState() {
-  super.initState();
+  final TextEditingController _searchController = TextEditingController();
+  String searchQuery = "";
+
+  @override
+  void initState() {
+    super.initState();
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
     _fcmService.init(
@@ -44,6 +47,12 @@ void initState() {
     );
   });
 }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,11 +183,29 @@ void initState() {
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Colors.grey.shade300, width: 1),
                   ),
-                  child: const TextField(
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {
+                        searchQuery = value.toLowerCase();
+                      });
+                    },
                     decoration: InputDecoration(
                       icon: Icon(Icons.search),
                       hintText: "Search...",
                       border: InputBorder.none,
+
+                      suffixIcon: searchQuery.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear, size: 20),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() {
+                                  searchQuery = "";
+                                });
+                              },
+                            )
+                          : null,
                     ),
                   ),
                 ),
@@ -411,7 +438,7 @@ void initState() {
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Belum ada catatan',
+                                'No notes yet',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.grey[600],
@@ -419,7 +446,7 @@ void initState() {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Tap tombol + untuk membuat catatan',
+                                'Tap the + button to create a note',
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.grey[500],
@@ -434,8 +461,61 @@ void initState() {
                     // Has data
                     final notes = snapshot.data!.docs;
 
+                    //Filter data
+                    final filteredNotes = notes.where((doc) {
+                      final note = Note.fromFirestore(doc);
+                      final title = note.title.toLowerCase();
+                      final content = note.content.toLowerCase();
+
+                      return searchQuery.isEmpty ||
+                          title.contains(searchQuery) ||
+                          content.contains(searchQuery);
+                    }).toList();
+
+                    // Jika tidak ada hasil search
+                    if (filteredNotes.isEmpty && searchQuery.isNotEmpty) {
+                      return Container(
+                        padding: const EdgeInsets.all(32),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.grey.shade200,
+                            style: BorderStyle.solid,
+                          ),
+                        ),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.search_off,
+                                size: 48,
+                                color: Colors.grey[400],
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                'No notes found',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Try different keywords',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+
                     return Column(
-                      children: notes.map((doc) {
+                      children: filteredNotes.map((doc) {
                         final note = Note.fromFirestore(doc);
 
                         return GestureDetector(
