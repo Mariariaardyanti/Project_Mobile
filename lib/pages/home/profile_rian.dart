@@ -253,7 +253,8 @@ class _RianState extends State<Rian> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (iconPath != null) ...[
-            // Bagian icon sementara dikomentari
+            Image.asset(iconPath, height: 16),
+             const SizedBox(width: 8),
           ],
           Text(
             label,
