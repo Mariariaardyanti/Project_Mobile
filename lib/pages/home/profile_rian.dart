@@ -34,6 +34,19 @@ class _RianState extends State<Rian> {
                     ),
                   ),
                 ),
+
+                Positioned(
+                  top: -50,
+                  right: -50,
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
