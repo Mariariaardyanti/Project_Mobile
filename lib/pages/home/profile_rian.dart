@@ -107,7 +107,7 @@ class _RianState extends State<Rian> {
                   ),
 
                   const SizedBox(height: 8),
-                  
+
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     decoration: BoxDecoration(
@@ -235,6 +235,7 @@ class _RianState extends State<Rian> {
                 ),
               ),
             ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
