@@ -91,6 +91,23 @@ class _RianState extends State<Rian> {
                 ),
               ],
             ),
+            const SizedBox(height: 70), 
+
+            Center(
+              child: Column(
+                children: [
+                  const Text(
+                    "Rian Maulana",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
