@@ -49,14 +49,42 @@ class _WorkspacePageState extends State<WorkspacePage> {
               ),
             ),
             const SizedBox(width: 12),
-            // Icon Notif
-            MouseRegion(
-              onEnter: (_) => setState(() => _isNotifHovered = true),
-              onExit: (_) => setState(() => _isNotifHovered = false),
-              child: AnimatedScale(
-                scale: _isNotifHovered ? 1.1 : 1.0,
-                duration: const Duration(milliseconds: 150),
-                child: const Icon(Icons.notifications_none),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NotificationPage(
+                      notifications: _notifications,
+                    ),
+                  ),
+                );
+              },
+              child: MouseRegion(
+                onEnter: (_) => setState(() => _isNotifHovered = true),
+                onExit: (_) => setState(() => _isNotifHovered = false),
+                child: AnimatedScale(
+                  scale: _isNotifHovered ? 1.1 : 1.0,
+                  duration: const Duration(milliseconds: 150),
+                  child: Stack( 
+                    children: [
+                      const Icon(Icons.notifications_none),
+                      if (_notifications.isNotEmpty)
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: 12),
