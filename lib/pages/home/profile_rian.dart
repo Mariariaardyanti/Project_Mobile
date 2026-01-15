@@ -163,6 +163,30 @@ class _RianState extends State<Rian> {
                 ],
               ),
             ),
+            const SizedBox(height: 25),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "TECH STACK",
+                        style: TextStyle(
+                          color: Color(0xFF64748B),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                      Icon(Icons.code, color: Color(0xFF64748B), size: 18)
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
