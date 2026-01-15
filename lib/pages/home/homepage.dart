@@ -9,6 +9,7 @@ import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 import 'package:project_mobile/pages/home/members.dart';
+import 'package:project_mobile/pages/workspace/workspace.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -19,6 +20,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   bool _isNotifHovered = false;
+  int _currentIndex = 0;
 
   // ===== FCM =====
   final FCMNotificationService _fcmService = FCMNotificationService();
@@ -30,10 +32,16 @@ class _HomepageState extends State<Homepage> {
   final TextEditingController _searchController = TextEditingController();
   String searchQuery = "";
 
+  List<Widget> get _pages => [
+      _buildHomeContent(),
+      const SizedBox(),
+      const WorkspacePage(),
+    ];
+
   @override
   void initState() {
     super.initState();
-
+    
   WidgetsBinding.instance.addPostFrameCallback((_) {
     _fcmService.init(
       onMessageReceived: (String message) {
@@ -54,17 +62,9 @@ class _HomepageState extends State<Homepage> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user == null) {
-      return const Scaffold(body: Center(child: Text('Please login first')));
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
+  Widget _buildHomeContent(){
+    final user = FirebaseAuth.instance.currentUser!;
+    return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -844,21 +844,41 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      return const Scaffold(body: Center(child: Text('Please login first')));
+    }
+  
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
       ),
 
       // ===== BOTTOM NAV =====
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
-        currentIndex: 0,
+        currentIndex: _currentIndex,
         elevation: 0,
         onTap: (index) {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddNotesPage()),
+              MaterialPageRoute(builder: (_) => const AddNotesPage()),
             );
+            return;
           }
+          setState(() {
+            _currentIndex = index;
+          });
         },
         items: [
           BottomNavigationBarItem(
