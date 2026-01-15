@@ -79,7 +79,7 @@ class _EditProfileState extends State<EditProfile> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -116,107 +116,106 @@ class _EditProfileState extends State<EditProfile> {
           child: Form(
             key: _formKey,
             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: [
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 // Name Field
-              const Text(
-                'Full Name',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF8B5E3C),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  hintText: 'Enter your name',
-                  filled: true,
-                  fillColor: const Color(0xFFFFF6E9),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
+                const Text(
+                  'Full Name',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF8B5E3C),
                   ),
-                  prefixIcon: const Icon(Icons.person_outline),
                 ),
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Name is required';
-                  }
-                  return null;
-                },
-              ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _nameController,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your name',
+                    filled: true,
+                    fillColor: const Color(0xFFFFF6E9),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    prefixIcon: const Icon(Icons.person_outline),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Name is required';
+                    }
+                    return null;
+                  },
+                ),
 
-               const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // Email Field (Read-only)
-              const Text(
-                'Email',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF8B5E3C),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextFormField(
-                controller: _emailController,
-                readOnly: true, // Email tidak bisa diubah
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  filled: true,
-                  fillColor: Colors.grey[100],
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  prefixIcon: const Icon(Icons.email_outlined),
-                  suffixIcon: const Icon(
-                    Icons.lock_outline,
-                    size: 18,
-                    color: Colors.grey,
+                const Text(
+                  'Email',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF8B5E3C),
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 20),
-
-              // Save Button (Full Width)
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _isLoading ? null : _saveProfile,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF8B5E3C),
-                    shape: RoundedRectangleBorder(
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _emailController,
+                  readOnly: true, // Email tidak bisa diubah
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    prefixIcon: const Icon(Icons.email_outlined),
+                    suffixIcon: const Icon(
+                      Icons.lock_outline,
+                      size: 18,
+                      color: Colors.grey,
                     ),
                   ),
-                  child: _isLoading
-                      ? const SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                            strokeWidth: 2,
-                          ),
-                        )
-                      : const Text(
-                          'Save Changes',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
                 ),
-              ),
 
-               ],
-            )
-          )
+                const SizedBox(height: 20),
+
+                // Save Button (Full Width)
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: _isLoading ? null : _saveProfile,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8B5E3C),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: _isLoading
+                        ? const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : const Text(
+                            'Save Changes',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

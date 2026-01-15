@@ -75,6 +75,7 @@ flutter:
     - assets/images/bubbles.jpg
     - assets/images/wangja.png
     - assets/animations/Notes.json
+    - assets/images/coverilen.png
 
 
   fonts:
