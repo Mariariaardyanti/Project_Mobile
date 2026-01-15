@@ -54,7 +54,21 @@ class _WorkspacePageState extends State<WorkspacePage> {
                       Text('Belum ada catatan', style: TextStyle(color: Colors.grey[600])),
                       const SizedBox(height: 8),
                       ElevatedButton(
-                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AddNotesPage())),
+                        onPressed: () async {
+                          final result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const AddNotesPage()),
+                          );
+
+                          if (result == true && context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Catatan berhasil disimpan'),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
+                          }
+                        },
                         child: const Text('Buat Catatan'),
                       )
                     ],
@@ -74,13 +88,22 @@ class _WorkspacePageState extends State<WorkspacePage> {
                   final note = notes[index];
                   return  _WorkspaceCard(
                     note: note,
-                    onTap: () {
-                      Navigator.push(
+                    onTap: () async {
+                      final result = await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => AddNotesPage(note: note),
                         ),
                       );
+
+                      if (result == true && mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Catatan berhasil disimpan'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      }
                     },
                   );
                 },

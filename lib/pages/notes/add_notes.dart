@@ -55,6 +55,8 @@ class _AddNotesPageState extends State<AddNotesPage> {
 
   // SAVE NOTE
   Future<void> _saveNote() async {
+    if (_isLoading) return;
+    
     final title = _titleController.text.trim();
     final content = _contentController.text.trim();
 
@@ -115,11 +117,10 @@ class _AddNotesPageState extends State<AddNotesPage> {
 
       Navigator.pop(context);
     } catch (e) {
-      if (mounted) {
+      if (!mounted) return;
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('Gagal menyimpan: $e')));
-      }
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);

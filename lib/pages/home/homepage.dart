@@ -19,8 +19,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  bool _isNotifHovered = false;
   int _currentIndex = 0;
-  late final List<Widget> _pages;
 
   // ===== FCM =====
   final FCMNotificationService _fcmService = FCMNotificationService();
@@ -29,20 +29,19 @@ class _HomepageState extends State<Homepage> {
   // ===== Notes Service =====
   final NotesService _notesService = NotesService();
 
-@override
-void initState() {
-  super.initState();
+  final TextEditingController _searchController = TextEditingController();
+  String searchQuery = "";
 
-  _pages = [
-  _HomeContent(
-    notifications: _notifications,
-    notesService: _notesService,
-    user: FirebaseAuth.instance.currentUser!,
-  ),
-  const SizedBox(),
-  const WorkspacePage(),
-];
+  List<Widget> get _pages => [
+      _buildHomeContent(),
+      const SizedBox(),
+      const WorkspacePage(),
+    ];
 
+  @override
+  void initState() {
+    super.initState();
+    
   WidgetsBinding.instance.addPostFrameCallback((_) {
     _fcmService.init(
       onMessageReceived: (String message) {
@@ -58,109 +57,13 @@ void initState() {
 }
 
   @override
-  Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user == null) {
-      return const Scaffold(body: Center(child: Text('Please login first')));
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
-      ),
-
-      // ===== BOTTOM NAV =====
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const AddNotesPage()),
-            );
-            return;
-          }
-
-          setState(() => _currentIndex = index);
-        },
-
-        items: [
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: _currentIndex == 0 ? Colors.amber[50] : Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.home_outlined, size: 30),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.add, size: 30),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: _currentIndex == 2 ? Colors.amber[50] : Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.sticky_note_2_outlined, size: 28),
-            ),
-          ),
-        ],
-      ),
-    );
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
-}
 
-String _formatDate(DateTime? date) {
-  if (date == null) return '';
-
-  final now = DateTime.now();
-  final difference = now.difference(date);
-
-  if (difference.inDays == 0) {
-    return 'Today ${DateFormat('HH:mm').format(date)}';
-  } else if (difference.inDays == 1) {
-    return 'Yesterday';
-  } else if (difference.inDays < 7) {
-    return '${difference.inDays} days ago';
-  } else {
-    return DateFormat('MMM dd, yyyy').format(date);
-  }
-}
-
-class _HomeBody extends StatelessWidget {
-  final List<String> notifications;
-  final NotesService notesService;
-  final User user;
-
-  const _HomeBody({
-    super.key,
-    required this.notifications,
-    required this.notesService,
-    required this.user,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildHomeContent(){
+    final user = FirebaseAuth.instance.currentUser!;
     return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -202,40 +105,46 @@ class _HomeBody extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 12),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NotificationPage(
-                                  notifications: notifications,
-                                ),
-                              ),
-                            );
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          onEnter: (_) {
+                            setState(() => _isNotifHovered = true);
                           },
-                          child: SizedBox(
-                            width: 28,
-                            height: 28,
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                const Center(
-                                  child: Icon(Icons.notifications_none, size: 24),
+                          onExit: (_) {
+                            setState(() => _isNotifHovered = false);
+                          },
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NotificationPage(
+                                    notifications: _notifications,
+                                  ),
                                 ),
-                                if (notifications.isNotEmpty)
-                                  Positioned(
-                                    right: 2,
-                                    top: 2,
-                                    child: Container(
-                                      width: 8,
-                                      height: 8,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.red,
-                                        shape: BoxShape.circle,
+                              );
+                            },
+                            child: AnimatedScale(
+                              scale: _isNotifHovered ? 1.1 : 1.0,
+                              duration: const Duration(milliseconds: 150),
+                              child: Stack(
+                                children: [
+                                  const Icon(Icons.notifications_none),
+                                  if (_notifications.isNotEmpty)
+                                    Positioned(
+                                      right: 0,
+                                      top: 0,
+                                      child: Container(
+                                        width: 8,
+                                        height: 8,
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          shape: BoxShape.circle,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -274,11 +183,29 @@ class _HomeBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Colors.grey.shade300, width: 1),
                   ),
-                  child: const TextField(
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {
+                        searchQuery = value.toLowerCase();
+                      });
+                    },
                     decoration: InputDecoration(
                       icon: Icon(Icons.search),
                       hintText: "Search...",
                       border: InputBorder.none,
+
+                      suffixIcon: searchQuery.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear, size: 20),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() {
+                                  searchQuery = "";
+                                });
+                              },
+                            )
+                          : null,
                     ),
                   ),
                 ),
@@ -466,426 +393,546 @@ class _HomeBody extends StatelessWidget {
                 const SizedBox(height: 12),
 
                 // ===== NOTES FROM FIRESTORE (Dynamic) =====
-                // StreamBuilder<QuerySnapshot>(
-                //   stream: notesService.getUserNotes(user.uid),
-                //   builder: (context, snapshot) {
-                //     // Loading
-                //     if (snapshot.connectionState == ConnectionState.waiting) {
-                //       return const Center(
-                //         child: Padding(
-                //           padding: EdgeInsets.all(20.0),
-                //           child: CircularProgressIndicator(),
-                //         ),
-                //       );
-                //     }
+                StreamBuilder<QuerySnapshot>(
+                  stream: _notesService.getUserNotes(user.uid),
+                  builder: (context, snapshot) {
+                    // Loading
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
 
-                //     // Error
-                //     if (snapshot.hasError) {
-                //       return Center(
-                //         child: Padding(
-                //           padding: const EdgeInsets.all(20.0),
-                //           child: Text('Error: ${snapshot.error}'),
-                //         ),
-                //       );
-                //     }
+                    // Error
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text('Error: ${snapshot.error}'),
+                        ),
+                      );
+                    }
 
-                //     // No data
-                //     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                //       return Container(
-                //         padding: const EdgeInsets.all(32),
-                //         decoration: BoxDecoration(
-                //           color: Colors.grey[50],
-                //           borderRadius: BorderRadius.circular(12),
-                //           border: Border.all(
-                //             color: Colors.grey.shade200,
-                //             style: BorderStyle.solid,
-                //           ),
-                //         ),
-                //         child: Center(
-                //           child: Column(
-                //             children: [
-                //               Icon(
-                //                 Icons.note_add_outlined,
-                //                 size: 48,
-                //                 color: Colors.grey[400],
-                //               ),
-                //               const SizedBox(height: 12),
-                //               Text(
-                //                 'Belum ada catatan',
-                //                 style: TextStyle(
-                //                   fontSize: 14,
-                //                   color: Colors.grey[600],
-                //                 ),
-                //               ),
-                //               const SizedBox(height: 4),
-                //               Text(
-                //                 'Tap tombol + untuk membuat catatan',
-                //                 style: TextStyle(
-                //                   fontSize: 12,
-                //                   color: Colors.grey[500],
-                //                 ),
-                //               ),
-                //             ],
-                //           ),
-                //         ),
-                //       );
-                //     }
+                    // No data
+                    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      return Container(
+                        padding: const EdgeInsets.all(32),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.grey.shade200,
+                            style: BorderStyle.solid,
+                          ),
+                        ),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.note_add_outlined,
+                                size: 48,
+                                color: Colors.grey[400],
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                'No notes yet',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Tap the + button to create a note',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
 
-                //     // Has data
-                //     final notes = snapshot.data!.docs;
+                    // Has data
+                    final notes = snapshot.data!.docs;
 
-                //     return Column(
-                //       children: notes.map((doc) {
-                //         final note = Note.fromFirestore(doc);
+                    //Filter data
+                    final filteredNotes = notes.where((doc) {
+                      final note = Note.fromFirestore(doc);
+                      final title = note.title.toLowerCase();
+                      final content = note.content.toLowerCase();
 
-                //         return GestureDetector(
-                //           onTap: () {
-                //             // Navigate to edit
-                //             Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                 builder: (context) => AddNotesPage(note: note),
-                //               ),
-                //             );
-                //           },
-                //           child: Container(
-                //             width: double.infinity,
-                //             margin: const EdgeInsets.only(bottom: 16),
-                //             padding: const EdgeInsets.all(16),
-                //             decoration: BoxDecoration(
-                //               color: const Color(0xFFFFF8EE),
-                //               borderRadius: BorderRadius.circular(16),
-                //               border: Border.all(
-                //                 color: Colors.grey.shade300,
-                //                 width: 1,
-                //               ),
-                //             ),
-                //             child: Column(
-                //               crossAxisAlignment: CrossAxisAlignment.start,
-                //               children: [
-                //                 // Header
-                //                 Row(
-                //                   mainAxisAlignment:
-                //                       MainAxisAlignment.spaceBetween,
-                //                   crossAxisAlignment: CrossAxisAlignment.start,
-                //                   children: [
-                //                     // Title
-                //                     Expanded(
-                //                       child: Container(
-                //                         padding: const EdgeInsets.symmetric(
-                //                           horizontal: 10,
-                //                           vertical: 4,
-                //                         ),
-                //                         decoration: BoxDecoration(
-                //                           color: Colors.white,
-                //                           borderRadius: BorderRadius.circular(
-                //                             12,
-                //                           ),
-                //                           border: Border.all(
-                //                             color: Colors.grey.shade300,
-                //                             width: 1,
-                //                           ),
-                //                           boxShadow: [
-                //                             BoxShadow(
-                //                               color: Colors.black.withOpacity(
-                //                                 0.1,
-                //                               ),
-                //                               blurRadius: 6,
-                //                               offset: const Offset(0, 1),
-                //                             ),
-                //                           ],
-                //                         ),
-                //                         child: Text(
-                //                           note.title,
-                //                           style: const TextStyle(
-                //                             fontWeight: FontWeight.bold,
-                //                             fontSize: 14,
-                //                           ),
-                //                           maxLines: 1,
-                //                           overflow: TextOverflow.ellipsis,
-                //                         ),
-                //                       ),
-                //                     ),
+                      return searchQuery.isEmpty ||
+                          title.contains(searchQuery) ||
+                          content.contains(searchQuery);
+                    }).toList();
 
-                //                     const SizedBox(width: 8),
+                    // Jika tidak ada hasil search
+                    if (filteredNotes.isEmpty && searchQuery.isNotEmpty) {
+                      return Container(
+                        padding: const EdgeInsets.all(32),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.grey.shade200,
+                            style: BorderStyle.solid,
+                          ),
+                        ),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.search_off,
+                                size: 48,
+                                color: Colors.grey[400],
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                'No notes found',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Try different keywords',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
 
-                //                     // Labels & Pin
-                //                     Row(
-                //                       children: [
-                //                         if (note.labels.isNotEmpty)
-                //                           Container(
-                //                             padding: const EdgeInsets.symmetric(
-                //                               horizontal: 10,
-                //                               vertical: 4,
-                //                             ),
-                //                             decoration: BoxDecoration(
-                //                               color: Colors.white,
-                //                               borderRadius:
-                //                                   BorderRadius.circular(12),
-                //                               border: Border.all(
-                //                                 color: Colors.grey.shade300,
-                //                                 width: 1,
-                //                               ),
-                //                             ),
-                //                             child: Text(
-                //                               note.labels.first,
-                //                               style: const TextStyle(
-                //                                 fontSize: 10,
-                //                                 fontWeight: FontWeight.normal,
-                //                                 color: Colors.brown,
-                //                               ),
-                //                             ),
-                //                           ),
-                //                         if (note.labels.isNotEmpty)
-                //                           const SizedBox(width: 6),
-                //                         if (note.isPinned)
-                //                           Container(
-                //                             padding: const EdgeInsets.all(6),
-                //                             decoration: BoxDecoration(
-                //                               color: Colors.white,
-                //                               borderRadius:
-                //                                   BorderRadius.circular(12),
-                //                               border: Border.all(
-                //                                 color: Colors.grey.shade300,
-                //                                 width: 1,
-                //                               ),
-                //                             ),
-                //                             child: Icon(
-                //                               Icons.push_pin,
-                //                               size: 13,
-                //                               color: Colors.brown.shade400,
-                //                             ),
-                //                           ),
-                //                       ],
-                //                     ),
-                //                   ],
-                //                 ),
+                    return Column(
+                      children: filteredNotes.map((doc) {
+                        final note = Note.fromFirestore(doc);
 
-                //                 const SizedBox(height: 10),
+                        return GestureDetector(
+                          onTap: () {
+                            // Navigate to edit
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddNotesPage(note: note),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.only(bottom: 16),
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFFF8EE),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                color: Colors.grey.shade300,
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Header
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Title
+                                    Expanded(
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          border: Border.all(
+                                            color: Colors.grey.shade300,
+                                            width: 1,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(
+                                                0.1,
+                                              ),
+                                              blurRadius: 6,
+                                              offset: const Offset(0, 1),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Text(
+                                          note.title,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ),
 
-                //                 // Content
-                //                 Text(
-                //                   note.content,
-                //                   style: const TextStyle(
-                //                     fontSize: 12,
-                //                     fontWeight: FontWeight.normal,
-                //                   ),
-                //                   maxLines: 3,
-                //                   overflow: TextOverflow.ellipsis,
-                //                 ),
+                                    const SizedBox(width: 8),
 
-                //                 const SizedBox(height: 10),
+                                    // Labels & Pin
+                                    Row(
+                                      children: [
+                                        if (note.labels.isNotEmpty)
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                              vertical: 4,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
+                                                color: Colors.grey.shade300,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            child: Text(
+                                              note.labels.first,
+                                              style: const TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.normal,
+                                                color: Colors.brown,
+                                              ),
+                                            ),
+                                          ),
+                                        if (note.labels.isNotEmpty)
+                                          const SizedBox(width: 6),
+                                        if (note.isPinned)
+                                          Container(
+                                            padding: const EdgeInsets.all(6),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
+                                                color: Colors.grey.shade300,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.push_pin,
+                                              size: 13,
+                                              color: Colors.brown.shade400,
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
 
-                //                 // Images preview
-                //                 if (note.imageUrls.isNotEmpty)
-                //                   SizedBox(
-                //                     height: 60,
-                //                     child: ListView.builder(
-                //                       scrollDirection: Axis.horizontal,
-                //                       itemCount: note.imageUrls.length > 3
-                //                           ? 3
-                //                           : note.imageUrls.length,
-                //                       itemBuilder: (context, imgIndex) {
-                //                         return Container(
-                //                           margin: const EdgeInsets.only(
-                //                             right: 8,
-                //                           ),
-                //                           width: 60,
-                //                           decoration: BoxDecoration(
-                //                             borderRadius: BorderRadius.circular(
-                //                               8,
-                //                             ),
-                //                             image: DecorationImage(
-                //                               image: NetworkImage(
-                //                                 note.imageUrls[imgIndex],
-                //                               ),
-                //                               fit: BoxFit.cover,
-                //                             ),
-                //                           ),
-                //                           child:
-                //                               imgIndex == 2 &&
-                //                                   note.imageUrls.length > 3
-                //                               ? Container(
-                //                                   decoration: BoxDecoration(
-                //                                     color: Colors.black
-                //                                         .withOpacity(0.6),
-                //                                     borderRadius:
-                //                                         BorderRadius.circular(
-                //                                           8,
-                //                                         ),
-                //                                   ),
-                //                                   child: Center(
-                //                                     child: Text(
-                //                                       '+${note.imageUrls.length - 3}',
-                //                                       style: const TextStyle(
-                //                                         color: Colors.white,
-                //                                         fontWeight:
-                //                                             FontWeight.bold,
-                //                                         fontSize: 14,
-                //                                       ),
-                //                                     ),
-                //                                   ),
-                //                                 )
-                //                               : null,
-                //                         );
-                //                       },
-                //                     ),
-                //                   ),
+                                const SizedBox(height: 10),
 
-                //                 if (note.imageUrls.isNotEmpty)
-                //                   const SizedBox(height: 10),
+                                // Content
+                                Text(
+                                  note.content,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
 
-                //                 // Footer
-                //                 Row(
-                //                   mainAxisAlignment:
-                //                       MainAxisAlignment.spaceBetween,
-                //                   children: [
-                //                     Text(
-                //                       _formatDate(note.updatedAt),
-                //                       style: TextStyle(
-                //                         fontSize: 10,
-                //                         color: Colors.grey[600],
-                //                       ),
-                //                     ),
-                //                     PopupMenuButton(
-                //                       icon: Icon(
-                //                         Icons.more_horiz,
-                //                         size: 18,
-                //                         color: Colors.grey[700],
-                //                       ),
-                //                       padding: EdgeInsets.zero,
-                //                       itemBuilder: (context) => [
-                //                         PopupMenuItem(
-                //                           child: Row(
-                //                             children: [
-                //                               Icon(
-                //                                 note.isPinned
-                //                                     ? Icons.push_pin
-                //                                     : Icons.push_pin_outlined,
-                //                                 size: 18,
-                //                               ),
-                //                               const SizedBox(width: 10),
-                //                               Text(
-                //                                 note.isPinned ? 'Unpin' : 'Pin',
-                //                               ),
-                //                             ],
-                //                           ),
-                //                           onTap: () async {
-                //                             await notesService.togglePin(
-                //                               note.id,
-                //                               note.isPinned,
-                //                             );
-                //                           },
-                //                         ),
-                //                         PopupMenuItem(
-                //                           child: const Row(
-                //                             children: [
-                //                               Icon(
-                //                                 Icons.delete_outline,
-                //                                 size: 18,
-                //                                 color: Colors.red,
-                //                               ),
-                //                               SizedBox(width: 10),
-                //                               Text(
-                //                                 'Delete',
-                //                                 style: TextStyle(
-                //                                   color: Colors.red,
-                //                                 ),
-                //                               ),
-                //                             ],
-                //                           ),
-                //                           onTap: () async {
-                //                             final confirm = await showDialog<bool>(
-                //                               context: context,
-                //                               builder: (context) => AlertDialog(
-                //                                 title: const Text(
-                //                                   'Delete Note?',
-                //                                 ),
-                //                                 content: const Text(
-                //                                   'Notes will be permanently deleted.',
-                //                                 ),
-                //                                 actions: [
-                //                                   TextButton(
-                //                                     onPressed: () =>
-                //                                         Navigator.pop(
-                //                                           context,
-                //                                           false,
-                //                                         ),
-                //                                     child: const Text('Cancel'),
-                //                                   ),
-                //                                   TextButton(
-                //                                     onPressed: () =>
-                //                                         Navigator.pop(
-                //                                           context,
-                //                                           true,
-                //                                         ),
-                //                                     child: const Text(
-                //                                       'Delete',
-                //                                       style: TextStyle(
-                //                                         color: Colors.red,
-                //                                       ),
-                //                                     ),
-                //                                   ),
-                //                                 ],
-                //                               ),
-                //                             );
+                                const SizedBox(height: 10),
 
-                //                             if (confirm == true) {
-                //                               await notesService.deleteNote(
-                //                                 note.id,
-                //                               );
-                //                               if (context.mounted) {
-                //                                 ScaffoldMessenger.of(
-                //                                   context,
-                //                                 ).showSnackBar(
-                //                                   const SnackBar(
-                //                                     content: Text(
-                //                                       'Note deleted successfully',
-                //                                     ),
-                //                                   ),
-                //                                 );
-                //                               }
-                //                             }
-                //                           },
-                //                         ),
-                //                       ],
-                //                     ),
-                //                   ],
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //         );
-                //       }).toList(),
-                //     );
-                //   },
-                // ),
+                                // Images preview
+                                if (note.imageUrls.isNotEmpty)
+                                  SizedBox(
+                                    height: 60,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: note.imageUrls.length > 3
+                                          ? 3
+                                          : note.imageUrls.length,
+                                      itemBuilder: (context, imgIndex) {
+                                        return Container(
+                                          margin: const EdgeInsets.only(
+                                            right: 8,
+                                          ),
+                                          width: 60,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              8,
+                                            ),
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                note.imageUrls[imgIndex],
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          child:
+                                              imgIndex == 2 &&
+                                                  note.imageUrls.length > 3
+                                              ? Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black
+                                                        .withOpacity(0.6),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          8,
+                                                        ),
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      '+${note.imageUrls.length - 3}',
+                                                      style: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              : null,
+                                        );
+                                      },
+                                    ),
+                                  ),
+
+                                if (note.imageUrls.isNotEmpty)
+                                  const SizedBox(height: 10),
+
+                                // Footer
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      _formatDate(note.updatedAt),
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    PopupMenuButton(
+                                      icon: Icon(
+                                        Icons.more_horiz,
+                                        size: 18,
+                                        color: Colors.grey[700],
+                                      ),
+                                      padding: EdgeInsets.zero,
+                                      itemBuilder: (context) => [
+                                        PopupMenuItem(
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                note.isPinned
+                                                    ? Icons.push_pin
+                                                    : Icons.push_pin_outlined,
+                                                size: 18,
+                                              ),
+                                              const SizedBox(width: 10),
+                                              Text(
+                                                note.isPinned ? 'Unpin' : 'Pin',
+                                              ),
+                                            ],
+                                          ),
+                                          onTap: () async {
+                                            await _notesService.togglePin(
+                                              note.id,
+                                              note.isPinned,
+                                            );
+                                          },
+                                        ),
+                                        PopupMenuItem(
+                                          child: const Row(
+                                            children: [
+                                              Icon(
+                                                Icons.delete_outline,
+                                                size: 18,
+                                                color: Colors.red,
+                                              ),
+                                              SizedBox(width: 10),
+                                              Text(
+                                                'Delete',
+                                                style: TextStyle(
+                                                  color: Colors.red,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          onTap: () async {
+                                            final confirm = await showDialog<bool>(
+                                              context: context,
+                                              builder: (context) => AlertDialog(
+                                                title: const Text(
+                                                  'Delete Note?',
+                                                ),
+                                                content: const Text(
+                                                  'Notes will be permanently deleted.',
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                          context,
+                                                          false,
+                                                        ),
+                                                    child: const Text('Cancel'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                          context,
+                                                          true,
+                                                        ),
+                                                    child: const Text(
+                                                      'Delete',
+                                                      style: TextStyle(
+                                                        color: Colors.red,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+
+                                            if (confirm == true) {
+                                              await _notesService.deleteNote(
+                                                note.id,
+                                              );
+                                              if (context.mounted) {
+                                                ScaffoldMessenger.of(
+                                                  context,
+                                                ).showSnackBar(
+                                                  const SnackBar(
+                                                    content: Text(
+                                                      'Note deleted successfully',
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
               ],
             ),
           ),
         ),
       );
   }
-}
-
-class _HomeContent extends StatelessWidget {
-  final List<String> notifications;
-  final NotesService notesService;
-  final User user;
-
-  const _HomeContent({
-    super.key,
-    required this.notifications,
-    required this.notesService,
-    required this.user,
-  });
 
   @override
   Widget build(BuildContext context) {
-    return _HomeBody(
-      notifications: notifications,
-      notesService: notesService,
-      user: user,
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      return const Scaffold(body: Center(child: Text('Please login first')));
+    }
+  
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
+      ),
+
+      // ===== BOTTOM NAV =====
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.transparent,
+        currentIndex: _currentIndex,
+        elevation: 0,
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AddNotesPage()),
+            );
+            return;
+          }
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.amber[50],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.home_outlined, size: 30),
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.add, size: 30),
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(Icons.sticky_note_2_outlined, size: 28),
+            ),
+          ),
+        ],
+      ),
     );
+  }
+}
+
+String _formatDate(DateTime? date) {
+  if (date == null) return '';
+
+  final now = DateTime.now();
+  final difference = now.difference(date);
+
+  if (difference.inDays == 0) {
+    return 'Today ${DateFormat('HH:mm').format(date)}';
+  } else if (difference.inDays == 1) {
+    return 'Yesterday';
+  } else if (difference.inDays < 7) {
+    return '${difference.inDays} days ago';
+  } else {
+    return DateFormat('MMM dd, yyyy').format(date);
   }
 }
