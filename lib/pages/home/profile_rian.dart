@@ -12,7 +12,13 @@ class _RianState extends State<Rian> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0F172A),
-      body: Container(), 
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+          ],
+        ),
+      ),
     );
   }
 }
