@@ -466,400 +466,400 @@ class _HomeBody extends StatelessWidget {
                 const SizedBox(height: 12),
 
                 // ===== NOTES FROM FIRESTORE (Dynamic) =====
-                StreamBuilder<QuerySnapshot>(
-                  stream: notesService.getUserNotes(user.uid),
-                  builder: (context, snapshot) {
-                    // Loading
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
+                // StreamBuilder<QuerySnapshot>(
+                //   stream: notesService.getUserNotes(user.uid),
+                //   builder: (context, snapshot) {
+                //     // Loading
+                //     if (snapshot.connectionState == ConnectionState.waiting) {
+                //       return const Center(
+                //         child: Padding(
+                //           padding: EdgeInsets.all(20.0),
+                //           child: CircularProgressIndicator(),
+                //         ),
+                //       );
+                //     }
 
-                    // Error
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Text('Error: ${snapshot.error}'),
-                        ),
-                      );
-                    }
+                //     // Error
+                //     if (snapshot.hasError) {
+                //       return Center(
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(20.0),
+                //           child: Text('Error: ${snapshot.error}'),
+                //         ),
+                //       );
+                //     }
 
-                    // No data
-                    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                      return Container(
-                        padding: const EdgeInsets.all(32),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[50],
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade200,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.note_add_outlined,
-                                size: 48,
-                                color: Colors.grey[400],
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                'Belum ada catatan',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Tap tombol + untuk membuat catatan',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[500],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }
+                //     // No data
+                //     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                //       return Container(
+                //         padding: const EdgeInsets.all(32),
+                //         decoration: BoxDecoration(
+                //           color: Colors.grey[50],
+                //           borderRadius: BorderRadius.circular(12),
+                //           border: Border.all(
+                //             color: Colors.grey.shade200,
+                //             style: BorderStyle.solid,
+                //           ),
+                //         ),
+                //         child: Center(
+                //           child: Column(
+                //             children: [
+                //               Icon(
+                //                 Icons.note_add_outlined,
+                //                 size: 48,
+                //                 color: Colors.grey[400],
+                //               ),
+                //               const SizedBox(height: 12),
+                //               Text(
+                //                 'Belum ada catatan',
+                //                 style: TextStyle(
+                //                   fontSize: 14,
+                //                   color: Colors.grey[600],
+                //                 ),
+                //               ),
+                //               const SizedBox(height: 4),
+                //               Text(
+                //                 'Tap tombol + untuk membuat catatan',
+                //                 style: TextStyle(
+                //                   fontSize: 12,
+                //                   color: Colors.grey[500],
+                //                 ),
+                //               ),
+                //             ],
+                //           ),
+                //         ),
+                //       );
+                //     }
 
-                    // Has data
-                    final notes = snapshot.data!.docs;
+                //     // Has data
+                //     final notes = snapshot.data!.docs;
 
-                    return Column(
-                      children: notes.map((doc) {
-                        final note = Note.fromFirestore(doc);
+                //     return Column(
+                //       children: notes.map((doc) {
+                //         final note = Note.fromFirestore(doc);
 
-                        return GestureDetector(
-                          onTap: () {
-                            // Navigate to edit
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AddNotesPage(note: note),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            margin: const EdgeInsets.only(bottom: 16),
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFFFF8EE),
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(
-                                color: Colors.grey.shade300,
-                                width: 1,
-                              ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Header
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Title
-                                    Expanded(
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 4,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(
-                                            12,
-                                          ),
-                                          border: Border.all(
-                                            color: Colors.grey.shade300,
-                                            width: 1,
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withOpacity(
-                                                0.1,
-                                              ),
-                                              blurRadius: 6,
-                                              offset: const Offset(0, 1),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Text(
-                                          note.title,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ),
+                //         return GestureDetector(
+                //           onTap: () {
+                //             // Navigate to edit
+                //             Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                 builder: (context) => AddNotesPage(note: note),
+                //               ),
+                //             );
+                //           },
+                //           child: Container(
+                //             width: double.infinity,
+                //             margin: const EdgeInsets.only(bottom: 16),
+                //             padding: const EdgeInsets.all(16),
+                //             decoration: BoxDecoration(
+                //               color: const Color(0xFFFFF8EE),
+                //               borderRadius: BorderRadius.circular(16),
+                //               border: Border.all(
+                //                 color: Colors.grey.shade300,
+                //                 width: 1,
+                //               ),
+                //             ),
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 // Header
+                //                 Row(
+                //                   mainAxisAlignment:
+                //                       MainAxisAlignment.spaceBetween,
+                //                   crossAxisAlignment: CrossAxisAlignment.start,
+                //                   children: [
+                //                     // Title
+                //                     Expanded(
+                //                       child: Container(
+                //                         padding: const EdgeInsets.symmetric(
+                //                           horizontal: 10,
+                //                           vertical: 4,
+                //                         ),
+                //                         decoration: BoxDecoration(
+                //                           color: Colors.white,
+                //                           borderRadius: BorderRadius.circular(
+                //                             12,
+                //                           ),
+                //                           border: Border.all(
+                //                             color: Colors.grey.shade300,
+                //                             width: 1,
+                //                           ),
+                //                           boxShadow: [
+                //                             BoxShadow(
+                //                               color: Colors.black.withOpacity(
+                //                                 0.1,
+                //                               ),
+                //                               blurRadius: 6,
+                //                               offset: const Offset(0, 1),
+                //                             ),
+                //                           ],
+                //                         ),
+                //                         child: Text(
+                //                           note.title,
+                //                           style: const TextStyle(
+                //                             fontWeight: FontWeight.bold,
+                //                             fontSize: 14,
+                //                           ),
+                //                           maxLines: 1,
+                //                           overflow: TextOverflow.ellipsis,
+                //                         ),
+                //                       ),
+                //                     ),
 
-                                    const SizedBox(width: 8),
+                //                     const SizedBox(width: 8),
 
-                                    // Labels & Pin
-                                    Row(
-                                      children: [
-                                        if (note.labels.isNotEmpty)
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 10,
-                                              vertical: 4,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              border: Border.all(
-                                                color: Colors.grey.shade300,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            child: Text(
-                                              note.labels.first,
-                                              style: const TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.brown,
-                                              ),
-                                            ),
-                                          ),
-                                        if (note.labels.isNotEmpty)
-                                          const SizedBox(width: 6),
-                                        if (note.isPinned)
-                                          Container(
-                                            padding: const EdgeInsets.all(6),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              border: Border.all(
-                                                color: Colors.grey.shade300,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            child: Icon(
-                                              Icons.push_pin,
-                                              size: 13,
-                                              color: Colors.brown.shade400,
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                //                     // Labels & Pin
+                //                     Row(
+                //                       children: [
+                //                         if (note.labels.isNotEmpty)
+                //                           Container(
+                //                             padding: const EdgeInsets.symmetric(
+                //                               horizontal: 10,
+                //                               vertical: 4,
+                //                             ),
+                //                             decoration: BoxDecoration(
+                //                               color: Colors.white,
+                //                               borderRadius:
+                //                                   BorderRadius.circular(12),
+                //                               border: Border.all(
+                //                                 color: Colors.grey.shade300,
+                //                                 width: 1,
+                //                               ),
+                //                             ),
+                //                             child: Text(
+                //                               note.labels.first,
+                //                               style: const TextStyle(
+                //                                 fontSize: 10,
+                //                                 fontWeight: FontWeight.normal,
+                //                                 color: Colors.brown,
+                //                               ),
+                //                             ),
+                //                           ),
+                //                         if (note.labels.isNotEmpty)
+                //                           const SizedBox(width: 6),
+                //                         if (note.isPinned)
+                //                           Container(
+                //                             padding: const EdgeInsets.all(6),
+                //                             decoration: BoxDecoration(
+                //                               color: Colors.white,
+                //                               borderRadius:
+                //                                   BorderRadius.circular(12),
+                //                               border: Border.all(
+                //                                 color: Colors.grey.shade300,
+                //                                 width: 1,
+                //                               ),
+                //                             ),
+                //                             child: Icon(
+                //                               Icons.push_pin,
+                //                               size: 13,
+                //                               color: Colors.brown.shade400,
+                //                             ),
+                //                           ),
+                //                       ],
+                //                     ),
+                //                   ],
+                //                 ),
 
-                                const SizedBox(height: 10),
+                //                 const SizedBox(height: 10),
 
-                                // Content
-                                Text(
-                                  note.content,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                //                 // Content
+                //                 Text(
+                //                   note.content,
+                //                   style: const TextStyle(
+                //                     fontSize: 12,
+                //                     fontWeight: FontWeight.normal,
+                //                   ),
+                //                   maxLines: 3,
+                //                   overflow: TextOverflow.ellipsis,
+                //                 ),
 
-                                const SizedBox(height: 10),
+                //                 const SizedBox(height: 10),
 
-                                // Images preview
-                                if (note.imageUrls.isNotEmpty)
-                                  SizedBox(
-                                    height: 60,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: note.imageUrls.length > 3
-                                          ? 3
-                                          : note.imageUrls.length,
-                                      itemBuilder: (context, imgIndex) {
-                                        return Container(
-                                          margin: const EdgeInsets.only(
-                                            right: 8,
-                                          ),
-                                          width: 60,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                note.imageUrls[imgIndex],
-                                              ),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          child:
-                                              imgIndex == 2 &&
-                                                  note.imageUrls.length > 3
-                                              ? Container(
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.black
-                                                        .withOpacity(0.6),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                          8,
-                                                        ),
-                                                  ),
-                                                  child: Center(
-                                                    child: Text(
-                                                      '+${note.imageUrls.length - 3}',
-                                                      style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              : null,
-                                        );
-                                      },
-                                    ),
-                                  ),
+                //                 // Images preview
+                //                 if (note.imageUrls.isNotEmpty)
+                //                   SizedBox(
+                //                     height: 60,
+                //                     child: ListView.builder(
+                //                       scrollDirection: Axis.horizontal,
+                //                       itemCount: note.imageUrls.length > 3
+                //                           ? 3
+                //                           : note.imageUrls.length,
+                //                       itemBuilder: (context, imgIndex) {
+                //                         return Container(
+                //                           margin: const EdgeInsets.only(
+                //                             right: 8,
+                //                           ),
+                //                           width: 60,
+                //                           decoration: BoxDecoration(
+                //                             borderRadius: BorderRadius.circular(
+                //                               8,
+                //                             ),
+                //                             image: DecorationImage(
+                //                               image: NetworkImage(
+                //                                 note.imageUrls[imgIndex],
+                //                               ),
+                //                               fit: BoxFit.cover,
+                //                             ),
+                //                           ),
+                //                           child:
+                //                               imgIndex == 2 &&
+                //                                   note.imageUrls.length > 3
+                //                               ? Container(
+                //                                   decoration: BoxDecoration(
+                //                                     color: Colors.black
+                //                                         .withOpacity(0.6),
+                //                                     borderRadius:
+                //                                         BorderRadius.circular(
+                //                                           8,
+                //                                         ),
+                //                                   ),
+                //                                   child: Center(
+                //                                     child: Text(
+                //                                       '+${note.imageUrls.length - 3}',
+                //                                       style: const TextStyle(
+                //                                         color: Colors.white,
+                //                                         fontWeight:
+                //                                             FontWeight.bold,
+                //                                         fontSize: 14,
+                //                                       ),
+                //                                     ),
+                //                                   ),
+                //                                 )
+                //                               : null,
+                //                         );
+                //                       },
+                //                     ),
+                //                   ),
 
-                                if (note.imageUrls.isNotEmpty)
-                                  const SizedBox(height: 10),
+                //                 if (note.imageUrls.isNotEmpty)
+                //                   const SizedBox(height: 10),
 
-                                // Footer
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      _formatDate(note.updatedAt),
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                    PopupMenuButton(
-                                      icon: Icon(
-                                        Icons.more_horiz,
-                                        size: 18,
-                                        color: Colors.grey[700],
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      itemBuilder: (context) => [
-                                        PopupMenuItem(
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                note.isPinned
-                                                    ? Icons.push_pin
-                                                    : Icons.push_pin_outlined,
-                                                size: 18,
-                                              ),
-                                              const SizedBox(width: 10),
-                                              Text(
-                                                note.isPinned ? 'Unpin' : 'Pin',
-                                              ),
-                                            ],
-                                          ),
-                                          onTap: () async {
-                                            await notesService.togglePin(
-                                              note.id,
-                                              note.isPinned,
-                                            );
-                                          },
-                                        ),
-                                        PopupMenuItem(
-                                          child: const Row(
-                                            children: [
-                                              Icon(
-                                                Icons.delete_outline,
-                                                size: 18,
-                                                color: Colors.red,
-                                              ),
-                                              SizedBox(width: 10),
-                                              Text(
-                                                'Delete',
-                                                style: TextStyle(
-                                                  color: Colors.red,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          onTap: () async {
-                                            final confirm = await showDialog<bool>(
-                                              context: context,
-                                              builder: (context) => AlertDialog(
-                                                title: const Text(
-                                                  'Delete Note?',
-                                                ),
-                                                content: const Text(
-                                                  'Notes will be permanently deleted.',
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                          context,
-                                                          false,
-                                                        ),
-                                                    child: const Text('Cancel'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                          context,
-                                                          true,
-                                                        ),
-                                                    child: const Text(
-                                                      'Delete',
-                                                      style: TextStyle(
-                                                        color: Colors.red,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
+                //                 // Footer
+                //                 Row(
+                //                   mainAxisAlignment:
+                //                       MainAxisAlignment.spaceBetween,
+                //                   children: [
+                //                     Text(
+                //                       _formatDate(note.updatedAt),
+                //                       style: TextStyle(
+                //                         fontSize: 10,
+                //                         color: Colors.grey[600],
+                //                       ),
+                //                     ),
+                //                     PopupMenuButton(
+                //                       icon: Icon(
+                //                         Icons.more_horiz,
+                //                         size: 18,
+                //                         color: Colors.grey[700],
+                //                       ),
+                //                       padding: EdgeInsets.zero,
+                //                       itemBuilder: (context) => [
+                //                         PopupMenuItem(
+                //                           child: Row(
+                //                             children: [
+                //                               Icon(
+                //                                 note.isPinned
+                //                                     ? Icons.push_pin
+                //                                     : Icons.push_pin_outlined,
+                //                                 size: 18,
+                //                               ),
+                //                               const SizedBox(width: 10),
+                //                               Text(
+                //                                 note.isPinned ? 'Unpin' : 'Pin',
+                //                               ),
+                //                             ],
+                //                           ),
+                //                           onTap: () async {
+                //                             await notesService.togglePin(
+                //                               note.id,
+                //                               note.isPinned,
+                //                             );
+                //                           },
+                //                         ),
+                //                         PopupMenuItem(
+                //                           child: const Row(
+                //                             children: [
+                //                               Icon(
+                //                                 Icons.delete_outline,
+                //                                 size: 18,
+                //                                 color: Colors.red,
+                //                               ),
+                //                               SizedBox(width: 10),
+                //                               Text(
+                //                                 'Delete',
+                //                                 style: TextStyle(
+                //                                   color: Colors.red,
+                //                                 ),
+                //                               ),
+                //                             ],
+                //                           ),
+                //                           onTap: () async {
+                //                             final confirm = await showDialog<bool>(
+                //                               context: context,
+                //                               builder: (context) => AlertDialog(
+                //                                 title: const Text(
+                //                                   'Delete Note?',
+                //                                 ),
+                //                                 content: const Text(
+                //                                   'Notes will be permanently deleted.',
+                //                                 ),
+                //                                 actions: [
+                //                                   TextButton(
+                //                                     onPressed: () =>
+                //                                         Navigator.pop(
+                //                                           context,
+                //                                           false,
+                //                                         ),
+                //                                     child: const Text('Cancel'),
+                //                                   ),
+                //                                   TextButton(
+                //                                     onPressed: () =>
+                //                                         Navigator.pop(
+                //                                           context,
+                //                                           true,
+                //                                         ),
+                //                                     child: const Text(
+                //                                       'Delete',
+                //                                       style: TextStyle(
+                //                                         color: Colors.red,
+                //                                       ),
+                //                                     ),
+                //                                   ),
+                //                                 ],
+                //                               ),
+                //                             );
 
-                                            if (confirm == true) {
-                                              await notesService.deleteNote(
-                                                note.id,
-                                              );
-                                              if (context.mounted) {
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  const SnackBar(
-                                                    content: Text(
-                                                      'Note deleted successfully',
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    );
-                  },
-                ),
+                //                             if (confirm == true) {
+                //                               await notesService.deleteNote(
+                //                                 note.id,
+                //                               );
+                //                               if (context.mounted) {
+                //                                 ScaffoldMessenger.of(
+                //                                   context,
+                //                                 ).showSnackBar(
+                //                                   const SnackBar(
+                //                                     content: Text(
+                //                                       'Note deleted successfully',
+                //                                     ),
+                //                                   ),
+                //                                 );
+                //                               }
+                //                             }
+                //                           },
+                //                         ),
+                //                       ],
+                //                     ),
+                //                   ],
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         );
+                //       }).toList(),
+                //     );
+                //   },
+                // ),
               ],
             ),
           ),
