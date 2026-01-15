@@ -168,4 +168,30 @@ class _RianState extends State<Rian> {
       ),
     );
   }
+  Widget _buildSkillChip(String label, String? iconPath, Color bgColor, Color borderColor) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: borderColor.withOpacity(0.5), width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (iconPath != null) ...[
+            // Bagian icon sementara dikomentari
+          ],
+          Text(
+            label,
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.9),
+              fontWeight: FontWeight.w600,
+              fontSize: 13,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
