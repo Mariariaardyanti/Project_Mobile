@@ -47,7 +47,7 @@ class _RianState extends State<Rian> {
                     ),
                   ),
                 ),
-                
+
                 Positioned(
                   top: 50,
                   left: 20,
@@ -60,6 +60,32 @@ class _RianState extends State<Rian> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(Icons.arrow_back, color: Colors.white),
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  bottom: -60,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: const Color(0xFF0F172A), width: 6),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            blurRadius: 20,
+                            offset: const Offset(0, 10),
+                          ),
+                        ],
+                      ),
+                      child: const CircleAvatar(
+                        radius: 65,
+                        backgroundColor: Colors.grey,
+                        backgroundImage: AssetImage("assets/images/wangja.png"), 
+                      ),
                     ),
                   ),
                 ),
