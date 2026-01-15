@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// Pastikan import file lain yang dibutuhkan sesuai struktur project kamu
-// import 'package:project_mobile/pages/home/homepage.dart'; 
 
 class Rian extends StatefulWidget {
   const Rian({super.key});
@@ -13,17 +11,15 @@ class _RianState extends State<Rian> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Menggunakan background warna gelap (Dark Theme) untuk kesan elegan & techy
+
       backgroundColor: const Color(0xFF0F172A), 
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // --- HEADER SECTION ---
             Stack(
               clipBehavior: Clip.none,
               children: [
-                // Background Gradient Header
                 Container(
                   height: 220,
                   width: double.infinity,
@@ -39,8 +35,7 @@ class _RianState extends State<Rian> {
                     ),
                   ),
                 ),
-                
-                // Pattern Overlay (Optional decoration)
+     
                 Positioned(
                   top: -50,
                   right: -50,
@@ -48,7 +43,7 @@ class _RianState extends State<Rian> {
                     width: 200,
                     height: 200,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -71,8 +66,6 @@ class _RianState extends State<Rian> {
                   ),
                 ),
 
-                // PROFILE IMAGE
-                // Dibuat menumpuk (overlap) antara header dan body
                 Positioned(
                   bottom: -60,
                   left: 0,
@@ -93,8 +86,7 @@ class _RianState extends State<Rian> {
                       child: const CircleAvatar(
                         radius: 65,
                         backgroundColor: Colors.grey,
-                        // Ganti dengan path gambar kamu sendiri
-                        backgroundImage: AssetImage("assets/images/rian_profile.png"), 
+                        backgroundImage: AssetImage("assets/images/wangja.png"), 
                       ),
                     ),
                   ),
@@ -102,9 +94,9 @@ class _RianState extends State<Rian> {
               ],
             ),
 
-            const SizedBox(height: 70), // Spasi untuk Profile Image yang overlap
+            const SizedBox(height: 70), 
 
-            // --- IDENTITY SECTION ---
+
             Center(
               child: Column(
                 children: [
@@ -140,7 +132,6 @@ class _RianState extends State<Rian> {
 
             const SizedBox(height: 30),
 
-            // --- ABOUT SECTION (Style Terminal/Card) ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -181,7 +172,6 @@ class _RianState extends State<Rian> {
 
             const SizedBox(height: 25),
 
-            // --- SKILLS SECTION (Modern Chips) ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -222,7 +212,6 @@ class _RianState extends State<Rian> {
 
              const SizedBox(height: 40),
              
-             // --- CONTACT BUTTON ---
              Padding(
                padding: const EdgeInsets.symmetric(horizontal: 24),
                child: SizedBox(
@@ -253,7 +242,6 @@ class _RianState extends State<Rian> {
     );
   }
 
-  // Widget Helper untuk Skill Chip agar kodingan lebih rapi
   Widget _buildSkillChip(String label, String? iconPath, Color bgColor, Color borderColor) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -265,10 +253,9 @@ class _RianState extends State<Rian> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Jika ada icon, tampilkan, jika tidak pakai icon code default
           if (iconPath != null) ...[
-             // Image.asset(iconPath, height: 16), // Uncomment jika punya aset icon
-             // const SizedBox(width: 8),
+             Image.asset(iconPath, height: 16), 
+             const SizedBox(width: 8),
           ],
           Text(
             label,
