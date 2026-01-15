@@ -143,7 +143,7 @@ class _WorkspacePageState extends State<WorkspacePage> {
                   final notes = docs.map((d) => Note.fromFirestore(d)).toList();
 
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     child: ListView.separated(
                       itemCount: notes.length,
                       separatorBuilder: (_, __) => const SizedBox(height: 12),
