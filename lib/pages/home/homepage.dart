@@ -34,8 +34,10 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
 
+  WidgetsBinding.instance.addPostFrameCallback((_) {
     _fcmService.init(
       onMessageReceived: (String message) {
+        if (!mounted) return;
         setState(() {
           if (!_notifications.contains(message)) {
             _notifications.insert(0, message);
@@ -43,7 +45,8 @@ class _HomepageState extends State<Homepage> {
         });
       },
     );
-  }
+  });
+}
 
   @override
   void dispose() {
@@ -330,7 +333,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar2.png',
+                                  'assets/images/bubbles.jpg',
                                 ),
                               ),
                             ),
@@ -339,7 +342,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar3.png',
+                                  'assets/images/bubbles.jpg',
                                 ),
                               ),
                             ),
@@ -348,7 +351,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar3.png',
+                                  'assets/images/bubbles.jpg',
                                 ),
                               ),
                             ),
