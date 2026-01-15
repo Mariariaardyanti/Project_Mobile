@@ -203,7 +203,7 @@ class _RianState extends State<Rian> {
                       _buildSkillChip("HTML 5", null, Colors.orange.withValues(alpha: 0.2), Colors.orange),
                       _buildSkillChip("CSS 3", null, Colors.blueAccent.withValues(alpha: 0.2), Colors.blueAccent),
                       _buildSkillChip("JavaScript", null, Colors.yellow.withValues(alpha: 0.15), Colors.yellow),
-                      _buildSkillChip("Flutter", null, Colors.cyan.withOpacity(0.2), Colors.cyan),
+                      _buildSkillChip("Flutter", null, Colors.cyan.withValues(alpha: 0.2), Colors.cyan),
                     ],
                   ),
                 ],
