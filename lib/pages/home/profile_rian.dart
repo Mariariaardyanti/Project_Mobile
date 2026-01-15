@@ -198,8 +198,8 @@ class _RianState extends State<Rian> {
                     runSpacing: 10,
                     children: [
                       // Skill Items dengan warna custom
-                      _buildSkillChip("Python", "assets/icons/python.png", Colors.blue.withOpacity(0.2), Colors.blue),
-                      _buildSkillChip("PHP", null, Colors.indigo.withOpacity(0.2), Colors.indigoAccent),
+                      _buildSkillChip("Python", "assets/icons/python.png", Colors.blue.withValues(alpha: 0.2), Colors.blue),
+                      _buildSkillChip("PHP", null, Colors.indigo.withValues(alpha:0.2), Colors.indigoAccent),
                       _buildSkillChip("HTML 5", null, Colors.orange.withOpacity(0.2), Colors.orange),
                       _buildSkillChip("CSS 3", null, Colors.blueAccent.withOpacity(0.2), Colors.blueAccent),
                       _buildSkillChip("JavaScript", null, Colors.yellow.withOpacity(0.15), Colors.yellow),
