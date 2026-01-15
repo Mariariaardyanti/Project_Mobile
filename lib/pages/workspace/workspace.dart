@@ -19,6 +19,57 @@ class _WorkspacePageState extends State<WorkspacePage> {
   bool _isNotifHovered = false; 
   List<String> _notifications = [];
 
+  Widget _buildManualHeader() {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          "Workspace",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        Row(
+          children: [
+            // Button Get Pro
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.brown,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.workspace_premium, size: 18, color: Colors.white),
+                  SizedBox(width: 6),
+                  Text("Get Pro", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+                ],
+              ),
+            ),
+            const SizedBox(width: 12),
+            // Icon Notif
+            MouseRegion(
+              onEnter: (_) => setState(() => _isNotifHovered = true),
+              onExit: (_) => setState(() => _isNotifHovered = false),
+              child: AnimatedScale(
+                scale: _isNotifHovered ? 1.1 : 1.0,
+                duration: const Duration(milliseconds: 150),
+                child: const Icon(Icons.notifications_none),
+              ),
+            ),
+            const SizedBox(width: 12),
+            // Icon Profile
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, '/profile'), // Sesuaikan route kamu
+              child: const Icon(Icons.person_2_outlined, size: 24),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
