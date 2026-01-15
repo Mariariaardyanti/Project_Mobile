@@ -77,7 +77,7 @@ class _RianState extends State<Rian> {
                         border: Border.all(color: const Color(0xFF0F172A), width: 6), // Border warna background
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
+                            color: Colors.black.withValues(alpha: 0.3),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
