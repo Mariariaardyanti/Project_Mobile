@@ -28,96 +28,103 @@ class _WorkspacePageState extends State<WorkspacePage> {
     }
 
     return Scaffold(
-      appBar: const _WorkspaceAppBar(),
+      appBar: null,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: _notesService.getUserNotes(user.uid),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            }
-            final docs = snapshot.data?.docs ?? [];
-            if (docs.isEmpty) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.note_alt_outlined,
-                        size: 56,
-                        color: Colors.grey[400],
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'Belum ada catatan',
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () async {
-                          final result = await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const AddNotesPage(),
+        child: Column(
+          children: [
+            _buildManualHeader(), 
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _notesService.getUserNotes(user.uid),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  }
+                  final docs = snapshot.data?.docs ?? [];
+                  if (docs.isEmpty) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.note_alt_outlined,
+                              size: 56,
+                              color: Colors.grey[400],
                             ),
-                          );
+                            const SizedBox(height: 12),
+                            Text(
+                              'Belum ada catatan',
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                            const SizedBox(height: 8),
+                            ElevatedButton(
+                              onPressed: () async {
+                                final result = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const AddNotesPage(),
+                                  ),
+                                );
 
-                          if (result == true && context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Note saved successfully!'),
-                                backgroundColor: Colors.green,
+                                if (result == true && context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Note saved successfully!'),
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+                                }
+                              },
+                              child: const Text('Buat Catatan'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+
+                  final notes = docs.map((d) => Note.fromFirestore(d)).toList();
+
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    child: ListView.separated(
+                      itemCount: notes.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      itemBuilder: (context, index) {
+                        final note = notes[index];
+                        return _WorkspaceCard(
+                          note: note,
+                          onTap: () async {
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => AddNotesPage(note: note),
                               ),
                             );
-                          }
-                        },
-                        child: const Text('Buat Catatan'),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }
 
-            final notes = docs.map((d) => Note.fromFirestore(d)).toList();
-
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: ListView.separated(
-                itemCount: notes.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 12),
-                itemBuilder: (context, index) {
-                  final note = notes[index];
-                  return _WorkspaceCard(
-                    note: note,
-                    onTap: () async {
-                      final result = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => AddNotesPage(note: note),
-                        ),
-                      );
-
-                      if (result == true && mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Note saved successfully!'),
-                            backgroundColor: Colors.green,
-                          ),
+                            if (result == true && mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Note saved successfully!'),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
+                          },
                         );
-                      }
-                    },
+                      },
+                    ),
                   );
                 },
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );
