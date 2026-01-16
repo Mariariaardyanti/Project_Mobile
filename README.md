@@ -1,24 +1,35 @@
-# project_mobile
+# NotesApp - Flutter Aplication
 
-A new Flutter project.
+<div align="center">
+<url>
+  <img src="https://lms.global.ac.id/lms/pluginfile.php/1/theme_klass/footerlogo/1745232397/logo-global-institute-stroke.png" alt="Institut Teknologi dan Bisnis Bina Sarana Global" width="200"/>
+  </div>
+<div align="center">
+Institut Teknologi dan Bisnis Bina Sarana Global <br>
+FAKULTAS TEKNOLOGI INFORMASI & KOMUNIKASI 
+<br>
+https://global.ac.id/
+  </div>
 
-## Getting Started
+  ##  Project UAS
+  - Mata Kuliah : Aplikasi Mobile
+  - Kelas : TI 23 M SE
+  - Semester : GANJIL 
+  - Tahun Akademik: 2025 - 2026
 
-This project is a starting point for a Flutter application.
+## About The Project
 
-A few resources to get you started if this is your first Flutter project:
+Notes App merupakan aplikasi mobile berbasis Flutter yang dirancang untuk membantu pengguna dalam melakukan pencatatan secara digital. Aplikasi ini dilengkapi dengan antarmuka yang sederhana dan mudah digunakan serta mendukung sinkronisasi data berbasis cloud melalui Firebase Authentication dan Cloud Firestore.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun berbagi catatan dengan pengguna lain, sehingga mendukung aktivitas kolaboratif dalam pengelolaan informasi.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-<<<<<<< HEAD
+### Key Features
 
-
-=======
-test
->>>>>>> e1afebf4bd5a0322a8a2a63baa29eebf75d07224
-
-hi commit
+- **Modern UI/UX Design** – Antarmuka yang clean, responsif, dan user-friendly
+- **User Authentication** – Login dan registrasi pengguna menggunakan Firebase Authentication
+- **Personal Notes Management** – Membuat, mengedit, dan menghapus catatan pribadi
+- **Collaborative Notes** – Berbagi catatan dengan pengguna lain untuk kolaborasi bersama
+- **Push Notifications** – Reminder untuk catatan penting dan aktivitas tertentu
+- **Cloud Sync** – Sinkronisasi data catatan secara otomatis menggunakan Cloud Firestore
+- **Multi-Device Access** – Akses catatan dari berbagai perangkat dengan satu akun
+- **Profile & Settings** – Pengelolaan profil pengguna dan preferensi aplikasi
