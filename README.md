@@ -33,3 +33,24 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 - **Cloud Sync** – Sinkronisasi data catatan secara otomatis menggunakan Cloud Firestore
 - **Multi-Device Access** – Akses catatan dari berbagai perangkat dengan satu akun
 - **Profile & Settings** – Pengelolaan profil pengguna dan preferensi aplikasi
+
+## Screenshots
+
+<div align="center">
+  <img src="assets/images/board.png.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/homepage.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/login.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/members.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/notifikasi.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/profil.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/profilari.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/profilehelen.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/profilerian.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/profilmaria.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash1.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash2.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash3.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash4.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/workspace.png" alt="Splash Screen" width="200"/>
+</div>
+
