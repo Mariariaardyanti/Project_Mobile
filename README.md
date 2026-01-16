@@ -93,3 +93,16 @@ cp path/to/google-services.json android/app/
 ```bash
 flutter run
 ```
+
+### Build APK
+
+```bash
+# Debug APK
+flutter build apk --debug
+
+# Release APK
+flutter build apk --release
+
+# Split APK by ABI
+flutter build apk --split-per-abi
+```
