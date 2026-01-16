@@ -15,4 +15,10 @@ https://global.ac.id/
   - Mata Kuliah : Aplikasi Mobile
   - Kelas : TI 23 M SE
   - Semester : GANJIL 
-  - Tahun Akademik: 2025 - 2026 
+  - Tahun Akademik: 2025 - 2026
+
+## About The Project
+
+Notes App merupakan aplikasi mobile berbasis Flutter yang dirancang untuk membantu pengguna dalam melakukan pencatatan secara digital. Aplikasi ini dilengkapi dengan antarmuka yang sederhana dan mudah digunakan serta mendukung sinkronisasi data berbasis cloud melalui Firebase Authentication dan Cloud Firestore.
+
+Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun berbagi catatan dengan pengguna lain, sehingga mendukung aktivitas kolaboratif dalam pengelolaan informasi.
