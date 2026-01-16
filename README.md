@@ -218,6 +218,9 @@ lib/
 | **Ari** | Frontend Developer | - Membuat Tampilan Member dan Homepage |
 | **Maria** | Frontend Developer | - Mebuat Tampilan profile page dan add notes |
 
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ---
 
 <div align="center">
