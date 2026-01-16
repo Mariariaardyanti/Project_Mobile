@@ -100,7 +100,6 @@ flutter run
 ```
 
 ### Build APK
-
 ```bash
 # Debug APK
 flutter build apk --debug
@@ -112,3 +111,50 @@ flutter build apk --release
 flutter build apk --split-per-abi
 ```
 ## Project Structure
+lib/
+├── main.dart
+├── firebase_options.dart
+│
+├── models/
+│   └── note_model.dart
+│
+├── pages/
+│   ├── auth/
+│   │   ├── login.dart
+│   │   └── signup.dart
+│   │
+│   ├── home/
+│   │   ├── homepage.dart
+│   │   ├── members.dart
+│   │   ├── notification_page.dart
+│   │   ├── profile_ari.dart
+│   │   ├── profile_helen.dart
+│   │   ├── profile_maria.dart
+│   │   └── profile_rian.dart
+│   │
+│   ├── notes/
+│   │   └── add_notes.dart
+│   │
+│   ├── onboarding/
+│   │   └── splashscreenboard.dart
+│   │
+│   ├── profile/
+│   │   ├── profile.dart
+│   │   └── edit_profile.dart
+│   │
+│   ├── splash/
+│   │   ├── splashscreen1.dart
+│   │   ├── splashscreen2.dart
+│   │   ├── splashscreen3.dart
+│   │   └── splashscreen4.dart
+│   │
+│   └── workspace/
+│       └── workspace.dart
+│
+└── services/
+    ├── fcm_background_handler.dart
+    ├── fcm_notification_service.dart
+    ├── image_service.dart
+    ├── local_notification_service.dart
+    └── notes_service.dart
+
