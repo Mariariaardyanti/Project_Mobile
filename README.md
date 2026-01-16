@@ -111,4 +111,4 @@ flutter build apk --release
 # Split APK by ABI
 flutter build apk --split-per-abi
 ```
-
+## Project Structure
