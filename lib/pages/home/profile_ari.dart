@@ -12,30 +12,6 @@ class Member_Ari extends StatefulWidget {
 }
 
 class _Member_AriState extends State<Member_Ari> {
-  bool task1 = false;
-  bool task2 = false;
-  bool task3 = false;
-  bool _isNotifHovered = false;
-
-  // ===== FCM =====
-  final FCMNotificationService _fcmService = FCMNotificationService();
-  List<String> _notifications = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    _fcmService.init(
-      onMessageReceived: (String message) {
-        setState(() {
-          if (!_notifications.contains(message)) {
-            _notifications.insert(0, message);
-          }
-        });
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +26,7 @@ class _Member_AriState extends State<Member_Ari> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     // ===== TOMBOL KEMBALI =====
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
