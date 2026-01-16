@@ -52,6 +52,7 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
   <img src="assets/images/splash3.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/splash4.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/workspace.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/addnote.png" alt="Splash Screen" width="200"/>
 </div>
 
 ### Prerequisites

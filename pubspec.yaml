@@ -100,6 +100,7 @@ flutter:
     - assets/images/profilerian.png
     - assets/images/profilmaria.png
     - assets/images/workspace.png
+    - assets/images/addnote.png
 
   fonts:
     - family: Poppins
