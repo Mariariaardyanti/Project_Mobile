@@ -5,7 +5,7 @@ import 'package:project_mobile/pages/home/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
-import 'package:project_mobile/pages/home/member_ari.dart';
+import 'package:project_mobile/pages/home/profile_ari.dart';
 
 class Members extends StatefulWidget {
   const Members({super.key});
