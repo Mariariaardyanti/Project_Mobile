@@ -121,13 +121,13 @@ flutter build apk --split-per-abi
 ## 📁Project Structure
 ```
 lib/
-├── main.dart
-├── firebase_options.dart
+├── main.dart                     # Entry point
+├── firebase_options.dart         # Firebase configuration
 │
-├── models/                       #data (Note, User, dll)
+├── models/                       # Data models
 │   └── note_model.dart
 │
-├── pages/                        #khusus UI / tampilan
+├── pages/                        # UI Pages (Screens)
 │   ├── auth/
 │   │   ├── login.dart
 │   │   └── signup.dart
@@ -160,7 +160,7 @@ lib/
 │   └── workspace/
 │       └── workspace.dart
 │
-└── services/                         #Firebase, Notification, logic
+└── services/                         # Business Logic & API Calls
     ├── fcm_background_handler.dart
     ├── fcm_notification_service.dart
     ├── image_service.dart
