@@ -57,7 +57,7 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 
   3.Team Developer
 
-  
+
   <img src="assets/images/profilari.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/profilehelen.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/profilerian.png" alt="Splash Screen" width="200"/>
@@ -195,11 +195,7 @@ lib/
 ### Development Team
 | Name | Role | Contributions |
 |------|------|---------------|
-| **Helen** | UI/UX & Backend Developer | - Perancangan UI/UX aplikasi<br>
-- Sistem autentikasi (Login & Register)<br>
-- Integrasi Firebase<br>
-- Pengembangan API<br>
-- Desain dan manajemen database |
+| **Helen** | UI/UX & Backend Developer | - Perancangan UI/UX aplikasi<br>- Sistem autentikasi (Login & Register)<br>- Integrasi Firebase<br>- Pengembangan API<br>- Desain dan manajemen database |
 | **Rian61** | Full Stack Developer| - Membuat notifikasi dan workspace  |
 | **Ari** | Frontend Developer | - Membuat Tampilan Member dan Homepage |
 | **Maria** | Frontend Developer | - Mebuat Tampilan profile page dan add notes |
