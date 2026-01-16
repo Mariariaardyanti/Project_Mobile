@@ -68,3 +68,28 @@ Pastikan Anda sudah menginstall:
 - **[Dart](https://dart.dev/)** - Programming Language
 - **[Firebase](https://firebase.google.com/)** - Backend & Authentication
 - **[Provider](https://pub.dev/packages/provider)** - State Management
+
+### Installation
+
+1. Clone repository
+```bash
+git clone https://github.com/yourusername/notes-app.git
+cd notes-app
+```
+
+2. Install dependencies
+```bash
+flutter pub get
+```
+
+3. Setup Firebase
+```bash
+# Download google-services.json dari Firebase Console
+# Place in android/app/
+cp path/to/google-services.json android/app/
+```
+
+4. Run aplikasi
+```bash
+flutter run
+```
