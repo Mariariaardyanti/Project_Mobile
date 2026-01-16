@@ -37,7 +37,7 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 ## Screenshots
 
 <div align="center">
-  <img src="assets/images/board.png.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/board.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/homepage.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/login.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/members.png" alt="Splash Screen" width="200"/>
