@@ -18,13 +18,11 @@ https://global.ac.id/
   - Tahun Akademik: 2025 - 2026
 
 ## About The Project
-
 Notes App merupakan aplikasi mobile berbasis Flutter yang dirancang untuk membantu pengguna dalam melakukan pencatatan secara digital. Aplikasi ini dilengkapi dengan antarmuka yang sederhana dan mudah digunakan serta mendukung sinkronisasi data berbasis cloud melalui Firebase Authentication dan Cloud Firestore.
 
 Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun berbagi catatan dengan pengguna lain, sehingga mendukung aktivitas kolaboratif dalam pengelolaan informasi.
 
 ### Key Features
-
 - **Modern UI/UX Design** – Antarmuka yang clean, responsif, dan user-friendly
 - **User Authentication** – Login dan registrasi pengguna menggunakan Firebase Authentication
 - **Personal Notes Management** – Membuat, mengedit, dan menghapus catatan pribadi
@@ -35,7 +33,6 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 - **Profile & Settings** – Pengelolaan profil pengguna dan preferensi aplikasi
 
 ## Screenshots
-
 <div align="center">
 1. Splash Screen & Authentication
   <img src="assets/images/board.png" alt="Splash Screen" width="200"/>
@@ -61,22 +58,24 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 </div>
 
 ### Prerequisites
-
 Pastikan Anda sudah menginstall:
 - Flutter SDK (3.16.0 or higher)
 - Dart SDK (3.2.0 or higher)
 - Android Studio / VS Code
 - Git
 
-## Built With
+## Demo Video
+Lihat video demo aplikasi kami untuk melihat semua fitur dalam aksi!
+**[Watch Full Demo on YouTube](https://youtube.com/watch?v=dQw4w9WgXcQ)**
+Alternative link: **[Google Drive Demo](https://drive.google.com/file/d/1234567890/view)**
 
+## Built With
 - **[Flutter](https://flutter.dev/)** - UI Framework
 - **[Dart](https://dart.dev/)** - Programming Language
 - **[Firebase](https://firebase.google.com/)** - Backend & Authentication
 - **[Provider](https://pub.dev/packages/provider)** - State Management
 
 ### Installation
-
 1. Clone repository
 ```bash
 git clone https://github.com/yourusername/notes-app.git
@@ -112,3 +111,4 @@ flutter build apk --release
 # Split APK by ABI
 flutter build apk --split-per-abi
 ```
+
