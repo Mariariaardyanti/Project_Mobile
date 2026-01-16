@@ -1,3 +1,5 @@
+import 'package:project_mobile/pages/home/profile_helen.dart';
+import 'package:project_mobile/pages/home/profile_rian.dart';
 import 'package:project_mobile/services/fcm_notification_service.dart';
 import 'package:project_mobile/pages/home/notification_page.dart';
 import 'package:flutter/material.dart';
@@ -365,7 +367,14 @@ class _MembersState extends State<Members> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Helen(),
+                                    ),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 12,
@@ -510,7 +519,7 @@ class _MembersState extends State<Members> {
                                 shape: BoxShape.circle,
                                 color: Colors.amber[50],
                                 image: DecorationImage(
-                                  image: AssetImage("assets/images/image1.png"),
+                                  image: AssetImage("assets/images/wangja.png"),
                                 ),
                                 boxShadow: [
                                   BoxShadow(
@@ -551,7 +560,14 @@ class _MembersState extends State<Members> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Rian(),
+                                    ),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 12,

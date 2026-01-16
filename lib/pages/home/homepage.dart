@@ -9,6 +9,7 @@ import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
 import 'package:project_mobile/pages/home/members.dart';
+import 'package:project_mobile/pages/workspace/workspace.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -19,6 +20,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   bool _isNotifHovered = false;
+  int _currentIndex = 0;
 
   // ===== FCM =====
   final FCMNotificationService _fcmService = FCMNotificationService();
@@ -27,12 +29,23 @@ class _HomepageState extends State<Homepage> {
   // ===== Notes Service =====
   final NotesService _notesService = NotesService();
 
+  final TextEditingController _searchController = TextEditingController();
+  String searchQuery = "";
+
+  List<Widget> get _pages => [
+      _buildHomeContent(),
+      const SizedBox(),
+      const WorkspacePage(),
+    ];
+
   @override
   void initState() {
     super.initState();
-
+    
+  WidgetsBinding.instance.addPostFrameCallback((_) {
     _fcmService.init(
       onMessageReceived: (String message) {
+        if (!mounted) return;
         setState(() {
           if (!_notifications.contains(message)) {
             _notifications.insert(0, message);
@@ -40,19 +53,18 @@ class _HomepageState extends State<Homepage> {
         });
       },
     );
-  }
+  });
+}
 
   @override
-  Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
-    if (user == null) {
-      return const Scaffold(body: Center(child: Text('Please login first')));
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
+  Widget _buildHomeContent(){
+    final user = FirebaseAuth.instance.currentUser!;
+    return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -171,11 +183,29 @@ class _HomepageState extends State<Homepage> {
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Colors.grey.shade300, width: 1),
                   ),
-                  child: const TextField(
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {
+                        searchQuery = value.toLowerCase();
+                      });
+                    },
                     decoration: InputDecoration(
                       icon: Icon(Icons.search),
                       hintText: "Search...",
                       border: InputBorder.none,
+
+                      suffixIcon: searchQuery.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear, size: 20),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() {
+                                  searchQuery = "";
+                                });
+                              },
+                            )
+                          : null,
                     ),
                   ),
                 ),
@@ -294,7 +324,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/images/bubbles.jpg',
+                                  'assets/images/bubbles.jpg', //punya ari
                                 ),
                               ),
                             ),
@@ -303,7 +333,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar2.png',
+                                  'assets/images/bubbles.jpg', //punya helen
                                 ),
                               ),
                             ),
@@ -312,7 +342,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar3.png',
+                                  'assets/images/bubbles.jpg', //punya maria
                                 ),
                               ),
                             ),
@@ -321,7 +351,7 @@ class _HomepageState extends State<Homepage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  'assets/avatar3.png',
+                                  'assets/images/wangja.png', //punya rian
                                 ),
                               ),
                             ),
@@ -408,7 +438,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Belum ada catatan',
+                                'No notes yet',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.grey[600],
@@ -416,7 +446,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Tap tombol + untuk membuat catatan',
+                                'Tap the + button to create a note',
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.grey[500],
@@ -431,8 +461,61 @@ class _HomepageState extends State<Homepage> {
                     // Has data
                     final notes = snapshot.data!.docs;
 
+                    //Filter data
+                    final filteredNotes = notes.where((doc) {
+                      final note = Note.fromFirestore(doc);
+                      final title = note.title.toLowerCase();
+                      final content = note.content.toLowerCase();
+
+                      return searchQuery.isEmpty ||
+                          title.contains(searchQuery) ||
+                          content.contains(searchQuery);
+                    }).toList();
+
+                    // Jika tidak ada hasil search
+                    if (filteredNotes.isEmpty && searchQuery.isNotEmpty) {
+                      return Container(
+                        padding: const EdgeInsets.all(32),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.grey.shade200,
+                            style: BorderStyle.solid,
+                          ),
+                        ),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.search_off,
+                                size: 48,
+                                color: Colors.grey[400],
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                'No notes found',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Try different keywords',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+
                     return Column(
-                      children: notes.map((doc) {
+                      children: filteredNotes.map((doc) {
                         final note = Note.fromFirestore(doc);
 
                         return GestureDetector(
@@ -761,21 +844,41 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      return const Scaffold(body: Center(child: Text('Please login first')));
+    }
+  
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
       ),
 
       // ===== BOTTOM NAV =====
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
-        currentIndex: 0,
+        currentIndex: _currentIndex,
         elevation: 0,
         onTap: (index) {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddNotesPage()),
+              MaterialPageRoute(builder: (_) => const AddNotesPage()),
             );
+            return;
           }
+          setState(() {
+            _currentIndex = index;
+          });
         },
         items: [
           BottomNavigationBarItem(

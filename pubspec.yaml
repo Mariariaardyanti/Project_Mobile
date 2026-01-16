@@ -47,6 +47,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   firebase_messaging: ^15.2.10
+  flutter_local_notifications: ^19.5.0
 
 dev_dependencies:
   flutter_test:
@@ -72,8 +73,10 @@ flutter:
     - assets/images/imageee.png
     - assets/images/logo kampus.png
     - assets/images/bubbles.jpg
+    - assets/images/wangja.png
     - assets/animations/Notes.json
     - assets/images/lockscreen.jpg
+    - assets/images/coverilen.png
 
 
   fonts:

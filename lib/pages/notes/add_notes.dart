@@ -55,6 +55,8 @@ class _AddNotesPageState extends State<AddNotesPage> {
 
   // SAVE NOTE
   Future<void> _saveNote() async {
+    if (_isLoading) return;
+
     final title = _titleController.text.trim();
     final content = _contentController.text.trim();
 
@@ -95,7 +97,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Catatan berhasil disimpan!'),
+              content: Text('Note saved successfully!'),
               backgroundColor: Colors.green,
             ),
           );
@@ -106,7 +108,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Catatan berhasil diupdate!'),
+              content: Text('Note updated successfully!'),
               backgroundColor: Colors.green,
             ),
           );
@@ -115,11 +117,10 @@ class _AddNotesPageState extends State<AddNotesPage> {
 
       Navigator.pop(context);
     } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Gagal menyimpan: $e')));
-      }
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Gagal menyimpan: $e')));
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
@@ -262,16 +263,16 @@ class _AddNotesPageState extends State<AddNotesPage> {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Hapus Catatan?'),
-        content: const Text('Catatan akan dihapus permanen.'),
+        title: const Text('Delete Note?'),
+        content: const Text('This note will be permanently deleted.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Batal'),
+            child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Hapus', style: TextStyle(color: Colors.red)),
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -289,7 +290,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
 
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Catatan berhasil dihapus')),
+            const SnackBar(content: Text('Your note has been deleted!')),
           );
           Navigator.pop(context);
         }
@@ -815,44 +816,6 @@ class _AddNotesPageState extends State<AddNotesPage> {
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade200,
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home_outlined, size: 28),
-              onPressed: () => Navigator.pop(context),
-            ),
-            Container(
-              width: 56,
-              height: 56,
-              decoration: const BoxDecoration(
-                color: Color(0xFFFFF1D6),
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                icon: const Icon(Icons.add, size: 30),
-                onPressed: () {},
-              ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.sticky_note_2_outlined, size: 26),
-              onPressed: () {},
             ),
           ],
         ),
