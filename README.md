@@ -115,10 +115,10 @@ lib/
 ├── main.dart
 ├── firebase_options.dart
 │
-├── models/
+├── models/                       #data (Note, User, dll)
 │   └── note_model.dart
 │
-├── pages/
+├── pages/                        #khusus UI / tampilan
 │   ├── auth/
 │   │   ├── login.dart
 │   │   └── signup.dart
@@ -151,7 +151,7 @@ lib/
 │   └── workspace/
 │       └── workspace.dart
 │
-└── services/
+└── services/                         #Firebase, Notification, logic
     ├── fcm_background_handler.dart
     ├── fcm_notification_service.dart
     ├── image_service.dart
