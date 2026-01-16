@@ -161,6 +161,29 @@ lib/
 ```
 
 ## Authentication Flow
+```
+1. Onboarding Board
+   - splashscreenboard.dart
+        ↓
+2. Splash Screen 1
+   - splashscreen1.dart
+        ↓
+3. Splash Screen 2
+   - splashscreen2.dart
+        ↓
+4. Splash Screen 3
+   - splashscreen3.dart
+        ↓
+5. Splash Screen 4
+   - splashscreen4.dart
+        ↓
+6. Auto Login Check
+   - FirebaseAuth.currentUser
+        ↓
+7. Login / Register
+   - login.dart
+   - signup.dart
+```
 
 
 
