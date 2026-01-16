@@ -186,6 +186,16 @@ lib/
 ```
 ## Team Members & Contributions
 ### Development Team
+| Name | Role | Contributions |
+|------|------|---------------|
+| **Helen** | UI/UX & Backend Developer | - Perancangan UI/UX aplikasi<br>
+- Sistem autentikasi (Login & Register)<br>
+- Integrasi Firebase<br>
+- Pengembangan API<br>
+- Desain dan manajemen database |
+| **Rian61** | Full Stack Developer| - Membuat notifikasi dan workspace  |
+| **Ari** | Frontend Developer | - Membuat Tampilan Member dan Homepage |
+| **Maria** | Frontend Developer | - Mebuat Tampilan profile page dan add notes |
 
 
 
