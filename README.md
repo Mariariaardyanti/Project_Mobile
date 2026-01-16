@@ -37,22 +37,24 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 ## Screenshots
 
 <div align="center">
+1. Splash Screen & Authentication
   <img src="assets/images/board.png" alt="Splash Screen" width="200"/>
-  <img src="assets/images/homepage.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash1.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash2.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash3.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/splash4.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/login.png" alt="Splash Screen" width="200"/>
+
+  <img src="assets/images/homepage.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/members.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/workspace.png" alt="Splash Screen" width="200"/>
+  <img src="assets/images/addnote.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/notifikasi.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/profil.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/profilari.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/profilehelen.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/profilerian.png" alt="Splash Screen" width="200"/>
   <img src="assets/images/profilmaria.png" alt="Splash Screen" width="200"/>
-  <img src="assets/images/splash1.png" alt="Splash Screen" width="200"/>
-  <img src="assets/images/splash2.png" alt="Splash Screen" width="200"/>
-  <img src="assets/images/splash3.png" alt="Splash Screen" width="200"/>
-  <img src="assets/images/splash4.png" alt="Splash Screen" width="200"/>
-  <img src="assets/images/workspace.png" alt="Splash Screen" width="200"/>
-  <img src="assets/images/addnote.png" alt="Splash Screen" width="200"/>
 </div>
 
 ### Prerequisites
