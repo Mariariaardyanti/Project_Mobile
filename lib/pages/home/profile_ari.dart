@@ -31,13 +31,13 @@ class _Member_AriState extends State<Member_Ari> {
                           onPressed: () => Navigator.pop(context),
                           icon: const Icon(
                             Icons.arrow_back_ios_new,
-                            size: 20,
-                            color: Colors.black,
+                            size: 14,
+                            color: Colors.brown,
                           ),
                         ),
                         const SizedBox(width: 8),
                         const Text(
-                          "Member",
+                          "Project Team Members",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
