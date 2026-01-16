@@ -424,57 +424,6 @@ class _Member_AriState extends State<Member_Ari> {
           ),
         ),
       ),
-
-      // ===== BOTTOM NAV =====
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.transparent,
-        currentIndex: 0,
-        elevation: 0,
-        onTap: (index) {
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AddNotesPage()),
-            );
-          }
-        },
-        items: [
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.amber[50],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.home_outlined, size: 30),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.add, size: 30),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.sticky_note_2_outlined, size: 28),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
