@@ -193,14 +193,21 @@ lib/
    - signup.dart
 ```
 ## 📝 API & Services Integration
-```
+
 ### Firebase Authentication
 - Google Sign-In: Menggunakan firebase_auth dan auth_service.dart.
 - Session Manager: Mengelola sesi pengguna secara lokal.
 
 ### Firebase Database
 - CRUD Operations: Mengakses notes dan archive_categories melalui firestore_service.dart.
-```
+
+### Development Workflow
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/NewFeature`)
+3. Commit changes (`git commit -m 'Add some NewFeature'`)
+4. Push to branch (`git push origin feature/NewFeature`)
+5. Open Pull Request
+
 
 ## Team Members & Contributions
 ### Development Team
