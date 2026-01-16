@@ -22,3 +22,14 @@ https://global.ac.id/
 Notes App merupakan aplikasi mobile berbasis Flutter yang dirancang untuk membantu pengguna dalam melakukan pencatatan secara digital. Aplikasi ini dilengkapi dengan antarmuka yang sederhana dan mudah digunakan serta mendukung sinkronisasi data berbasis cloud melalui Firebase Authentication dan Cloud Firestore.
 
 Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun berbagi catatan dengan pengguna lain, sehingga mendukung aktivitas kolaboratif dalam pengelolaan informasi.
+
+### Key Features
+
+- **Modern UI/UX Design** – Antarmuka yang clean, responsif, dan user-friendly
+- **User Authentication** – Login dan registrasi pengguna menggunakan Firebase Authentication
+- **Personal Notes Management** – Membuat, mengedit, dan menghapus catatan pribadi
+- **Collaborative Notes** – Berbagi catatan dengan pengguna lain untuk kolaborasi bersama
+- **Push Notifications** – Reminder untuk catatan penting dan aktivitas tertentu
+- **Cloud Sync** – Sinkronisasi data catatan secara otomatis menggunakan Cloud Firestore
+- **Multi-Device Access** – Akses catatan dari berbagai perangkat dengan satu akun
+- **Profile & Settings** – Pengelolaan profil pengguna dan preferensi aplikasi
