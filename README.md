@@ -61,13 +61,6 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
   <img src="assets/images/profilmaria.png" alt="Splash Screen" width="200"/>
 </div>
 
-### Prerequisites
-Pastikan Anda sudah menginstall:
-- Flutter SDK (3.16.0 or higher)
-- Dart SDK (3.2.0 or higher)
-- Android Studio / VS Code
-- Git
-
 ## Demo Video
 Lihat video demo aplikasi kami untuk melihat semua fitur dalam aksi!
 **[Watch Full Demo on YouTube](https://youtube.com/watch?v=dQw4w9WgXcQ)**
@@ -78,6 +71,16 @@ Alternative link: **[Google Drive Demo](https://drive.google.com/file/d/12345678
 - **[Dart](https://dart.dev/)** - Programming Language
 - **[Firebase](https://firebase.google.com/)** - Backend & Authentication
 - **[Provider](https://pub.dev/packages/provider)** - State Management
+
+
+## Getting Started
+
+### Prerequisites
+Pastikan Anda sudah menginstall:
+- Flutter SDK (3.16.0 or higher)
+- Dart SDK (3.2.0 or higher)
+- Android Studio / VS Code
+- Git
 
 ### Installation
 1. Clone repository
@@ -115,7 +118,7 @@ flutter build apk --release
 flutter build apk --split-per-abi
 ```
 
-## Project Structure
+## 📁Project Structure
 ```
 lib/
 ├── main.dart
@@ -189,6 +192,16 @@ lib/
    - login.dart
    - signup.dart
 ```
+## 📝 API & Services Integration
+```
+### Firebase Authentication
+- Google Sign-In: Menggunakan firebase_auth dan auth_service.dart.
+- Session Manager: Mengelola sesi pengguna secara lokal.
+
+### Firebase Database
+- CRUD Operations: Mengakses notes dan archive_categories melalui firestore_service.dart.
+```
+
 ## Team Members & Contributions
 ### Development Team
 | Name | Role | Contributions |
@@ -198,10 +211,13 @@ lib/
 | **Ari** | Frontend Developer | - Membuat Tampilan Member dan Homepage |
 | **Maria** | Frontend Developer | - Mebuat Tampilan profile page dan add notes |
 
+---
+
 <div align="center">
   <p>Made with by NPC Team</p>
   <p>© 2026 Notes App. All rights reserved.</p>
 </div>
+
 
 
 
