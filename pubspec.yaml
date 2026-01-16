@@ -74,8 +74,17 @@ flutter:
     - assets/images/logo kampus.png
     - assets/images/bubbles.jpg
     - assets/images/wangja.png
+    - assets/images/coverilen.png
+    - assets/images/maria1.jpg
+    - assets/images/maria2.jpg
+    - assets/images/maria3.jpg
+    - assets/images/maria4.jpg
+    - assets/images/maria5.jpg
+    - assets/images/maria6.jpg
+    - assets/images/maria_P.png
+    - assets/images/maria_P1.jpg
     - assets/animations/Notes.json
-
+    - assets/images/lockscreen.jpg
 
   fonts:
     - family: Poppins
@@ -83,6 +92,7 @@ flutter:
         - asset: assets/fonts/Poppins/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins/Poppins-Bold.ttf
           weight: 700
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

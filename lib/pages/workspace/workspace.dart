@@ -6,7 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:project_mobile/models/note_model.dart';
 import 'package:project_mobile/services/notes_service.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
-
+import 'package:project_mobile/pages/home/notification_page.dart';
+import 'package:project_mobile/pages/profile/profile.dart';
 
 class WorkspacePage extends StatefulWidget {
   const WorkspacePage({super.key});
@@ -17,91 +18,213 @@ class WorkspacePage extends StatefulWidget {
 
 class _WorkspacePageState extends State<WorkspacePage> {
   final NotesService _notesService = NotesService();
+  bool _isNotifHovered = false; 
+  List<String> _notifications = [];
+
+  Widget _buildManualHeader() {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          "Workspace",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        Row(
+          children: [
+            // Button Get Pro
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.brown,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.workspace_premium, size: 18, color: Colors.white),
+                  SizedBox(width: 6),
+                  Text("Get Pro", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+                ],
+              ),
+            ),
+            const SizedBox(width: 12),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NotificationPage(
+                      notifications: _notifications,
+                    ),
+                  ),
+                );
+              },
+              child: MouseRegion(
+                onEnter: (_) => setState(() => _isNotifHovered = true),
+                onExit: (_) => setState(() => _isNotifHovered = false),
+                child: AnimatedScale(
+                  scale: _isNotifHovered ? 1.1 : 1.0,
+                  duration: const Duration(milliseconds: 150),
+                  child: Stack( 
+                    children: [
+                      const Icon(Icons.notifications_none),
+                      if (_notifications.isNotEmpty)
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            // Icon Profile
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, '/profile'), // Sesuaikan route kamu
+              child: const Icon(Icons.person_2_outlined, size: 24),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
 
     if (user == null) {
-      return const Scaffold(
-        body: Center(child: Text('Please login first')),
-      );
+      return const Scaffold(body: Center(child: Text('Please login first')));
     }
 
     return Scaffold(
-      appBar: const _WorkspaceAppBar(),
+      appBar: null,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: _notesService.getUserNotes(user.uid),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            }
-            final docs = snapshot.data?.docs ?? [];
-            if (docs.isEmpty) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.note_alt_outlined, size: 56, color: Colors.grey[400]),
-                      const SizedBox(height: 12),
-                      Text('Belum ada catatan', style: TextStyle(color: Colors.grey[600])),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AddNotesPage())),
-                        child: const Text('Buat Catatan'),
-                      )
-                    ],
-                  ),
-                ),
-              );
-            }
+        child: Column(
+          children: [
+            _buildManualHeader(), 
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _notesService.getUserNotes(user.uid),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  }
+                  final docs = snapshot.data?.docs ?? [];
+                  if (docs.isEmpty) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.note_alt_outlined,
+                              size: 56,
+                              color: Colors.grey[400],
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              'Belum ada catatan',
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                            const SizedBox(height: 8),
+                            ElevatedButton(
+                              onPressed: () async {
+                                final result = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const AddNotesPage(),
+                                  ),
+                                );
 
-            final notes = docs.map((d) => Note.fromFirestore(d)).toList();
-
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: ListView.separated(
-                itemCount: notes.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 12),
-                itemBuilder: (context, index) {
-                  final note = notes[index];
-                  return  _WorkspaceCard(
-                    note: note,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => AddNotesPage(note: note),
+                                if (result == true && context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Note saved successfully!'),
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+                                }
+                              },
+                              child: const Text('Buat Catatan'),
+                            ),
+                          ],
                         ),
-                      );
-                    },
+                      ),
+                    );
+                  }
+
+                  final notes = docs.map((d) => Note.fromFirestore(d)).toList();
+
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                    child: ListView.separated(
+                      itemCount: notes.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      itemBuilder: (context, index) {
+                        final note = notes[index];
+                        return _WorkspaceCard(
+                          note: note,
+                          onTap: () async {
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => AddNotesPage(note: note),
+                              ),
+                            );
+
+                            if (result == true && mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Note saved successfully!'),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
+                          },
+                        );
+                      },
+                    ),
                   );
                 },
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _WorkspaceAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
+class _WorkspaceAppBar extends StatelessWidget implements PreferredSizeWidget {
   const _WorkspaceAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: const Text('Workspace', style: TextStyle(color: Colors.black)),
+      title: const Text('Workspace', 
+      style: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        )
+        ),
       backgroundColor: Colors.white,
       elevation: 0,
       iconTheme: const IconThemeData(color: Colors.black),
@@ -109,7 +232,7 @@ class _WorkspaceAppBar extends StatelessWidget
         IconButton(
           onPressed: () {},
           icon: const Icon(Icons.filter_list, color: Colors.black),
-        )
+        ),
       ],
     );
   }
@@ -124,10 +247,7 @@ class _WorkspaceCard extends StatelessWidget {
 
   final NotesService _notesService = NotesService();
 
-  _WorkspaceCard({
-    required this.note,
-    required this.onTap,
-  });
+  _WorkspaceCard({required this.note, required this.onTap});
 
   String _shortContent(String text) {
     if (text.length <= 80) return text;
@@ -165,7 +285,7 @@ class _WorkspaceCard extends StatelessWidget {
     final desc = note.content;
     final firstLabel = note.labels.isNotEmpty ? note.labels.first : null;
     final statusText = _relativeStatus(note.updatedAt);
-    
+
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -175,7 +295,7 @@ class _WorkspaceCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.03),
+              color: Colors.black.withValues(alpha: 0.03),
               blurRadius: 8,
               offset: const Offset(0, 3),
             ),
@@ -200,10 +320,13 @@ class _WorkspaceCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 if (statusText.isNotEmpty)
-                 Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
-                      color: _statusColor(statusText).withOpacity(0.12),
+                      color: _statusColor(statusText).withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -216,62 +339,56 @@ class _WorkspaceCard extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 4),
+                const SizedBox(height: 4),
 
-                  PopupMenuButton<String>(
-                    icon: const Icon(Icons.more_vert, size: 20),
-                    onSelected: (value) async {
-                      if (value == 'pin') {
-                        await _notesService.togglePin(
-                          note.id,
-                          note.isPinned,
-                        );
-                      } else if (value == 'delete') {
-                        await _notesService.deleteNote(note.id);
-                      }
-                    },
-                    itemBuilder: (context) => [
-                      PopupMenuItem(
-                        value: 'pin',
-                        child: Row(
-                          children: [
-                            Icon(
-                              note.isPinned
-                                  ? Icons.push_pin
-                                  : Icons.push_pin_outlined,
-                              size: 18,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(note.isPinned ? 'Unpin' : 'Pin'),
-                          ],
-                        ),
+                PopupMenuButton<String>(
+                  icon: const Icon(Icons.more_vert, size: 20),
+                  onSelected: (value) async {
+                    if (value == 'pin') {
+                      await _notesService.togglePin(note.id, note.isPinned);
+                    } else if (value == 'delete') {
+                      await _notesService.deleteNote(note.id);
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 'pin',
+                      child: Row(
+                        children: [
+                          Icon(
+                            note.isPinned
+                                ? Icons.push_pin
+                                : Icons.push_pin_outlined,
+                            size: 18,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(note.isPinned ? 'Unpin' : 'Pin'),
+                        ],
                       ),
-                      const PopupMenuItem(
-                        value: 'delete',
-                        child: Row(
-                          children: [
-                            Icon(Icons.delete_outline,
-                                size: 18, color: Colors.red),
-                            SizedBox(width: 8),
-                            Text(
-                              'Delete',
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          ],
-                        ),
+                    ),
+                    const PopupMenuItem(
+                      value: 'delete',
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.delete_outline,
+                            size: 18,
+                            color: Colors.red,
+                          ),
+                          SizedBox(width: 8),
+                          Text('Delete', style: TextStyle(color: Colors.red)),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
               ],
             ),
             const SizedBox(height: 8),
 
             Text(
               _shortContent(desc),
-              style: const TextStyle(
-                fontSize: 13,
-                color: Colors.black87,
-              ),
+              style: const TextStyle(fontSize: 13, color: Colors.black87),
             ),
 
             const SizedBox(height: 12),
@@ -289,7 +406,9 @@ class _WorkspaceCard extends StatelessWidget {
                           left: i * 18.0,
                           child: CircleAvatar(
                             radius: 12,
-                            backgroundImage: const AssetImage('assets/images/bubbles.jpg'),
+                            backgroundImage: const AssetImage(
+                              'assets/images/bubbles.jpg',
+                            ),
                           ),
                         ),
                     ],
@@ -309,7 +428,10 @@ class _WorkspaceCard extends StatelessWidget {
                 if (firstLabel != null) ...[
                   const SizedBox(width: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
@@ -332,4 +454,3 @@ class _WorkspaceCard extends StatelessWidget {
     );
   }
 }
-
