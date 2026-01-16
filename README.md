@@ -54,3 +54,17 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
   <img src="assets/images/workspace.png" alt="Splash Screen" width="200"/>
 </div>
 
+### Prerequisites
+
+Pastikan Anda sudah menginstall:
+- Flutter SDK (3.16.0 or higher)
+- Dart SDK (3.2.0 or higher)
+- Android Studio / VS Code
+- Git
+
+## Built With
+
+- **[Flutter](https://flutter.dev/)** - UI Framework
+- **[Dart](https://dart.dev/)** - Programming Language
+- **[Firebase](https://firebase.google.com/)** - Backend & Authentication
+- **[Provider](https://pub.dev/packages/provider)** - State Management
