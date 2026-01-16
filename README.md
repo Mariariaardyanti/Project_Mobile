@@ -111,6 +111,7 @@ flutter build apk --release
 flutter build apk --split-per-abi
 ```
 ## Project Structure
+```
 lib/
 ├── main.dart
 ├── firebase_options.dart
@@ -157,4 +158,10 @@ lib/
     ├── image_service.dart
     ├── local_notification_service.dart
     └── notes_service.dart
+```
+
+## Authentication Flow
+
+
+
 
