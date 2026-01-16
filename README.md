@@ -11,16 +11,22 @@ FAKULTAS TEKNOLOGI INFORMASI & KOMUNIKASI
 https://global.ac.id/
   </div>
 
+
+
   ##  Project UAS
   - Mata Kuliah : Aplikasi Mobile
   - Kelas : TI 23 M SE
   - Semester : GANJIL 
   - Tahun Akademik: 2025 - 2026
 
+
+
 ## About The Project
 Notes App merupakan aplikasi mobile berbasis Flutter yang dirancang untuk membantu pengguna dalam melakukan pencatatan secara digital. Aplikasi ini dilengkapi dengan antarmuka yang sederhana dan mudah digunakan serta mendukung sinkronisasi data berbasis cloud melalui Firebase Authentication dan Cloud Firestore.
 
 Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun berbagi catatan dengan pengguna lain, sehingga mendukung aktivitas kolaboratif dalam pengelolaan informasi.
+
+
 
 ### Key Features
 - **Modern UI/UX Design** – Antarmuka yang clean, responsif, dan user-friendly
@@ -31,6 +37,8 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 - **Cloud Sync** – Sinkronisasi data catatan secara otomatis menggunakan Cloud Firestore
 - **Multi-Device Access** – Akses catatan dari berbagai perangkat dengan satu akun
 - **Profile & Settings** – Pengelolaan profil pengguna dan preferensi aplikasi
+
+
 
 ## Screenshots
 ### Splash Screen & Authentication
@@ -61,16 +69,21 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
   <img src="assets/images/profilmaria.png" alt="Splash Screen" width="200"/>
 </div>
 
+
+
 ## Demo Video
 Lihat video demo aplikasi kami untuk melihat semua fitur dalam aksi!
 **[Watch Full Demo on YouTube](https://youtube.com/watch?v=dQw4w9WgXcQ)**
 Alternative link: **[Google Drive Demo](https://drive.google.com/file/d/1234567890/view)**
+
+
 
 ## Built With
 - **[Flutter](https://flutter.dev/)** - UI Framework
 - **[Dart](https://dart.dev/)** - Programming Language
 - **[Firebase](https://firebase.google.com/)** - Backend & Authentication
 - **[Provider](https://pub.dev/packages/provider)** - State Management
+
 
 
 ## Getting Started
@@ -81,6 +94,7 @@ Pastikan Anda sudah menginstall:
 - Dart SDK (3.2.0 or higher)
 - Android Studio / VS Code
 - Git
+
 
 ### Installation
 1. Clone repository
@@ -106,6 +120,7 @@ cp path/to/google-services.json android/app/
 flutter run
 ```
 
+
 ### Build APK
 ```bash
 # Debug APK
@@ -117,6 +132,8 @@ flutter build apk --release
 # Split APK by ABI
 flutter build apk --split-per-abi
 ```
+
+
 
 ## 📁Project Structure
 ```
@@ -168,6 +185,8 @@ lib/
     └── notes_service.dart
 ```
 
+
+
 ## Authentication Flow
 ```
 1. Onboarding Board
@@ -192,14 +211,20 @@ lib/
    - login.dart
    - signup.dart
 ```
+
+
+
 ## 📝 API & Services Integration
+
 
 ### Firebase Authentication
 - Google Sign-In: Menggunakan firebase_auth dan auth_service.dart.
 - Session Manager: Mengelola sesi pengguna secara lokal.
 
+
 ### Firebase Database
 - CRUD Operations: Mengakses notes dan archive_categories melalui firestore_service.dart.
+
 
 ### Development Workflow
 1. Fork repository
@@ -209,7 +234,10 @@ lib/
 5. Open Pull Request
 
 
+
 ## Team Members & Contributions
+
+
 ### Development Team
 | Name | Role | Contributions |
 |------|------|---------------|
@@ -218,8 +246,12 @@ lib/
 | **Ari** | Frontend Developer | - Membuat Tampilan Member dan Homepage |
 | **Maria** | Frontend Developer | - Mebuat Tampilan profile page dan add notes |
 
+
+
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
 
 ## Acknowledgments
 - [Flutter Community](https://flutter.dev/community) - For amazing packages
@@ -229,6 +261,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 
 ---
+
+
 
 <div align="center">
   <p>Made with by NPC Team</p>
