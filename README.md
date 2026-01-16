@@ -197,7 +197,10 @@ lib/
 | **Ari** | Frontend Developer | - Membuat Tampilan Member dan Homepage |
 | **Maria** | Frontend Developer | - Mebuat Tampilan profile page dan add notes |
 
-
+<div align="center">
+  <p>Made with by NPC Team</p>
+  <p>© 2026 Notes App. All rights reserved.</p>
+</div>
 
 
 
