@@ -5,8 +5,8 @@ import 'package:project_mobile/pages/home/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:project_mobile/pages/notes/add_notes.dart';
 import 'package:project_mobile/pages/profile/profile.dart';
-import 'package:project_mobile/pages/home/homepage.dart';
 import 'package:project_mobile/pages/home/profile_maria.dart';
+import 'package:project_mobile/pages/home/profile_ari.dart';
 
 class Members extends StatefulWidget {
   const Members({super.key});
@@ -14,7 +14,6 @@ class Members extends StatefulWidget {
   @override
   State<Members> createState() => _MembersState();
 }
-
 class _MembersState extends State<Members> {
   bool task1 = false;
   bool task2 = false;
@@ -225,7 +224,7 @@ class _MembersState extends State<Members> {
                                 shape: BoxShape.circle,
                                 color: Colors.amber[50],
                                 image: DecorationImage(
-                                  image: AssetImage("assets/images/image1.png"),
+                                  image: AssetImage("assets/images/lockscreen.jpg"),
                                 ),
                                 boxShadow: [
                                   BoxShadow(
@@ -253,7 +252,7 @@ class _MembersState extends State<Members> {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Progammer Magang",
+                                    "1123150126",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
@@ -266,7 +265,14 @@ class _MembersState extends State<Members> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Member_Ari(),
+                                    ),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 12,
