@@ -85,6 +85,22 @@ flutter:
     - assets/images/maria_P1.jpg
     - assets/animations/Notes.json
     - assets/images/lockscreen.jpg
+    - assets/images/board.png
+    - assets/images/splash1.png
+    - assets/images/splash2.png
+    - assets/images/splash3.png
+    - assets/images/splash4.png
+    - assets/images/login.png
+    - assets/images/homepage.png
+    - assets/images/members.png
+    - assets/images/notifikasi.png
+    - assets/images/profil.png
+    - assets/images/profilari.png
+    - assets/images/profilehelen.png
+    - assets/images/profilerian.png
+    - assets/images/profilmaria.png
+    - assets/images/workspace.png
+    - assets/images/addnote.png
 
   fonts:
     - family: Poppins
