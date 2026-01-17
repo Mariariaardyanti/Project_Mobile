@@ -73,7 +73,7 @@ Aplikasi ini memungkinkan pengguna untuk menyimpan catatan secara pribadi maupun
 
 ## Demo Video
 Lihat video demo aplikasi kami untuk melihat semua fitur dalam aksi!
-**[Watch Full Demo on YouTube](https://https://youtu.be/vIoo_6DX30o)**
+**[Watch Full Demo on YouTube](https://youtu.be/vIoo_6DX30o)**
 Alternative link: **[Google Drive Demo](https://drive.google.com/file/d/1kzWcdoIDfTuCFKpOCW4gayeGY5rFsjm0/view?usp=drive_link)**
 
 
